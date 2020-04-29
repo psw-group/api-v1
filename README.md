@@ -4,6 +4,8 @@
 [![Software License][ico-license]](LICENSE.md)
 [![Total Downloads][ico-downloads]][link-downloads]
 
+Our API empowers customers to build amazing new apps or websites using PSW GROUP shop data and services.
+
 ## Install
 
 Via composer:
