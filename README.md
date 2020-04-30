@@ -14,7 +14,14 @@ Via composer:
 $ composer require psw-group/api-v1
 ```
 
-## Example
+This package requires PSR-17 compatible request/URI factories and a PSR-18 compatible HTTP client.
+If no factories are supplied, it uses [PHP-HTTP](https://php-http.org) discovery to find installed implementations.
+ 
+For example if you want to use [Guzzle](http://guzzlephp.org) as HTTP client execute:
+
+``` bash
+$ composer require http-interop/http-factory-guzzle php-http/guzzle6-adapter
+```
 
 ## Testing
 
