@@ -3,18 +3,24 @@
     "description": "Client for the API of PSW GROUP",
     "keywords": [
         "PSW GROUP",
-        "api",
-        "client"
+        "API",
+        "SDK"
     ],
     "homepage": "https://github.com/psw-group/api-v1",
     "license": "MIT",
     "require": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "ext-json": "*",
+        "binsoul/net-hal-client": "dev-master",
+        "php-http/discovery": "^1"
     },
     "require-dev": {
         "phpunit/phpunit": "^8",
         "friendsofphp/php-cs-fixer": "^2",
-        "phpstan/phpstan": "^0.12"
+        "phpstan/phpstan": "^0.12",
+        "http-interop/http-factory-guzzle": "^1",
+        "php-http/guzzle6-adapter": "^2",
+        "php-http/mock-client": "^1"
     },
     "autoload": {
         "psr-4": {
