@@ -7,7 +7,7 @@ namespace PswGroup\Api\Model\Resource;
 use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 
-class AccountUser extends AbstractResource
+class AccountUser extends AbstractResource implements \JsonSerializable
 {
     /**
      * @var string|null Number of the user
@@ -106,5 +106,16 @@ class AccountUser extends AbstractResource
         $result->password = $resource->getProperty('password');
 
         return $result;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'active' => $this->active,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'email' => $this->email,
+            'password' => $this->password,
+        ];
     }
 }

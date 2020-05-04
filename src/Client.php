@@ -19,16 +19,16 @@ interface Client
     /**
      * Executes a POST request with the given data.
      *
-     * @param mixed[] $data
+     * @param \JsonSerializable|array $data
      */
-    public function post(string $uri, array $data = []): HalResource;
+    public function post(string $uri, $data): HalResource;
 
     /**
      * Executes a PUT request with the given data.
      *
-     * @param mixed[] $data
+     * @param \JsonSerializable|array $data
      */
-    public function put(string $uri, array $data = []): HalResource;
+    public function put(string $uri, $data): HalResource;
 
     /**
      * Executes a DELETE request.

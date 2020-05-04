@@ -8,7 +8,7 @@ use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\DataTransferObject\ContactData;
 
-class AccountContact extends AbstractResource
+class AccountContact extends AbstractResource implements \JsonSerializable
 {
     use ContactData;
 
@@ -83,5 +83,34 @@ class AccountContact extends AbstractResource
         $result->jurisdictionCountry = self::loadObject($resource, 'jurisdictionCountry', Country::class);
 
         return $result;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'allowedAsOrderContact' => $this->allowedAsOrderContact,
+            'allowedAsOwnerContact' => $this->allowedAsOwnerContact,
+            'salutation' => $this->salutation,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'telephone' => $this->telephone,
+            'email' => $this->email,
+            'addressLine1' => $this->addressLine1,
+            'addressLine2' => $this->addressLine2,
+            'addressLine3' => $this->addressLine3,
+            'addressZip' => $this->addressZip,
+            'addressCity' => $this->addressCity,
+            'addressState' => $this->addressState,
+            'addressCountry' => $this->addressCountry,
+            'organisationType' => $this->organisationType,
+            'organisationName' => $this->organisationName,
+            'organisationUnit' => $this->organisationUnit,
+            'organisationDuns' => $this->organisationDuns,
+            'jurisdictionAgency' => $this->jurisdictionAgency,
+            'jurisdictionNumber' => $this->jurisdictionNumber,
+            'jurisdictionCity' => $this->jurisdictionCity,
+            'jurisdictionState' => $this->jurisdictionState,
+            'jurisdictionCountry' => $this->jurisdictionCountry,
+        ];
     }
 }

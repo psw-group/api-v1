@@ -81,14 +81,14 @@ class GenericClient implements Client
         return $this->buildClient()->request('GET', $uri, $this->applyDefaultOptions(['query' => $query]));
     }
 
-    public function post(string $uri, array $data = []): HalResource
+    public function post(string $uri, $data): HalResource
     {
-        return $this->buildClient()->request('POST', $uri, $this->applyDefaultOptions(['body' => $data]));
+        return $this->buildClient()->request('POST', $uri, $this->applyDefaultOptions(['body' => $this->serialize($data)]));
     }
 
-    public function put(string $uri, array $data = []): HalResource
+    public function put(string $uri, $data): HalResource
     {
-        return $this->buildClient()->request('PUT', $uri, $this->applyDefaultOptions(['body' => $data]));
+        return $this->buildClient()->request('PUT', $uri, $this->applyDefaultOptions(['body' => $this->serialize($data)]));
     }
 
     public function delete(string $uri): HalResource
@@ -214,5 +214,18 @@ class GenericClient implements Client
         $this->accessToken = $data['access_token'];
 
         return $this->accessToken;
+    }
+
+    /**
+     * @param object $object
+     */
+    protected function serialize($object): string
+    {
+        $data = @json_encode($object);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \InvalidArgumentException(sprintf('JSON encode error: %s.', json_last_error_msg()));
+        }
+
+        return $data;
     }
 }
