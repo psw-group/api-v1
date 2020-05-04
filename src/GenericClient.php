@@ -137,11 +137,10 @@ class GenericClient implements Client
     {
         if ($this->halClient === null) {
             $this->halClient = new HalClient(
-                $this->apiUrl,
+                $this->uriFactory->createUri($this->apiUrl),
                 new DefaultHalResourceFactory(),
                 $this->httpClient,
-                $this->requestFactory,
-                $this->uriFactory
+                $this->requestFactory
             );
         }
 
