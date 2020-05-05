@@ -137,7 +137,10 @@ class GenericClient implements Client
         $this->accessToken = null;
     }
 
-    protected function serialize(object $object): string
+    /**
+     * @param \JsonSerializable|array $object
+     */
+    protected function serialize($object): string
     {
         $data = @json_encode($object);
 
