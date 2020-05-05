@@ -16,17 +16,11 @@ abstract class AbstractResource
      */
     private $iri;
 
-    /**
-     * @return string
-     */
     public function getIri(): ?string
     {
         return $this->iri;
     }
 
-    /**
-     * @param string $iri
-     */
     public function setIri(?string $iri): void
     {
         $this->iri = $iri;
@@ -38,6 +32,7 @@ abstract class AbstractResource
     public static function fromResource(HalResource $resource)
     {
         $result = new static();
+
         if ($resource->hasLink('self') && $resource->getFirstLink('self')) {
             $result->iri = $resource->getFirstLink('self')->getUri();
         }
@@ -47,7 +42,7 @@ abstract class AbstractResource
 
     protected static function loadDateTime(HalResource $resource, string $property): ?DateTimeInterface
     {
-        if (!$resource->hasProperty($property) || $resource->getProperty($property) === null) {
+        if (! $resource->hasProperty($property) || $resource->getProperty($property) === null) {
             return null;
         }
 
@@ -60,16 +55,17 @@ abstract class AbstractResource
             return call_user_func([$className, 'fromResource'], $resource->getFirstResource($property));
         }
 
-        if (!$resource->hasProperty($property) || $resource->getProperty($property) === null) {
+        if (! $resource->hasProperty($property) || $resource->getProperty($property) === null) {
             return null;
         }
 
         $data = $resource->getProperty($property);
+
         if ($data instanceof HalResource) {
             return call_user_func([$className, 'fromResource'], $data);
         }
 
-        if (!is_array($data)) {
+        if (! is_array($data)) {
             throw new InvalidArgumentException(sprintf('Expected an array but got %s.', gettype($data)));
         }
 

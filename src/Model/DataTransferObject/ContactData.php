@@ -13,82 +13,102 @@ trait ContactData
      * @var string|null
      */
     private $salutation;
+
     /**
      * @var string|null
      */
     private $firstname;
+
     /**
      * @var string|null
      */
     private $lastname;
+
     /**
      * @var string|null
      */
     private $telephone;
+
     /**
      * @var string|null
      */
     private $email;
+
     /**
      * @var string|null
      */
     private $addressLine1;
+
     /**
      * @var string|null
      */
     private $addressLine2;
+
     /**
      * @var string|null
      */
     private $addressLine3;
+
     /**
      * @var string|null
      */
     private $addressZip;
+
     /**
      * @var string|null
      */
     private $addressCity;
+
     /**
      * @var string|null
      */
     private $addressState;
+
     /**
      * @var Country|null
      */
     private $addressCountry;
+
     /**
      * @var OrganisationType|null
      */
     private $organisationType;
+
     /**
      * @var string|null
      */
     private $organisationName;
+
     /**
      * @var string|null
      */
     private $organisationUnit;
+
     /**
      * @var string|null
      */
     private $organisationDuns;
+
     /**
      * @var string|null
      */
     private $jurisdictionAgency;
+
     /**
      * @var string|null
      */
     private $jurisdictionNumber;
+
     /**
      * @var string|null
      */
     private $jurisdictionCity;
+
     /**
      * @var string|null
      */
     private $jurisdictionState;
+
     /**
      * @var Country|null
      */

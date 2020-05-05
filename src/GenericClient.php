@@ -27,30 +27,37 @@ class GenericClient implements Client
      * @var string
      */
     private $apiUrl;
+
     /**
      * @var string
      */
     private $clientId;
+
     /**
      * @var string
      */
     private $clientSecret;
+
     /**
      * @var string|null
      */
     private $accessToken;
+
     /**
      * @var HalClient|null
      */
     private $halClient;
+
     /**
      * @var ClientInterface
      */
     private $httpClient;
+
     /**
      * @var RequestFactoryInterface
      */
     private $requestFactory;
+
     /**
      * @var UriFactoryInterface
      */
@@ -130,6 +137,17 @@ class GenericClient implements Client
         $this->accessToken = null;
     }
 
+    protected function serialize(object $object): string
+    {
+        $data = @json_encode($object);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \InvalidArgumentException(sprintf('JSON encode error: %s.', json_last_error_msg()));
+        }
+
+        return $data;
+    }
+
     /**
      * Returns an HalClient.
      */
@@ -158,11 +176,11 @@ class GenericClient implements Client
     {
         $result = $options;
 
-        if (!isset($result['headers'])) {
+        if (! isset($result['headers'])) {
             $result['headers'] = [];
         }
 
-        $result['headers']['Authorization'] = 'Bearer '.$this->getAccessToken();
+        $result['headers']['Authorization'] = 'Bearer ' . $this->getAccessToken();
 
         return $result;
     }
@@ -176,8 +194,8 @@ class GenericClient implements Client
             return $this->accessToken;
         }
 
-        $request = $this->requestFactory->createRequest('POST', $this->uriFactory->createUri($this->apiUrl.'/oauth/token'))
-            ->withHeader('Authorization', 'Basic '.base64_encode($this->clientId.':'.$this->clientSecret))
+        $request = $this->requestFactory->createRequest('POST', $this->uriFactory->createUri($this->apiUrl . '/oauth/token'))
+            ->withHeader('Authorization', 'Basic ' . base64_encode($this->clientId . ':' . $this->clientSecret))
             ->withHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         $request->getBody()->write('grant_type=client_credentials');
@@ -199,6 +217,7 @@ class GenericClient implements Client
         }
 
         $data = [];
+
         if (trim($body) !== '') {
             $data = @json_decode($body, true);
 
@@ -207,25 +226,12 @@ class GenericClient implements Client
             }
         }
 
-        if (!isset($data['access_token'])) {
+        if (! isset($data['access_token'])) {
             throw new InvalidResponseException('No access token found in response.');
         }
 
         $this->accessToken = $data['access_token'];
 
         return $this->accessToken;
-    }
-
-    /**
-     * @param object $object
-     */
-    protected function serialize($object): string
-    {
-        $data = @json_encode($object);
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new \InvalidArgumentException(sprintf('JSON encode error: %s.', json_last_error_msg()));
-        }
-
-        return $data;
     }
 }

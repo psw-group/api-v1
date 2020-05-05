@@ -11,16 +11,6 @@ use PswGroup\Api\Model\Resource\AccountContact;
 
 class AccountContactRepository extends AbstractRepository
 {
-    protected function getBaseUrl(): string
-    {
-        return '/contacts';
-    }
-
-    protected function entityFromResource(HalResource $resource): AccountContact
-    {
-        return AccountContact::fromResource($resource);
-    }
-
     /**
      * Loads a contact resource.
      */
@@ -28,7 +18,7 @@ class AccountContactRepository extends AbstractRepository
     {
         try {
             $resource = $this->client->get($this->buildItemUrl($number));
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return null;
         }
 
@@ -60,7 +50,7 @@ class AccountContactRepository extends AbstractRepository
     {
         try {
             $this->client->delete($this->buildItemUrl($resource->getNumber()));
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
         }
     }
 
@@ -76,12 +66,13 @@ class AccountContactRepository extends AbstractRepository
         try {
             $resource = $this->client->get($this->getBaseUrl(), ['query' => $query]);
             $items = [];
+
             foreach ($resource->getResource('item') as $item) {
                 $items[] = $this->entityFromResource($item);
             }
 
             return new Collection($items);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return new Collection([]);
         }
     }
@@ -102,8 +93,18 @@ class AccountContactRepository extends AbstractRepository
             $resource = $this->client->get($this->getBaseUrl(), ['query' => $query]);
 
             return $this->buildPaginatedCollection($resource, $page);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return new PaginatedCollection([], 0, $page, 0);
         }
+    }
+
+    protected function getBaseUrl(): string
+    {
+        return '/contacts';
+    }
+
+    protected function entityFromResource(HalResource $resource): AccountContact
+    {
+        return AccountContact::fromResource($resource);
     }
 }

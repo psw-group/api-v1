@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PswGroup\Api;
 
 use BinSoul\Net\Hal\Client\HalResource;

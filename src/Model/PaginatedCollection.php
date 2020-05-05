@@ -13,10 +13,12 @@ class PaginatedCollection extends Collection
      * @var int
      */
     private $totalItems;
+
     /**
      * @var int
      */
     private $currentPage;
+
     /**
      * @var int
      */

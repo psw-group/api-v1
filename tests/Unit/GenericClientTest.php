@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PswGroup\Test\Api\Unit;
 
 use GuzzleHttp\Psr7\Response;
@@ -116,6 +118,7 @@ class GenericClientTest extends TestCase
     {
         $client = new Client();
         $client->addResponse($firstResponse);
+
         if ($secondResponse) {
             $client->addResponse($secondResponse);
         }

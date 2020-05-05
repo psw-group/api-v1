@@ -11,16 +11,6 @@ use PswGroup\Api\Model\Resource\Job;
 
 class JobRepository extends AbstractRepository
 {
-    protected function getBaseUrl(): string
-    {
-        return '/jobs';
-    }
-
-    protected function entityFromResource(HalResource $resource): Job
-    {
-        return Job::fromResource($resource);
-    }
-
     /**
      * Loads a job resource.
      */
@@ -28,7 +18,7 @@ class JobRepository extends AbstractRepository
     {
         try {
             $resource = $this->client->get($this->buildItemUrl($number));
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return null;
         }
 
@@ -47,12 +37,13 @@ class JobRepository extends AbstractRepository
         try {
             $resource = $this->client->get($this->getBaseUrl(), ['query' => $query]);
             $items = [];
+
             foreach ($resource->getResource('item') as $item) {
                 $items[] = $this->entityFromResource($item);
             }
 
             return new Collection($items);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return new Collection([]);
         }
     }
@@ -73,8 +64,18 @@ class JobRepository extends AbstractRepository
             $resource = $this->client->get($this->getBaseUrl(), ['query' => $query]);
 
             return $this->buildPaginatedCollection($resource, $page);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return new PaginatedCollection([], 0, $page, 0);
         }
+    }
+
+    protected function getBaseUrl(): string
+    {
+        return '/jobs';
+    }
+
+    protected function entityFromResource(HalResource $resource): Job
+    {
+        return Job::fromResource($resource);
     }
 }

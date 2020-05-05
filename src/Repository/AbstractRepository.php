@@ -31,7 +31,7 @@ abstract class AbstractRepository
      */
     protected function buildItemUrl($id): string
     {
-        return $this->getBaseUrl().'/'.((string) $id);
+        return $this->getBaseUrl() . '/' . ((string) $id);
     }
 
     /**
@@ -48,12 +48,13 @@ abstract class AbstractRepository
     protected function prepareQuery(int $page, array $filters, array $orders, ?int $itemsPerPage): array
     {
         $query = [];
+
         foreach ($filters as $key => $value) {
             if ($value === null || $value === '') {
                 continue;
             }
 
-            if (!is_array($value)) {
+            if (! is_array($value)) {
                 if ($value instanceof \DateTime) {
                     $value = $value->format('Y-m-dTH:i:s');
                 } elseif ($value instanceof AbstractResource) {
@@ -69,13 +70,14 @@ abstract class AbstractRepository
                         $prop = $prop->getIri();
                     }
 
-                    $query[$key.'['.$name.']'] = (string) $prop;
+                    $query[$key . '[' . $name . ']'] = (string) $prop;
                 }
             }
         }
 
         if (\count($orders) > 0) {
             $query['order'] = [];
+
             foreach ($orders as $key => $value) {
                 if (trim($value) === '') {
                     continue;
@@ -97,12 +99,16 @@ abstract class AbstractRepository
     protected function buildPaginatedCollection(HalResource $resource, int $page): PaginatedCollection
     {
         $items = [];
+
         foreach ($resource->getResource('item') as $item) {
             $items[] = $this->entityFromResource($item);
         }
 
         return new PaginatedCollection(
-            $items, (int) $resource->getProperty('totalItems'), $page, (int) $resource->getProperty('itemsPerPage')
+            $items,
+            (int) $resource->getProperty('totalItems'),
+            $page,
+            (int) $resource->getProperty('itemsPerPage')
         );
     }
 }

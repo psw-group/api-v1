@@ -15,12 +15,13 @@
         "php-http/discovery": "^1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8",
-        "friendsofphp/php-cs-fixer": "^2",
-        "phpstan/phpstan": "^0.12",
+        "binsoul/coding-standard": "*@dev",
         "http-interop/http-factory-guzzle": "^1",
+        "phpunit/phpunit": "^8",
+        "phpstan/phpstan": "^0.12",
         "php-http/guzzle6-adapter": "^2",
-        "php-http/mock-client": "^1"
+        "php-http/mock-client": "^1",
+        "symplify/easy-coding-standard-prefixed": "^7"
     },
     "autoload": {
         "psr-4": {
@@ -37,10 +38,7 @@
     },
     "scripts": {
         "test": "phpunit",
-        "fix-style": [
-            "php-cs-fixer fix src --rules=@Symfony,-yoda_style",
-            "php-cs-fixer fix tests --rules=@Symfony,-yoda_style"
-        ],
+        "fix-style": "ecs check src tests --config vendor/binsoul/coding-standard/easy-coding-standard.yaml --fix",
         "analyze": "phpstan analyse -l 7 src"
     },
     "extra": {
