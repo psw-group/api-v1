@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PswGroup\Api\Repository;
 
 use BinSoul\Net\Hal\Client\HalResource;
+use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Collection;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\CertificateType;
@@ -74,7 +75,10 @@ class CertificateTypeRepository extends AbstractRepository
         return '/certificate-types';
     }
 
-    protected function entityFromResource(HalResource $resource): CertificateType
+    /**
+     * @return CertificateType
+     */
+    protected function entityFromResource(HalResource $resource): AbstractResource
     {
         return CertificateType::fromResource($resource);
     }

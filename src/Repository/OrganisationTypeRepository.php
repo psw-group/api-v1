@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PswGroup\Api\Repository;
 
 use BinSoul\Net\Hal\Client\HalResource;
+use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Collection;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\OrganisationType;
@@ -74,7 +75,10 @@ class OrganisationTypeRepository extends AbstractRepository
         return '/organisation-types';
     }
 
-    protected function entityFromResource(HalResource $resource): OrganisationType
+    /**
+     * @return OrganisationType
+     */
+    protected function entityFromResource(HalResource $resource): AbstractResource
     {
         return OrganisationType::fromResource($resource);
     }

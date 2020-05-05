@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PswGroup\Api\Repository;
 
 use BinSoul\Net\Hal\Client\HalResource;
+use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Collection;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\OrderState;
@@ -74,7 +75,10 @@ class OrderStateRepository extends AbstractRepository
         return '/order-states';
     }
 
-    protected function entityFromResource(HalResource $resource): OrderState
+    /**
+     * @return OrderState
+     */
+    protected function entityFromResource(HalResource $resource): AbstractResource
     {
         return OrderState::fromResource($resource);
     }

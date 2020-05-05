@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PswGroup\Api\Repository;
 
 use BinSoul\Net\Hal\Client\HalResource;
+use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Collection;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\AccountContact;
@@ -34,7 +35,7 @@ class AccountContactRepository extends AbstractRepository
      */
     public function save(AccountContact $data): AccountContact
     {
-        if ($data->getNumber()) {
+        if ($data->getNumber() !== null) {
             $resource = $this->client->put($this->buildItemUrl($data->getNumber()), $data);
         } else {
             $resource = $this->client->post($this->getBaseUrl(), $data);
@@ -48,6 +49,10 @@ class AccountContactRepository extends AbstractRepository
      */
     public function delete(AccountContact $resource): void
     {
+        if ($resource->getNumber() === null) {
+            return;
+        }
+
         try {
             $this->client->delete($this->buildItemUrl($resource->getNumber()));
         } catch (\Throwable $e) {
@@ -103,7 +108,10 @@ class AccountContactRepository extends AbstractRepository
         return '/contacts';
     }
 
-    protected function entityFromResource(HalResource $resource): AccountContact
+    /**
+     * @return AccountContact
+     */
+    protected function entityFromResource(HalResource $resource): AbstractResource
     {
         return AccountContact::fromResource($resource);
     }

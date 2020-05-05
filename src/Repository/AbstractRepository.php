@@ -34,10 +34,7 @@ abstract class AbstractRepository
         return $this->getBaseUrl() . '/' . ((string) $id);
     }
 
-    /**
-     * @return AbstractResource
-     */
-    abstract protected function entityFromResource(HalResource $resource);
+    abstract protected function entityFromResource(HalResource $resource): AbstractResource;
 
     /**
      * @param mixed[]  $filters

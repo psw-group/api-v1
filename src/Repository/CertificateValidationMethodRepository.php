@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PswGroup\Api\Repository;
 
 use BinSoul\Net\Hal\Client\HalResource;
+use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Collection;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\CertificateValidationMethod;
@@ -74,7 +75,10 @@ class CertificateValidationMethodRepository extends AbstractRepository
         return '/certificate-validation-methods';
     }
 
-    protected function entityFromResource(HalResource $resource): CertificateValidationMethod
+    /**
+     * @return CertificateValidationMethod
+     */
+    protected function entityFromResource(HalResource $resource): AbstractResource
     {
         return CertificateValidationMethod::fromResource($resource);
     }
