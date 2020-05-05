@@ -39,7 +39,7 @@
     "scripts": {
         "test": "phpunit",
         "fix-style": "ecs check src tests --config vendor/binsoul/coding-standard/easy-coding-standard.yaml --fix",
-        "analyze": "phpstan analyse -l 7 src"
+        "analyze": "phpstan analyse -l max src"
     },
     "extra": {
         "branch-alias": {
