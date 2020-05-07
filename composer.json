@@ -17,6 +17,7 @@
     "require-dev": {
         "binsoul/coding-standard": "*@dev",
         "http-interop/http-factory-guzzle": "^1",
+        "phpro/grumphp-shim": "^0.18",
         "phpunit/phpunit": "^8",
         "phpstan/phpstan": "^0.12",
         "php-http/guzzle6-adapter": "^2",
@@ -44,6 +45,9 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
+        },
+        "grumphp": {
+            "config-default-path": "vendor/binsoul/coding-standard/grumphp.yaml"
         }
     }
 }
