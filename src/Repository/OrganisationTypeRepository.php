@@ -15,10 +15,10 @@ class OrganisationTypeRepository extends AbstractRepository
     /**
      * Loads an organisation type resource.
      */
-    public function load(string $number): ?OrganisationType
+    public function load(string $code): ?OrganisationType
     {
         try {
-            $resource = $this->client->get($this->buildItemUrl($number));
+            $resource = $this->client->get($this->buildItemUrl($code));
         } catch (\Throwable $e) {
             return null;
         }

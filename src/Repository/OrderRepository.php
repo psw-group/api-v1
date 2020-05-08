@@ -8,6 +8,7 @@ use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Collection;
 use PswGroup\Api\Model\PaginatedCollection;
+use PswGroup\Api\Model\Request\OrderRequest;
 use PswGroup\Api\Model\Resource\Order;
 
 class OrderRepository extends AbstractRepository
@@ -68,6 +69,16 @@ class OrderRepository extends AbstractRepository
         } catch (\Throwable $e) {
             return new PaginatedCollection([], 0, $page, 0);
         }
+    }
+
+    /**
+     * Creates a new order for the given order request.
+     */
+    public function order(OrderRequest $request): Order
+    {
+        $resource = $this->client->post($this->getBaseUrl(), $request);
+
+        return $this->entityFromResource($resource);
     }
 
     protected function getBaseUrl(): string

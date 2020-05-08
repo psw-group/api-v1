@@ -14,6 +14,14 @@ class Country extends AbstractResource
      */
     private $iso2;
 
+    /**
+     * Constructs an instance of this class.
+     */
+    public function __construct(string $iso2 = '')
+    {
+        $this->iso2 = $iso2;
+    }
+
     public function getIso2(): string
     {
         return $this->iso2;

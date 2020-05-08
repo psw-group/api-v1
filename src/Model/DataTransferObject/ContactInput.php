@@ -2,55 +2,25 @@
 
 declare(strict_types=1);
 
-namespace PswGroup\Api\Model\Resource;
+namespace PswGroup\Api\Model\DataTransferObject;
 
-use BinSoul\Net\Hal\Client\HalResource;
-use PswGroup\Api\Model\AbstractResource;
-use PswGroup\Api\Model\DataTransferObject\ContactData;
+use PswGroup\Api\Model\Resource\AccountContact;
+use PswGroup\Api\Model\Resource\Country;
+use PswGroup\Api\Model\Resource\OrganisationType;
 
-class AccountContact extends AbstractResource implements \JsonSerializable
+class ContactInput implements \JsonSerializable
 {
     use ContactData;
 
     /**
-     * @var string|null Number of the contact
+     * @var AccountContact|null
      */
-    private $number;
+    private $contact;
 
     /**
-     * @var bool Indicates if the contact can be used as order contact
+     * @var bool
      */
-    private $allowedAsOrderContact;
-
-    /**
-     * @var bool Indicates if the contact can be used as owner contact
-     */
-    private $allowedAsOwnerContact;
-
-    public function getNumber(): ?string
-    {
-        return $this->number;
-    }
-
-    public function isAllowedAsOrderContact(): bool
-    {
-        return $this->allowedAsOrderContact;
-    }
-
-    public function isAllowedAsOwnerContact(): bool
-    {
-        return $this->allowedAsOwnerContact;
-    }
-
-    public function setAllowedAsOrderContact(bool $allowedAsOrderContact): void
-    {
-        $this->allowedAsOrderContact = $allowedAsOrderContact;
-    }
-
-    public function setAllowedAsOwnerContact(bool $allowedAsOwnerContact): void
-    {
-        $this->allowedAsOwnerContact = $allowedAsOwnerContact;
-    }
+    private $storeData = false;
 
     public function setSalutation(?string $salutation): void
     {
@@ -263,44 +233,31 @@ class AccountContact extends AbstractResource implements \JsonSerializable
         $this->jurisdictionCountry = $jurisdictionCountry;
     }
 
-    public static function fromResource(HalResource $resource)
+    public function getContact(): ?AccountContact
     {
-        $result = parent::fromResource($resource);
-
-        $result->number = $resource->getProperty('number');
-        $result->allowedAsOrderContact = $resource->getProperty('allowedAsOrderContact');
-        $result->allowedAsOwnerContact = $resource->getProperty('allowedAsOwnerContact');
-
-        $result->salutation = $resource->getProperty('salutation');
-        $result->firstname = $resource->getProperty('firstname');
-        $result->lastname = $resource->getProperty('lastname');
-        $result->telephone = $resource->getProperty('telephone');
-        $result->email = $resource->getProperty('email');
-        $result->addressLine1 = $resource->getProperty('addressLine1');
-        $result->addressLine2 = $resource->getProperty('addressLine2');
-        $result->addressLine3 = $resource->getProperty('addressLine3');
-        $result->addressZip = $resource->getProperty('addressZip');
-        $result->addressCity = $resource->getProperty('addressCity');
-        $result->addressState = $resource->getProperty('addressState');
-        $result->addressCountry = self::loadObject($resource, 'addressCountry', Country::class);
-        $result->organisationType = self::loadObject($resource, 'organisationType', OrganisationType::class);
-        $result->organisationName = $resource->getProperty('organisationName');
-        $result->organisationUnit = $resource->getProperty('organisationUnit');
-        $result->organisationDuns = $resource->getProperty('organisationDuns');
-        $result->jurisdictionAgency = $resource->getProperty('jurisdictionAgency');
-        $result->jurisdictionNumber = $resource->getProperty('jurisdictionNumber');
-        $result->jurisdictionCity = $resource->getProperty('jurisdictionCity');
-        $result->jurisdictionState = $resource->getProperty('jurisdictionState');
-        $result->jurisdictionCountry = self::loadObject($resource, 'jurisdictionCountry', Country::class);
-
-        return $result;
+        return $this->contact;
     }
 
-    public function jsonSerialize(): array
+    public function setContact(?AccountContact $contact): void
+    {
+        $this->contact = $contact;
+    }
+
+    public function getStoreData(): ?bool
+    {
+        return $this->storeData;
+    }
+
+    public function setStoreData(?bool $storeData): void
+    {
+        $this->storeData = $storeData;
+    }
+
+    public function jsonSerialize()
     {
         return [
-            'allowedAsOrderContact' => $this->allowedAsOrderContact,
-            'allowedAsOwnerContact' => $this->allowedAsOwnerContact,
+            'contact' => $this->contact !== null ? $this->contact->getIri() : null,
+            'storeData' => $this->storeData,
 
             'salutation' => $this->salutation,
             'firstname' => $this->firstname,

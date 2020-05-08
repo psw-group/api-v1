@@ -15,10 +15,10 @@ class CountryRepository extends AbstractRepository
     /**
      * Loads a country resource.
      */
-    public function load(string $number): ?Country
+    public function load(string $iso2): ?Country
     {
         try {
-            $resource = $this->client->get($this->buildItemUrl($number));
+            $resource = $this->client->get($this->buildItemUrl($iso2));
         } catch (\Throwable $e) {
             return null;
         }

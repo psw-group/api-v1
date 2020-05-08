@@ -19,6 +19,15 @@ class OrganisationType extends AbstractResource
      */
     private $name;
 
+    /**
+     * Constructs an instance of this class.
+     */
+    public function __construct(string $code = '', string $name = '')
+    {
+        $this->code = $code;
+        $this->name = $name;
+    }
+
     public function getCode(): string
     {
         return $this->code;
