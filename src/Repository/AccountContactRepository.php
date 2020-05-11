@@ -66,10 +66,8 @@ class AccountContactRepository extends AbstractRepository
      */
     public function loadAll(): Collection
     {
-        $query = ['pagination' => 'false'];
-
         try {
-            $resource = $this->client->get($this->getBaseUrl(), ['query' => $query]);
+            $resource = $this->client->get($this->getBaseUrl(), ['pagination' => 'false']);
             $items = [];
 
             foreach ($resource->getResource('item') as $item) {
@@ -95,7 +93,7 @@ class AccountContactRepository extends AbstractRepository
         $query = $this->prepareQuery($page, $filters, $orders, $itemsPerPage);
 
         try {
-            $resource = $this->client->get($this->getBaseUrl(), ['query' => $query]);
+            $resource = $this->client->get($this->getBaseUrl(), $query);
 
             return $this->buildPaginatedCollection($resource, $page);
         } catch (\Throwable $e) {
