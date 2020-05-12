@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use PswGroup\Api\GenericClient;
 use PswGroup\Api\Model\DataTransferObject\CertificateRequest;
 use PswGroup\Api\Model\DataTransferObject\ContactInput;
 use PswGroup\Api\Model\DataTransferObject\CsrFieldsInput;
@@ -11,11 +10,11 @@ use PswGroup\Api\Model\DataTransferObject\ValidationInput;
 use PswGroup\Api\Model\Request\OrderRequest;
 use PswGroup\Api\Repository\OrderRepository;
 use PswGroup\Api\Repository\ProductRepository;
+use PswGroup\Api\TestClient;
 
 include '../vendor/autoload.php';
 
-$client = new GenericClient(
-    'https://test-api.psw-group.de/v1',
+$client = new TestClient(
     '[yourClientId]',
     '[yourClientSecret]'
 );
