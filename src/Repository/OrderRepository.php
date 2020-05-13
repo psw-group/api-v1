@@ -7,6 +7,7 @@ namespace PswGroup\Api\Repository;
 use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Collection;
+use PswGroup\Api\Model\DataTransferObject\OrderItem;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Request\OrderRequest;
 use PswGroup\Api\Model\Resource\Order;
@@ -77,6 +78,27 @@ class OrderRepository extends AbstractRepository
         $resource = $this->client->post($this->getBaseUrl(), $request);
 
         return $this->entityFromResource($resource);
+    }
+
+    /**
+     * Loads all items of an order.
+     *
+     * @return OrderItem[]|Collection
+     */
+    public function loadItems(Order $order): Collection
+    {
+        try {
+            $resource = $this->client->get($this->buildItemUrl($order->getNumber()) . '/items', ['pagination' => 'false']);
+            $items = [];
+
+            foreach ($resource->getResource('item') as $item) {
+                $items[] = OrderItem::fromResource($item);
+            }
+
+            return new Collection($items);
+        } catch (\Throwable $e) {
+            return new Collection([]);
+        }
     }
 
     protected function getBaseUrl(): string

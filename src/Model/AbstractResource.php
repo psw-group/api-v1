@@ -40,7 +40,7 @@ abstract class AbstractResource
         return $result;
     }
 
-    protected static function loadDateTime(HalResource $resource, string $property): ?DateTimeInterface
+    public static function loadDateTime(HalResource $resource, string $property): ?DateTimeInterface
     {
         if (! $resource->hasProperty($property) || $resource->getProperty($property) === null) {
             return null;
@@ -49,7 +49,7 @@ abstract class AbstractResource
         return new DateTime($resource->getProperty($property));
     }
 
-    protected static function loadObject(HalResource $resource, string $property, string $className)
+    public static function loadObject(HalResource $resource, string $property, string $className)
     {
         if ($resource->hasResource($property)) {
             return call_user_func([$className, 'fromResource'], $resource->getFirstResource($property));
