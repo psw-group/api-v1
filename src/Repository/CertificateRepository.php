@@ -7,6 +7,7 @@ namespace PswGroup\Api\Repository;
 use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Collection;
+use PswGroup\Api\Model\DataTransferObject\CertificateKey;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\Certificate;
 
@@ -65,6 +66,41 @@ class CertificateRepository extends AbstractRepository
             return $this->buildPaginatedCollection($resource, $page);
         } catch (\Throwable $e) {
             return new PaginatedCollection([], 0, $page, 0);
+        }
+    }
+
+    /**
+     * Loads the key of a certificate.
+     */
+    public function loadKey(Certificate $certificate): ?CertificateKey
+    {
+        try {
+            $resource = $this->client->get($this->buildItemUrl($certificate->getNumber()) . '/key', ['pagination' => 'false']);
+        } catch (\Throwable $e) {
+            return null;
+        }
+
+        return CertificateKey::fromResource($resource);
+    }
+
+    /**
+     * Loads the chain of a certificate.
+     *
+     * @return CertificateKey[]|Collection
+     */
+    public function loadChain(Certificate $certificate): Collection
+    {
+        try {
+            $resource = $this->client->get($this->buildItemUrl($certificate->getNumber()) . '/chain', ['pagination' => 'false']);
+            $items = [];
+
+            foreach ($resource->getResource('item') as $item) {
+                $items[] = CertificateKey::fromResource($item);
+            }
+
+            return new Collection($items);
+        } catch (\Throwable $e) {
+            return new Collection([]);
         }
     }
 
