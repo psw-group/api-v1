@@ -68,6 +68,25 @@ class ProductRepository extends AbstractRepository
         }
     }
 
+    /**
+     * Loads all variants of a product.
+     */
+    public function loadVariants(Product $product): Collection
+    {
+        try {
+            $resource = $this->client->get($this->buildItemUrl($product->getNumber()) . '/variants', ['pagination' => 'false']);
+            $items = [];
+
+            foreach ($resource->getResource('item') as $item) {
+                $items[] = $this->entityFromResource($item);
+            }
+
+            return new Collection($items);
+        } catch (\Throwable $e) {
+            return new Collection([]);
+        }
+    }
+
     protected function getBaseUrl(): string
     {
         return '/products';
