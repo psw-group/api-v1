@@ -10,6 +10,11 @@ use PswGroup\Api\Model\Collection;
 use PswGroup\Api\Model\DataTransferObject\CertificateCsrFields;
 use PswGroup\Api\Model\DataTransferObject\CertificateCsrFile;
 use PswGroup\Api\Model\DataTransferObject\CertificateKey;
+use PswGroup\Api\Model\DataTransferObject\CertificateValidationData;
+use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataCname;
+use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataDnsTxt;
+use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataEmail;
+use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataHttp;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\Certificate;
 
@@ -132,6 +137,27 @@ class CertificateRepository extends AbstractRepository
         }
 
         return CertificateCsrFields::fromResource($resource);
+    }
+
+    /**
+     * Loads the validation data of a certificate.
+     *
+     * @return CertificateValidationData[]|CertificateValidationDataEmail[]|CertificateValidationDataHttp[]|CertificateValidationDataCname[]|CertificateValidationDataDnsTxt[]|Collection
+     */
+    public function loadValidationData(Certificate $certificate): Collection
+    {
+        try {
+            $resource = $this->client->get($this->buildItemUrl($certificate->getNumber()) . '/validation-data', ['pagination' => 'false']);
+            $items = [];
+
+            foreach ($resource->getResource('item') as $item) {
+                $items[] = CertificateValidationData::fromResource($item);
+            }
+
+            return new Collection($items);
+        } catch (\Throwable $e) {
+            return new Collection([]);
+        }
     }
 
     protected function getBaseUrl(): string
