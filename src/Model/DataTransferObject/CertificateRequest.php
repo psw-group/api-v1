@@ -147,7 +147,10 @@ class CertificateRequest implements \JsonSerializable
         $this->approverContact = $approverContact;
     }
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed|null>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'csrFile' => $this->csrFile,

@@ -70,6 +70,8 @@ class ProductRepository extends AbstractRepository
 
     /**
      * Loads all variants of a product.
+     *
+     * @return Collection|Product[]
      */
     public function loadVariants(Product $product): Collection
     {

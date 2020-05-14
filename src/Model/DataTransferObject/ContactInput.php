@@ -24,7 +24,7 @@ class ContactInput implements \JsonSerializable
 
     public function setSalutation(?string $salutation): void
     {
-        if (strlen($salutation) > 16) {
+        if (strlen((string) $salutation) > 16) {
             throw new \InvalidArgumentException('The salutation must be shorter than 17 characters.');
         }
 
@@ -33,7 +33,7 @@ class ContactInput implements \JsonSerializable
 
     public function setFirstname(?string $firstname): void
     {
-        if (strlen($firstname) > 32) {
+        if (strlen((string) $firstname) > 32) {
             throw new \InvalidArgumentException('The first name must be shorter than 33 characters.');
         }
 
@@ -42,7 +42,7 @@ class ContactInput implements \JsonSerializable
 
     public function setLastname(?string $lastname): void
     {
-        if (strlen($lastname) > 32) {
+        if (strlen((string) $lastname) > 32) {
             throw new \InvalidArgumentException('The last name must be shorter than 33 characters.');
         }
 
@@ -57,25 +57,29 @@ class ContactInput implements \JsonSerializable
             return;
         }
 
-        if (! preg_match('/^[0-9+\-()\s\/]+$/', $telephone)) {
+        if (! preg_match('/^[0-9+\-()\s\/]+$/', (string) $telephone)) {
             throw new \InvalidArgumentException(sprintf('The telephone number "%s" contains invalid characters.', $telephone));
         }
 
-        $number = preg_replace('/[^0-9+]+/', '', $telephone);
+        $number = preg_replace('/[^0-9+]+/', '', (string) $telephone);
 
-        if (strlen($number) > 0 && $number[0] !== '+') {
+        if ($number === null) {
+            $number = (string) $telephone;
+        }
+
+        if (strlen((string) $number) > 0 && $number[0] !== '+') {
             $number = '+49' . $number;
         }
 
-        if (strlen($number) < 8) {
+        if (strlen((string) $number) < 8) {
             throw new \InvalidArgumentException('The telephone number must be longer than 7 characters.');
         }
 
-        if (strlen($number) > 17) {
+        if (strlen((string) $number) > 17) {
             throw new \InvalidArgumentException('The telephone number must be shorter than 18 characters.');
         }
 
-        if (! preg_match('/^\+[0-9]+$/', $number)) {
+        if (! preg_match('/^\+[0-9]+$/', (string) $number)) {
             throw new \InvalidArgumentException(sprintf('The telephone number "%s" is not valid.', $telephone));
         }
 
@@ -90,11 +94,11 @@ class ContactInput implements \JsonSerializable
             return;
         }
 
-        if (! preg_match('/^[^@]+@[^@]+$/', $email)) {
+        if (! preg_match('/^[^@]+@[^@]+$/', (string) $email)) {
             throw new \InvalidArgumentException(sprintf('%s is not a valid email address.', $email));
         }
 
-        if (strlen($email) > 255) {
+        if (strlen((string) $email) > 255) {
             throw new \InvalidArgumentException('The email address must be shorter than 256 characters.');
         }
 
@@ -103,7 +107,7 @@ class ContactInput implements \JsonSerializable
 
     public function setAddressLine1(?string $addressLine1): void
     {
-        if (strlen($addressLine1) > 128) {
+        if (strlen((string) $addressLine1) > 128) {
             throw new \InvalidArgumentException('The address line must be shorter than 129 characters.');
         }
 
@@ -112,7 +116,7 @@ class ContactInput implements \JsonSerializable
 
     public function setAddressLine2(?string $addressLine2): void
     {
-        if (strlen($addressLine2) > 128) {
+        if (strlen((string) $addressLine2) > 128) {
             throw new \InvalidArgumentException('The address line must be shorter than 129 characters.');
         }
 
@@ -121,7 +125,7 @@ class ContactInput implements \JsonSerializable
 
     public function setAddressLine3(?string $addressLine3): void
     {
-        if (strlen($addressLine3) > 128) {
+        if (strlen((string) $addressLine3) > 128) {
             throw new \InvalidArgumentException('The address line must be shorter than 129 characters.');
         }
 
@@ -130,7 +134,7 @@ class ContactInput implements \JsonSerializable
 
     public function setAddressZip(?string $addressZip): void
     {
-        if (strlen($addressZip) > 16) {
+        if (strlen((string) $addressZip) > 16) {
             throw new \InvalidArgumentException('The zip code must be shorter than 17 characters.');
         }
 
@@ -139,7 +143,7 @@ class ContactInput implements \JsonSerializable
 
     public function setAddressCity(?string $addressCity): void
     {
-        if (strlen($addressCity) > 128) {
+        if (strlen((string) $addressCity) > 128) {
             throw new \InvalidArgumentException('The city name must be shorter than 129 characters.');
         }
 
@@ -148,7 +152,7 @@ class ContactInput implements \JsonSerializable
 
     public function setAddressState(?string $addressState): void
     {
-        if (strlen($addressState) > 64) {
+        if (strlen((string) $addressState) > 64) {
             throw new \InvalidArgumentException('The state name must be shorter than 65 characters.');
         }
 
@@ -167,7 +171,7 @@ class ContactInput implements \JsonSerializable
 
     public function setOrganisationName(?string $organisationName): void
     {
-        if (strlen($organisationName) > 128) {
+        if (strlen((string) $organisationName) > 128) {
             throw new \InvalidArgumentException('The organisation name must be shorter than 129 characters.');
         }
 
@@ -176,7 +180,7 @@ class ContactInput implements \JsonSerializable
 
     public function setOrganisationUnit(?string $organisationUnit): void
     {
-        if (strlen($organisationUnit) > 128) {
+        if (strlen((string) $organisationUnit) > 128) {
             throw new \InvalidArgumentException('The organisation unit must be shorter than 129 characters.');
         }
 
@@ -185,7 +189,7 @@ class ContactInput implements \JsonSerializable
 
     public function setOrganisationDuns(?string $organisationDuns): void
     {
-        if (strlen($organisationDuns) > 32) {
+        if (strlen((string) $organisationDuns) > 32) {
             throw new \InvalidArgumentException('The duns number must be shorter than 33 characters.');
         }
 
@@ -194,7 +198,7 @@ class ContactInput implements \JsonSerializable
 
     public function setJurisdictionAgency(?string $jurisdictionAgency): void
     {
-        if (strlen($jurisdictionAgency) > 64) {
+        if (strlen((string) $jurisdictionAgency) > 64) {
             throw new \InvalidArgumentException('The jurisdiction agency must be shorter than 65 characters.');
         }
 
@@ -203,7 +207,7 @@ class ContactInput implements \JsonSerializable
 
     public function setJurisdictionNumber(?string $jurisdictionNumber): void
     {
-        if (strlen($jurisdictionNumber) > 16) {
+        if (strlen((string) $jurisdictionNumber) > 16) {
             throw new \InvalidArgumentException('The jurisdiction number must be shorter than 17 characters.');
         }
 
@@ -212,7 +216,7 @@ class ContactInput implements \JsonSerializable
 
     public function setJurisdictionCity(?string $jurisdictionCity): void
     {
-        if (strlen($jurisdictionCity) > 64) {
+        if (strlen((string) $jurisdictionCity) > 64) {
             throw new \InvalidArgumentException('The jurisdiction city must be shorter than 65 characters.');
         }
 
@@ -221,7 +225,7 @@ class ContactInput implements \JsonSerializable
 
     public function setJurisdictionState(?string $jurisdictionState): void
     {
-        if (strlen($jurisdictionState) > 32) {
+        if (strlen((string) $jurisdictionState) > 32) {
             throw new \InvalidArgumentException('The jurisdiction state must be shorter than 33 characters.');
         }
 
@@ -243,17 +247,20 @@ class ContactInput implements \JsonSerializable
         $this->contact = $contact;
     }
 
-    public function getStoreData(): ?bool
+    public function getStoreData(): bool
     {
         return $this->storeData;
     }
 
-    public function setStoreData(?bool $storeData): void
+    public function setStoreData(bool $storeData): void
     {
         $this->storeData = $storeData;
     }
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, string|bool|null>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'contact' => $this->contact !== null ? $this->contact->getIri() : null,

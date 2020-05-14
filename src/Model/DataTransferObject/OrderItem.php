@@ -130,7 +130,7 @@ class OrderItem
         return $this->certificate;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): self
     {
         $result = new self();
 

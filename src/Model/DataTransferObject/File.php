@@ -36,7 +36,10 @@ class File implements \JsonSerializable
         return $this->content;
     }
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, string|null>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,

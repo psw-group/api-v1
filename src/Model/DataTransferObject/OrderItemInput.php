@@ -38,7 +38,10 @@ class OrderItemInput implements \JsonSerializable
         $this->certificateRequest = $certificateRequest;
     }
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, string|CertificateRequest|null>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'product' => $this->product->getIri(),

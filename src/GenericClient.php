@@ -144,7 +144,7 @@ class GenericClient implements Client
     {
         $data = @json_encode($object);
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
+        if ($data === false || json_last_error() !== JSON_ERROR_NONE) {
             throw new \InvalidArgumentException(sprintf('JSON encode error: %s.', json_last_error_msg()));
         }
 

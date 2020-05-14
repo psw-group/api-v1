@@ -33,8 +33,8 @@ abstract class AbstractResource
     {
         $result = new static();
 
-        if ($resource->hasLink('self') && $resource->getFirstLink('self')) {
-            $result->iri = $resource->getFirstLink('self')->getUri();
+        if ($resource->hasLink('self') && ($link = $resource->getFirstLink('self'))) {
+            $result->iri = $link->getUri();
         }
 
         return $result;
@@ -49,6 +49,9 @@ abstract class AbstractResource
         return new DateTime($resource->getProperty($property));
     }
 
+    /**
+     * @return mixed|null
+     */
     public static function loadObject(HalResource $resource, string $property, string $className)
     {
         if ($resource->hasResource($property)) {

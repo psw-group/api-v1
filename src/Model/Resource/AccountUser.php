@@ -108,6 +108,9 @@ class AccountUser extends AbstractResource implements \JsonSerializable
         return $result;
     }
 
+    /**
+     * @return array<string, string|bool>
+     */
     public function jsonSerialize(): array
     {
         return [

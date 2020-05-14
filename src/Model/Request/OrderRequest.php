@@ -138,7 +138,10 @@ class OrderRequest implements \JsonSerializable
         $this->comment = $comment;
     }
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'items' => $this->items,

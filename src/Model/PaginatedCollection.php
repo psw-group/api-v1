@@ -27,7 +27,7 @@ class PaginatedCollection extends Collection
     /**
      * Constructs an instance of this class.
      *
-     * @param AbstractResource[] $items
+     * @param array<int, AbstractResource|object> $items
      */
     public function __construct(array $items, int $totalItems, int $currentPage, int $itemsPerPage)
     {

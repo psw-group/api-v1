@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PswGroup\Api\Model\DataTransferObject;
 
 use BinSoul\Net\Hal\Client\HalResource;
-use DateTime;
+use DateTimeInterface;
 use PswGroup\Api\Model\AbstractResource;
 
 class CertificateKey
@@ -18,12 +18,12 @@ class CertificateKey
     private $content;
 
     /**
-     * @var DateTime|null Start of the validation period of the key
+     * @var DateTimeInterface|null Start of the validation period of the key
      */
     private $validFrom;
 
     /**
-     * @var DateTime|null End of the validation period of the key
+     * @var DateTimeInterface|null End of the validation period of the key
      */
     private $validTo;
 
@@ -62,12 +62,12 @@ class CertificateKey
         return $this->content;
     }
 
-    public function getValidFrom(): ?DateTime
+    public function getValidFrom(): ?DateTimeInterface
     {
         return $this->validFrom;
     }
 
-    public function getValidTo(): ?DateTime
+    public function getValidTo(): ?DateTimeInterface
     {
         return $this->validTo;
     }
@@ -102,7 +102,7 @@ class CertificateKey
         return $this->hash;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): self
     {
         $result = new self();
 

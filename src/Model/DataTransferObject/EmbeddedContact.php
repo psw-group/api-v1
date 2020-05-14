@@ -11,7 +11,10 @@ abstract class EmbeddedContact
 {
     use ContactData;
 
-    public static function fromArray(array $resource)
+    /**
+     * @param array<string, mixed> $resource
+     */
+    public static function fromArray(array $resource): self
     {
         $result = new static();
 

@@ -4,20 +4,22 @@ declare(strict_types=1);
 
 namespace PswGroup\Api\Model;
 
+use ArrayIterator;
+
 /**
  * Represents a collection of resources.
  */
 class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
 {
     /**
-     * @var AbstractResource[]
+     * @var array<int, AbstractResource|object>
      */
     private $items;
 
     /**
      * Constructs an instance of this class.
      *
-     * @param AbstractResource[] $items
+     * @param array<int, AbstractResource|object> $items
      */
     public function __construct(array $items)
     {
@@ -25,15 +27,17 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Required by interface ArrayAccess.
+     * @param mixed|null $offset
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->items[$offset]) || array_key_exists($offset, $this->items);
     }
 
     /**
-     * Required by interface ArrayAccess.
+     * @param mixed|null $offset
+     *
+     * @return AbstractResource|object|null
      */
     public function offsetGet($offset)
     {
@@ -41,7 +45,8 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Required by interface ArrayAccess.
+     * @param mixed|null $offset
+     * @param mixed|null $value
      */
     public function offsetSet($offset, $value): void
     {
@@ -49,31 +54,25 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Required by interface ArrayAccess.
+     * @param mixed|null $offset
      */
     public function offsetUnset($offset): void
     {
         throw new \BadMethodCallException(sprintf('Array access of class %s is read-only.', static::class));
     }
 
-    /**
-     * Required by interface Countable.
-     */
-    public function count()
+    public function count(): int
     {
         return \count($this->items);
     }
 
-    /**
-     * Required by interface IteratorAggregate.
-     */
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
-        return new \ArrayIterator($this->items);
+        return new ArrayIterator($this->items);
     }
 
     /**
-     * @return AbstractResource[]
+     * @return array<int, AbstractResource|object>
      */
     public function getItems(): array
     {

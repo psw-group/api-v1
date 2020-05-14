@@ -78,18 +78,21 @@ class ValidationInput implements \JsonSerializable
             return;
         }
 
-        if (! preg_match('/^[^@]+@[^@]+$/', $email)) {
+        if (! preg_match('/^[^@]+@[^@]+$/', (string) $email)) {
             throw new \InvalidArgumentException(sprintf('%s is not a valid email address.', $email));
         }
 
-        if (strlen($email) > 255) {
+        if (strlen((string) $email) > 255) {
             throw new \InvalidArgumentException('The email address must be shorter than 256 characters.');
         }
 
         $this->email = $email;
     }
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, string|null>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->name,
