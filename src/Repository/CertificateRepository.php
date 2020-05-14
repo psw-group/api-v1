@@ -7,6 +7,8 @@ namespace PswGroup\Api\Repository;
 use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Collection;
+use PswGroup\Api\Model\DataTransferObject\CertificateCsrFields;
+use PswGroup\Api\Model\DataTransferObject\CertificateCsrFile;
 use PswGroup\Api\Model\DataTransferObject\CertificateKey;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\Certificate;
@@ -102,6 +104,34 @@ class CertificateRepository extends AbstractRepository
         } catch (\Throwable $e) {
             return new Collection([]);
         }
+    }
+
+    /**
+     * Loads the CSR file of a certificate.
+     */
+    public function loadCsrFile(Certificate $certificate): ?CertificateCsrFile
+    {
+        try {
+            $resource = $this->client->get($this->buildItemUrl($certificate->getNumber()) . '/csr-file', ['pagination' => 'false']);
+        } catch (\Throwable $e) {
+            return null;
+        }
+
+        return CertificateCsrFile::fromResource($resource);
+    }
+
+    /**
+     * Loads the CSR fields of a certificate.
+     */
+    public function loadCsrFields(Certificate $certificate): ?CertificateCsrFields
+    {
+        try {
+            $resource = $this->client->get($this->buildItemUrl($certificate->getNumber()) . '/csr-fields', ['pagination' => 'false']);
+        } catch (\Throwable $e) {
+            return null;
+        }
+
+        return CertificateCsrFields::fromResource($resource);
     }
 
     protected function getBaseUrl(): string
