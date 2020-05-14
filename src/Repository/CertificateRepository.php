@@ -15,6 +15,7 @@ use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataCname;
 use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataDnsTxt;
 use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataEmail;
 use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataHttp;
+use PswGroup\Api\Model\DataTransferObject\CertificateValidationOption;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\Certificate;
 
@@ -140,7 +141,7 @@ class CertificateRepository extends AbstractRepository
     }
 
     /**
-     * Loads the validation data of a certificate.
+     * Returns the current validation method for all domains of a certificate.
      *
      * @return CertificateValidationData[]|CertificateValidationDataEmail[]|CertificateValidationDataHttp[]|CertificateValidationDataCname[]|CertificateValidationDataDnsTxt[]|Collection
      */
@@ -152,6 +153,27 @@ class CertificateRepository extends AbstractRepository
 
             foreach ($resource->getResource('item') as $item) {
                 $items[] = CertificateValidationData::fromResource($item);
+            }
+
+            return new Collection($items);
+        } catch (\Throwable $e) {
+            return new Collection([]);
+        }
+    }
+
+    /**
+     * Returns available validation methods for all domains of a certificate.
+     *
+     * @return CertificateValidationOption[]|Collection
+     */
+    public function loadValidationMethods(Certificate $certificate): Collection
+    {
+        try {
+            $resource = $this->client->get($this->buildItemUrl($certificate->getNumber()) . '/validation-methods', ['pagination' => 'false']);
+            $items = [];
+
+            foreach ($resource->getResource('item') as $item) {
+                $items[] = CertificateValidationOption::fromResource($item);
             }
 
             return new Collection($items);
