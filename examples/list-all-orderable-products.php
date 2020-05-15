@@ -45,7 +45,18 @@ function outputTable(array $list, $padTypes = []): void
         $lengths[$column] = maxLength($list, $column);
     }
 
+    $isFirst = true;
+
     foreach ($list as $row) {
+        if ($isFirst) {
+            $isFirst = false;
+
+            foreach (array_keys($row) as $column) {
+                echo '| ' . pad($column, $lengths[$column], ' ', $padTypes[$column] ?? STR_PAD_RIGHT) . ' ';
+            }
+            echo '|' . PHP_EOL;
+        }
+
         foreach ($row as $column => $data) {
             echo '| ' . pad($data, $lengths[$column], ' ', $padTypes[$column] ?? STR_PAD_RIGHT) . ' ';
         }
@@ -55,7 +66,7 @@ function outputTable(array $list, $padTypes = []): void
 
 function maxLength(array $list, string $column): int
 {
-    $max = 0;
+    $max = mb_strlen($column, 'UTF-8');
 
     foreach ($list as $row) {
         $length = mb_strlen((string) $row[$column], 'UTF-8');
