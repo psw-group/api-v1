@@ -11,7 +11,7 @@
     "require": {
         "php": "^7.2",
         "ext-json": "*",
-        "binsoul/net-hal-client": "dev-master",
+        "binsoul/net-hal-client": "^0.1",
         "php-http/discovery": "^1"
     },
     "require-dev": {
