@@ -16,8 +16,11 @@ use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataDnsTxt;
 use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataEmail;
 use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataHttp;
 use PswGroup\Api\Model\DataTransferObject\CertificateValidationOption;
+use PswGroup\Api\Model\DataTransferObject\ValidationInput;
 use PswGroup\Api\Model\PaginatedCollection;
+use PswGroup\Api\Model\Request\CertificateRenewRequest;
 use PswGroup\Api\Model\Resource\Certificate;
+use PswGroup\Api\Model\Resource\Job;
 
 class CertificateRepository extends AbstractRepository
 {
@@ -180,6 +183,90 @@ class CertificateRepository extends AbstractRepository
         } catch (\Throwable $e) {
             return new Collection([]);
         }
+    }
+
+    /**
+     * Changes the validation data of a certificate.
+     *
+     * @param array<ValidationInput> $validation
+     */
+    public function changeValidation(Certificate $certificate, array $validation): Job
+    {
+        $resource = $this->client->post(
+            '/jobs/certificates/change-validation',
+            [
+                'certificateNumber' => $certificate->getNumber(),
+                'validation' => $validation,
+            ]
+        );
+
+        return Job::fromResource($resource);
+    }
+
+    /**
+     * Triggers another validation of a certificate if possible.
+     */
+    public function triggerValidation(Certificate $certificate): ?Job
+    {
+        $resource = $this->client->post('/jobs/certificates/trigger-validation', ['certificateNumber' => $certificate->getNumber()]);
+
+        return Job::fromResource($resource);
+    }
+
+    /**
+     * Sends the validation emails for a certificate again if possible.
+     */
+    public function resendEmail(Certificate $certificate): ?Job
+    {
+        $resource = $this->client->post('/jobs/certificates/resend-email', ['certificateNumber' => $certificate->getNumber()]);
+
+        return Job::fromResource($resource);
+    }
+
+    /**
+     * Reissues a certificate.
+     */
+    public function reissue(Certificate $certificate, string $csrFile): Job
+    {
+        $resource = $this->client->post(
+            '/jobs/certificates/reissue',
+            [
+                'certificateNumber' => $certificate->getNumber(),
+                'csfFile' => $csrFile,
+            ]
+        );
+
+        return Job::fromResource($resource);
+    }
+
+    /**
+     * Cancels the reissue of a certificate.
+     */
+    public function cancelReissue(Certificate $certificate): Job
+    {
+        $resource = $this->client->post('/jobs/certificates/cancel-reissue', ['certificateNumber' => $certificate->getNumber()]);
+
+        return Job::fromResource($resource);
+    }
+
+    /**
+     * Renews a certificate.
+     */
+    public function renew(CertificateRenewRequest $request): ?Job
+    {
+        $resource = $this->client->post('/jobs/certificates/renew', $request);
+
+        return Job::fromResource($resource);
+    }
+
+    /**
+     * Revokes a certificate.
+     */
+    public function revoke(Certificate $certificate): ?Job
+    {
+        $resource = $this->client->post('/jobs/certificates/revoke', ['certificateNumber' => $certificate->getNumber()]);
+
+        return Job::fromResource($resource);
     }
 
     protected function getBaseUrl(): string

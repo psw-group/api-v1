@@ -10,6 +10,7 @@ use PswGroup\Api\Model\Collection;
 use PswGroup\Api\Model\DataTransferObject\OrderItem;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Request\OrderRequest;
+use PswGroup\Api\Model\Resource\Job;
 use PswGroup\Api\Model\Resource\Order;
 
 class OrderRepository extends AbstractRepository
@@ -71,16 +72,6 @@ class OrderRepository extends AbstractRepository
     }
 
     /**
-     * Creates a new order for the given order request.
-     */
-    public function order(OrderRequest $request): Order
-    {
-        $resource = $this->client->post($this->getBaseUrl(), $request);
-
-        return $this->entityFromResource($resource);
-    }
-
-    /**
      * Loads all items of an order.
      *
      * @return OrderItem[]|Collection
@@ -99,6 +90,26 @@ class OrderRepository extends AbstractRepository
         } catch (\Throwable $e) {
             return new Collection([]);
         }
+    }
+
+    /**
+     * Creates a new order for the given order request.
+     */
+    public function order(OrderRequest $request): Order
+    {
+        $resource = $this->client->post($this->getBaseUrl(), $request);
+
+        return $this->entityFromResource($resource);
+    }
+
+    /**
+     * Cancels an order.
+     */
+    public function cancel(Order $order): Job
+    {
+        $resource = $this->client->post('/jobs/orders/cancel', ['orderNumber' => $order->getNumber()]);
+
+        return Job::fromResource($resource);
     }
 
     protected function getBaseUrl(): string
