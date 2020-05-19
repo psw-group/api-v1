@@ -20,8 +20,8 @@ You can find an OpenAPI 3 documentation at: https://test-api.psw-group.de/v1
 | /certificate-authorities          | no       | Certificate authorities<br><sub>Example: Sectigo, Digicert, Certum|
 | ​/certificate-states               | no       | States of certificates<br><sub>Example: new, valid, revoked</sub> |
 | ​/certificate-types                | no       | Types of certificates<br><sub>Example: SSL, S/MIME, code signing</sub> | 
-| ​/certificate-validation-methods   | no       | Methods of validation for certificates<br><sub>Example: E-Mail, HTTP, DNSTXT</sub> | 
-| ​/certificate-validation-types     | no       | Types of validation of certificates<br><sub>Example: DV, OV, EV</sub> | 
+| ​/certificate-validation-methods   | no       | Validation methods for certificates<br><sup>Method which is used to verify information for a certificate or a domain.</sup><br><sub>Example: E-Mail, HTTP, DNSTXT</sub> | 
+| ​/certificate-validation-types     | no       | Validation types of certificates<br><sup>How much information is verified before a certificate is issued.</sup><br><sub>Example: domain validation, organisation validation, extended validation</sub> | 
 | ​/certificates                     | indirect | Certificates | 
 | ​/contacts                         | yes      | Contacts for orders or certificates | 
 | ​/countries                        | no       | Countries<br><sub>Example: DE, AT, CH</sub> | 
