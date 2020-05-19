@@ -77,7 +77,7 @@ class Job extends AbstractResource
         $result->id = $resource->getProperty('id');
         $result->state = $resource->getProperty('state');
         $result->name = $resource->getProperty('name');
-        $result->createdAt = self::loadDateTime($resource, 'createdAt');
+        $result->createdAt = self::loadDateTime($resource, 'createdAt') ?? new \DateTime();
         $result->startedAt = self::loadDateTime($resource, 'startedAt');
         $result->stoppedAt = self::loadDateTime($resource, 'stoppedAt');
 

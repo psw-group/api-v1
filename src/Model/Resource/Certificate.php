@@ -244,8 +244,8 @@ class Certificate extends AbstractResource
         $result->approverContact = self::loadObject($resource, 'approverContact', CertificateContact::class);
         $result->orderedAt = self::loadDateTime($resource, 'orderedAt');
         $result->revokedAt = self::loadDateTime($resource, 'revokedAt');
-        $result->updatedAt = self::loadDateTime($resource, 'updatedAt');
-        $result->createdAt = self::loadDateTime($resource, 'createdAt');
+        $result->updatedAt = self::loadDateTime($resource, 'updatedAt') ?? new \DateTime();
+        $result->createdAt = self::loadDateTime($resource, 'createdAt') ?? new \DateTime();
 
         return $result;
     }

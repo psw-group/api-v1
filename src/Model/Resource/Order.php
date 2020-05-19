@@ -178,8 +178,8 @@ class Order extends AbstractResource
         $result->customerOrder = $resource->getProperty('customerOrder');
         $result->validationAt = self::loadDateTime($resource, 'validationAt');
         $result->cancelledAt = self::loadDateTime($resource, 'cancelledAt');
-        $result->updatedAt = self::loadDateTime($resource, 'updatedAt');
-        $result->createdAt = self::loadDateTime($resource, 'createdAt');
+        $result->updatedAt = self::loadDateTime($resource, 'updatedAt') ?? new \DateTime();
+        $result->createdAt = self::loadDateTime($resource, 'createdAt') ?? new \DateTime();
 
         return $result;
     }
