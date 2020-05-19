@@ -8,6 +8,7 @@ use PswGroup\Api\Repository\CountryRepository;
 use PswGroup\Api\Repository\OrganisationTypeRepository;
 
 include '../vendor/autoload.php';
+include 'helper/paragraph.php';
 
 $client = include 'client.php';
 
@@ -39,4 +40,4 @@ $contact->setAllowedAsOwnerContact(false);
 $contactRepository = new AccountContactRepository($client);
 $contact = $contactRepository->save($contact);
 
-echo sprintf('New contact number:  %s%s', $contact->getNumber(), PHP_EOL . PHP_EOL);
+outputParagraph('New contact number:  %s', $contact->getNumber());

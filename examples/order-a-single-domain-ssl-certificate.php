@@ -12,6 +12,7 @@ use PswGroup\Api\Repository\OrderRepository;
 use PswGroup\Api\Repository\ProductRepository;
 
 include '../vendor/autoload.php';
+include 'helper/paragraph.php';
 
 $client = include 'client.php';
 
@@ -74,4 +75,4 @@ $orderRequest->setOrderContact($orderContact);
 $orderRepository = new OrderRepository($client);
 $order = $orderRepository->order($orderRequest);
 
-echo 'New order number: ' . $order->getNumber();
+outputParagraph('New order number: %s', $order->getNumber());
