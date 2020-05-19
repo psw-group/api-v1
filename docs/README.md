@@ -11,4 +11,4 @@ The following response format are available:
 You can find an OpenAPI 3 documentation at: https://test-api.psw-group.de/v1  
 
 ---
-Weitere Themen auf Deutsch: [Übersicht](de/index.md) 
+Weitere Themen auf Deutsch: [Übersicht](de/README.md) 
