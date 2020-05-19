@@ -3,14 +3,10 @@
 declare(strict_types=1);
 
 use PswGroup\Api\Repository\OrderRepository;
-use PswGroup\Api\TestClient;
 
 include '../vendor/autoload.php';
 
-$client = new TestClient(
-    '[yourClientId]',
-    '[yourClientSecret]'
-);
+$client = include 'client.php';
 
 $orderRepository = new OrderRepository($client);
 $orders = $orderRepository->loadAll();

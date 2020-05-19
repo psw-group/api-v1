@@ -3,14 +3,10 @@
 declare(strict_types=1);
 
 use PswGroup\Api\Repository\ProductRepository;
-use PswGroup\Api\TestClient;
 
 include '../vendor/autoload.php';
 
-$client = new TestClient(
-    '[yourClientId]',
-    '[yourClientSecret]'
-);
+$client = include 'client.php';
 
 $productRepository = new ProductRepository($client);
 $parentProduct = $productRepository->load('A001023');

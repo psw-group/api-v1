@@ -6,14 +6,10 @@ use PswGroup\Api\Model\Resource\AccountContact;
 use PswGroup\Api\Repository\AccountContactRepository;
 use PswGroup\Api\Repository\CountryRepository;
 use PswGroup\Api\Repository\OrganisationTypeRepository;
-use PswGroup\Api\TestClient;
 
 include '../vendor/autoload.php';
 
-$client = new TestClient(
-    '[yourClientId]',
-    '[yourClientSecret]'
-);
+$client = include 'client.php';
 
 $countryRepository = new CountryRepository($client);
 $country = $countryRepository->load('DE');

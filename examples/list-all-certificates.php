@@ -3,14 +3,10 @@
 declare(strict_types=1);
 
 use PswGroup\Api\Repository\CertificateRepository;
-use PswGroup\Api\TestClient;
 
 include '../vendor/autoload.php';
 
-$client = new TestClient(
-    '[yourClientId]',
-    '[yourClientSecret]'
-);
+$client = include 'client.php';
 
 $certificateRepository = new CertificateRepository($client);
 $certificates = $certificateRepository->loadAll();

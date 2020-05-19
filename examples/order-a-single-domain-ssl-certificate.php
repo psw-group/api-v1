@@ -10,14 +10,10 @@ use PswGroup\Api\Model\DataTransferObject\ValidationInput;
 use PswGroup\Api\Model\Request\OrderRequest;
 use PswGroup\Api\Repository\OrderRepository;
 use PswGroup\Api\Repository\ProductRepository;
-use PswGroup\Api\TestClient;
 
 include '../vendor/autoload.php';
 
-$client = new TestClient(
-    '[yourClientId]',
-    '[yourClientSecret]'
-);
+$client = include 'client.php';
 
 // Build a certificate request
 $csrFile = '-----BEGIN CERTIFICATE REQUEST-----

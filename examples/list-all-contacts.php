@@ -3,14 +3,10 @@
 declare(strict_types=1);
 
 use PswGroup\Api\Repository\AccountContactRepository;
-use PswGroup\Api\TestClient;
 
 include '../vendor/autoload.php';
 
-$client = new TestClient(
-    '[yourClientId]',
-    '[yourClientSecret]'
-);
+$client = include 'client.php';
 
 $contactRepository = new AccountContactRepository($client);
 $contacts = $contactRepository->loadAll();
