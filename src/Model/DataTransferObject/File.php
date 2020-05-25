@@ -4,20 +4,23 @@ declare(strict_types=1);
 
 namespace PswGroup\Api\Model\DataTransferObject;
 
+/**
+ * Represents a file required in the validation process.
+ */
 class File implements \JsonSerializable
 {
     /**
-     * @var string
+     * @var string Name of the file
      */
     private $name;
 
     /**
-     * @var string|null
+     * @var string|null Mime type if the file
      */
     private $mimeType;
 
     /**
-     * @var string
+     * @var string Content of the file
      */
     private $content;
 
@@ -26,14 +29,29 @@ class File implements \JsonSerializable
         return $this->name;
     }
 
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
     public function getMimeType(): ?string
     {
         return $this->mimeType;
     }
 
+    public function setMimeType(?string $mimeType): void
+    {
+        $this->mimeType = $mimeType;
+    }
+
     public function getContent(): string
     {
         return $this->content;
+    }
+
+    public function setContent(string $content): void
+    {
+        $this->content = $content;
     }
 
     /**
@@ -44,7 +62,7 @@ class File implements \JsonSerializable
         return [
             'name' => $this->name,
             'mimeType' => $this->mimeType,
-            'content' => $this->content,
+            'content' => base64_encode($this->content),
         ];
     }
 }
