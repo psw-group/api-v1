@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace PswGroup\Api\Model\Request;
 
 use DateTimeInterface;
-use PswGroup\Api\Model\DataTransferObject\ContactInput;
-use PswGroup\Api\Model\DataTransferObject\File;
-use PswGroup\Api\Model\DataTransferObject\OrderItemInput;
 
 /**
  * Represents all data required for an order.
@@ -15,12 +12,12 @@ use PswGroup\Api\Model\DataTransferObject\OrderItemInput;
 class OrderRequest implements \JsonSerializable
 {
     /**
-     * @var OrderItemInput[] List of items to order
+     * @var OrderItem[] List of items to order
      */
     private $items;
 
     /**
-     * @var ContactInput Contact which receives all order related information including prices
+     * @var Contact Contact which receives all order related information including prices
      */
     private $orderContact;
 
@@ -50,7 +47,7 @@ class OrderRequest implements \JsonSerializable
     private $comment;
 
     /**
-     * @return OrderItemInput[]
+     * @return OrderItem[]
      */
     public function getItems(): array
     {
@@ -58,24 +55,24 @@ class OrderRequest implements \JsonSerializable
     }
 
     /**
-     * @param OrderItemInput[] $items
+     * @param OrderItem[] $items
      */
     public function setItems(array $items): void
     {
         $this->items = $items;
     }
 
-    public function addItem(OrderItemInput $item): void
+    public function addItem(OrderItem $item): void
     {
         $this->items[] = $item;
     }
 
-    public function getOrderContact(): ContactInput
+    public function getOrderContact(): Contact
     {
         return $this->orderContact;
     }
 
-    public function setOrderContact(ContactInput $orderContact): void
+    public function setOrderContact(Contact $orderContact): void
     {
         $this->orderContact = $orderContact;
     }

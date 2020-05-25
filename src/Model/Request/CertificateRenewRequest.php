@@ -6,9 +6,6 @@ namespace PswGroup\Api\Model\Request;
 
 use DateTime;
 use JsonSerializable;
-use PswGroup\Api\Model\DataTransferObject\CertificateRequest;
-use PswGroup\Api\Model\DataTransferObject\ContactInput;
-use PswGroup\Api\Model\DataTransferObject\File;
 
 /**
  * Represents all data required for the renewal of a certificate.
@@ -21,12 +18,12 @@ class CertificateRenewRequest implements JsonSerializable
     private $certificateNumber;
 
     /**
-     * @var CertificateRequest|null Certificate data for the renewal
+     * @var CertificateData|null Certificate data for the renewal
      */
-    private $certificateRequest;
+    private $certificateData;
 
     /**
-     * @var ContactInput Contact which receives all order related information including prices
+     * @var Contact Contact which receives all order related information including prices
      */
     private $orderContact;
 
@@ -65,22 +62,22 @@ class CertificateRenewRequest implements JsonSerializable
         $this->certificateNumber = $certificateNumber;
     }
 
-    public function getCertificateRequest(): ?CertificateRequest
+    public function getCertificateData(): ?CertificateData
     {
-        return $this->certificateRequest;
+        return $this->certificateData;
     }
 
-    public function setCertificateRequest(?CertificateRequest $certificateRequest): void
+    public function setCertificateData(?CertificateData $certificateData): void
     {
-        $this->certificateRequest = $certificateRequest;
+        $this->certificateData = $certificateData;
     }
 
-    public function getOrderContact(): ContactInput
+    public function getOrderContact(): Contact
     {
         return $this->orderContact;
     }
 
-    public function setOrderContact(ContactInput $orderContact): void
+    public function setOrderContact(Contact $orderContact): void
     {
         $this->orderContact = $orderContact;
     }
@@ -153,7 +150,7 @@ class CertificateRenewRequest implements JsonSerializable
     {
         return [
             'certificateNumber' => $this->certificateNumber,
-            'certificateRequest' => $this->certificateRequest,
+            'certificateRequest' => $this->certificateData,
             'orderContact' => $this->orderContact,
             'vatId' => $this->vatId,
             'customerOrder' => $this->customerOrder,

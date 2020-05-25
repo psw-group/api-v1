@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PswGroup\Api\Model\DataTransferObject;
+namespace PswGroup\Api\Model\Request;
 
-class ValidationInput implements \JsonSerializable
+class Validation implements \JsonSerializable
 {
     public const METHOD_EMAIL = 'email';
 
@@ -19,7 +19,7 @@ class ValidationInput implements \JsonSerializable
     /**
      * @var string Domain which should be validated
      */
-    private $name;
+    private $domain;
 
     /**
      * @var string Method to use for validation
@@ -34,21 +34,21 @@ class ValidationInput implements \JsonSerializable
     /**
      * Constructs an instance of this class.
      */
-    public function __construct(string $name = '', string $method = '', ?string $emailAddress = null)
+    public function __construct(string $domain = '', string $method = '', ?string $emailAddress = null)
     {
-        $this->setName($name);
+        $this->setDomain($domain);
         $this->setMethod($method);
         $this->setEmail($emailAddress);
     }
 
-    public function getName(): string
+    public function getDomain(): string
     {
-        return $this->name;
+        return $this->domain;
     }
 
-    public function setName(string $name): void
+    public function setDomain(string $name): void
     {
-        $this->name = $name;
+        $this->domain = $name;
     }
 
     public function getMethod(): string
@@ -95,7 +95,7 @@ class ValidationInput implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'name' => $this->name,
+            'name' => $this->domain,
             'method' => $this->method,
             'email' => $this->email,
         ];

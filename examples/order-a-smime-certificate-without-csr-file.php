@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use PswGroup\Api\Model\DataTransferObject\CertificateRequest;
-use PswGroup\Api\Model\DataTransferObject\ContactInput;
-use PswGroup\Api\Model\DataTransferObject\CsrFieldsInput;
-use PswGroup\Api\Model\DataTransferObject\OrderItemInput;
+use PswGroup\Api\Model\Request\CertificateData;
+use PswGroup\Api\Model\Request\Contact;
+use PswGroup\Api\Model\Request\CsrFields;
+use PswGroup\Api\Model\Request\OrderItem;
 use PswGroup\Api\Model\Request\OrderRequest;
 use PswGroup\Api\Repository\OrderRepository;
 use PswGroup\Api\Repository\ProductRepository;
@@ -16,31 +16,31 @@ include 'helper/paragraph.php';
 $client = include 'client.php';
 
 // Build a certificate request
-$csrFields = new CsrFieldsInput();
+$csrFields = new CsrFields();
 $csrFields->setEmailAddress('mail@ssl-test.de');
 $csrFields->setCountryName('DE');
 
-$ownerContact = new ContactInput();
+$ownerContact = new Contact();
 $ownerContact->setFirstname('API');
 $ownerContact->setLastname('User');
 $ownerContact->setTelephone('+4966148027610');
 
-$certificateRequest = new CertificateRequest();
-$certificateRequest->setCsrFields($csrFields);
-$certificateRequest->setOwnerContact($ownerContact);
-$certificateRequest->setPassword('Password1234');
+$certificateData = new CertificateData();
+$certificateData->setCsrFields($csrFields);
+$certificateData->setOwnerContact($ownerContact);
+$certificateData->setPassword('Password1234');
 
 // Load a product: GlobalSign Personal Sign 1, 3 years
 $productRepository = new ProductRepository($client);
 $product = $productRepository->load('A000751');
 
 // Build an order item
-$orderItem = new OrderItemInput();
+$orderItem = new OrderItem();
 $orderItem->setProduct($product);
-$orderItem->setCertificateRequest($certificateRequest);
+$orderItem->setCertificateData($certificateData);
 
 // Build an order request
-$orderContact = new ContactInput();
+$orderContact = new Contact();
 $orderContact->setSalutation('Mr.');
 $orderContact->setFirstname('API');
 $orderContact->setLastname('User');

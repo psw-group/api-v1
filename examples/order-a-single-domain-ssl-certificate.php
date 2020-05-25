@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use PswGroup\Api\Model\DataTransferObject\CertificateRequest;
-use PswGroup\Api\Model\DataTransferObject\ContactInput;
-use PswGroup\Api\Model\DataTransferObject\CsrFieldsInput;
-use PswGroup\Api\Model\DataTransferObject\OrderItemInput;
-use PswGroup\Api\Model\DataTransferObject\ValidationInput;
+use PswGroup\Api\Model\Request\CertificateData;
+use PswGroup\Api\Model\Request\Contact;
+use PswGroup\Api\Model\Request\CsrFields;
+use PswGroup\Api\Model\Request\OrderItem;
 use PswGroup\Api\Model\Request\OrderRequest;
+use PswGroup\Api\Model\Request\Validation;
 use PswGroup\Api\Repository\OrderRepository;
 use PswGroup\Api\Repository\ProductRepository;
 
@@ -36,16 +36,16 @@ DeRo4DfL4zWynRDA2+8qIK5KE+05Dd+XV5fHnkV30Gt5Z17QpHAJA1BpSYixkcBa
 7V7GRZEtfddTknh3ysDyifqyzHxYcNoe/RfRL5lckVpQTQ4vmIcCr8wGGMDANw==
 -----END CERTIFICATE REQUEST-----';
 
-$csrFields = new CsrFieldsInput();
+$csrFields = new CsrFields();
 $csrFields->setCommonName('ssl-test.de');
 $csrFields->setCountryName('DE');
 
-$certificateRequest = new CertificateRequest();
-$certificateRequest->setCsrFile($csrFile);
-$certificateRequest->setCsrFields($csrFields);
-$certificateRequest->setValidation(
+$certificateData = new CertificateData();
+$certificateData->setCsrFile($csrFile);
+$certificateData->setCsrFields($csrFields);
+$certificateData->setValidation(
     [
-        new ValidationInput('ssl-test.de', ValidationInput::METHOD_EMAIL, 'webmaster@ssl-test.de'),
+        new Validation('ssl-test.de', Validation::METHOD_EMAIL, 'webmaster@ssl-test.de'),
     ]
 );
 
@@ -54,12 +54,12 @@ $productRepository = new ProductRepository($client);
 $product = $productRepository->load('A001139');
 
 // Build an order item
-$orderItem = new OrderItemInput();
+$orderItem = new OrderItem();
 $orderItem->setProduct($product);
-$orderItem->setCertificateRequest($certificateRequest);
+$orderItem->setCertificateData($certificateData);
 
 // Build an order request
-$orderContact = new ContactInput();
+$orderContact = new Contact();
 $orderContact->setSalutation('Mr.');
 $orderContact->setFirstname('API');
 $orderContact->setLastname('User');

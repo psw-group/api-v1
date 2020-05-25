@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace PswGroup\Test\Api\Unit\Model\DataTransferObject;
+namespace PswGroup\Test\Api\Unit\Model\Request;
 
 use PHPUnit\Framework\TestCase;
-use PswGroup\Api\Model\DataTransferObject\CertificateRequest;
-use PswGroup\Api\Model\DataTransferObject\ContactInput;
-use PswGroup\Api\Model\DataTransferObject\CsrFieldsInput;
-use PswGroup\Api\Model\DataTransferObject\ValidationInput;
+use PswGroup\Api\Model\Request\CertificateData;
+use PswGroup\Api\Model\Request\Contact;
+use PswGroup\Api\Model\Request\CsrFields;
+use PswGroup\Api\Model\Request\Validation;
 
-class CertificateRequestTest extends TestCase
+class CertificateDataTest extends TestCase
 {
     /**
      * @var string
@@ -47,7 +47,7 @@ DeRo4DfL4zWynRDA2+8qIK5KE+05Dd+XV5fHnkV30Gt5Z17QpHAJA1BpSYixkcBa
         $this->assertEquals('PSW GROUP GmbH & Co. KG', $request->getOwnerContact()->getOrganisationName());
         $this->assertEquals('IT', $request->getApproverContact()->getOrganisationUnit());
         $this->assertCount(1, $request->getValidation());
-        $this->assertEquals('ssl-test.de', $request->getValidation()[0]->getName());
+        $this->assertEquals('ssl-test.de', $request->getValidation()[0]->getDomain());
     }
 
     public function test_is_serializable(): void
@@ -60,21 +60,21 @@ DeRo4DfL4zWynRDA2+8qIK5KE+05Dd+XV5fHnkV30Gt5Z17QpHAJA1BpSYixkcBa
         $this->assertEquals($expected, $serialized);
     }
 
-    private function buildRequest(): CertificateRequest
+    private function buildRequest(): CertificateData
     {
-        $fields = new CsrFieldsInput();
+        $fields = new CsrFields();
         $fields->setCommonName('ssl-test.de');
 
-        $ownerContact = new ContactInput();
+        $ownerContact = new Contact();
         $ownerContact->setOrganisationName('PSW GROUP GmbH & Co. KG');
 
-        $approverContact = new ContactInput();
+        $approverContact = new Contact();
         $approverContact->setOrganisationUnit('IT');
 
-        $result = new CertificateRequest();
+        $result = new CertificateData();
         $result->setCsrFile(self::$csrFile);
         $result->setCsrFields($fields);
-        $result->setValidation([new ValidationInput('ssl-test.de', ValidationInput::METHOD_EMAIL, 'webmaster@ssl-test.de')]);
+        $result->setValidation([new Validation('ssl-test.de', Validation::METHOD_EMAIL, 'webmaster@ssl-test.de')]);
         $result->setUsername('username');
         $result->setPassword('password');
         $result->setHashAlgorithm('SHA-2');

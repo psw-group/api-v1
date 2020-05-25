@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PswGroup\Api\Model\DataTransferObject;
+namespace PswGroup\Api\Model\Request;
 
 /**
  * Represents a file required in the validation process.

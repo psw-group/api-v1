@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace PswGroup\Api\Model\DataTransferObject;
+namespace PswGroup\Api\Model\Request;
 
-class CsrFieldsInput implements \JsonSerializable
+use PswGroup\Api\Model\DataTransferObject\CsrFieldsData;
+
+class CsrFields implements \JsonSerializable
 {
     use CsrFieldsData;
 

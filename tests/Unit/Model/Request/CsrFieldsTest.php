@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace PswGroup\Test\Api\Unit\Model\DataTransferObject;
+namespace PswGroup\Test\Api\Unit\Model\Request;
 
 use PHPUnit\Framework\TestCase;
-use PswGroup\Api\Model\DataTransferObject\CsrFieldsInput;
+use PswGroup\Api\Model\Request\CsrFields;
 
-class CsrFieldsInputTest extends TestCase
+class CsrFieldsTest extends TestCase
 {
     public function test_getters_and_setters(): void
     {
@@ -143,9 +143,9 @@ class CsrFieldsInputTest extends TestCase
         $fields->setEmailAddress($name);
     }
 
-    private function buildFields(): CsrFieldsInput
+    private function buildFields(): CsrFields
     {
-        $fields = new CsrFieldsInput();
+        $fields = new CsrFields();
         $fields->setCommonName('psw-group.de');
         $fields->setSans(['www.psw-group.de', 'test-api.psw-group.de']);
         $fields->setEmailAddress('webmaster@psw-group.de');

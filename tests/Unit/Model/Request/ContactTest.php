@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace PswGroup\Test\Api\Unit\Model\DataTransferObject;
+namespace PswGroup\Test\Api\Unit\Model\Request;
 
 use PHPUnit\Framework\TestCase;
-use PswGroup\Api\Model\DataTransferObject\ContactInput;
+use PswGroup\Api\Model\Request\Contact;
 use PswGroup\Api\Model\Resource\AccountContact;
 use PswGroup\Api\Model\Resource\Country;
 use PswGroup\Api\Model\Resource\OrganisationType;
 
-class ContactInputTest extends TestCase
+class ContactTest extends TestCase
 {
     public function test_getters_and_setters(): void
     {
@@ -141,9 +141,9 @@ class ContactInputTest extends TestCase
         $this->assertEquals($expected, $serialized);
     }
 
-    private function buildContact(): ContactInput
+    private function buildContact(): Contact
     {
-        $result = new ContactInput();
+        $result = new Contact();
 
         $result->setSalutation('Mr.');
         $result->setFirstname('API');

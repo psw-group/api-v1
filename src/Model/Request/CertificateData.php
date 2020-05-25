@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace PswGroup\Api\Model\DataTransferObject;
+namespace PswGroup\Api\Model\Request;
 
 /**
  * Represents all data required to order a certificate.
  */
-class CertificateRequest implements \JsonSerializable
+class CertificateData implements \JsonSerializable
 {
     /**
      * @var string|null CSR file for the request
@@ -15,12 +15,12 @@ class CertificateRequest implements \JsonSerializable
     private $csrFile;
 
     /**
-     * @var CsrFieldsInput|null CSR fields for the request which can override the CSR file
+     * @var CsrFields|null CSR fields for the request which can override the CSR file
      */
     private $csrFields;
 
     /**
-     * @var ValidationInput[]|null Validation methods for all domains
+     * @var Validation[]|null Validation data for all domains
      */
     private $validation;
 
@@ -45,12 +45,12 @@ class CertificateRequest implements \JsonSerializable
     private $serverCount;
 
     /**
-     * @var ContactInput|null Contact which owns the certificate
+     * @var Contact|null Contact which owns the certificate
      */
     private $ownerContact;
 
     /**
-     * @var ContactInput|null Contact which approves the certificate
+     * @var Contact|null Contact which approves the certificate
      */
     private $approverContact;
 
@@ -64,18 +64,18 @@ class CertificateRequest implements \JsonSerializable
         $this->csrFile = $csrFile;
     }
 
-    public function getCsrFields(): ?CsrFieldsInput
+    public function getCsrFields(): ?CsrFields
     {
         return $this->csrFields;
     }
 
-    public function setCsrFields(?CsrFieldsInput $csrFields): void
+    public function setCsrFields(?CsrFields $csrFields): void
     {
         $this->csrFields = $csrFields;
     }
 
     /**
-     * @return ValidationInput[]|null
+     * @return Validation[]|null
      */
     public function getValidation(): ?array
     {
@@ -83,7 +83,7 @@ class CertificateRequest implements \JsonSerializable
     }
 
     /**
-     * @param ValidationInput[]|null $validation
+     * @param Validation[]|null $validation
      */
     public function setValidation(?array $validation): void
     {
@@ -130,22 +130,22 @@ class CertificateRequest implements \JsonSerializable
         $this->serverCount = $serverCount;
     }
 
-    public function getOwnerContact(): ?ContactInput
+    public function getOwnerContact(): ?Contact
     {
         return $this->ownerContact;
     }
 
-    public function setOwnerContact(?ContactInput $ownerContact): void
+    public function setOwnerContact(?Contact $ownerContact): void
     {
         $this->ownerContact = $ownerContact;
     }
 
-    public function getApproverContact(): ?ContactInput
+    public function getApproverContact(): ?Contact
     {
         return $this->approverContact;
     }
 
-    public function setApproverContact(?ContactInput $approverContact): void
+    public function setApproverContact(?Contact $approverContact): void
     {
         $this->approverContact = $approverContact;
     }

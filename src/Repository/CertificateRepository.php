@@ -16,9 +16,9 @@ use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataDnsTxt;
 use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataEmail;
 use PswGroup\Api\Model\DataTransferObject\CertificateValidationDataHttp;
 use PswGroup\Api\Model\DataTransferObject\CertificateValidationOption;
-use PswGroup\Api\Model\DataTransferObject\ValidationInput;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Request\CertificateRenewRequest;
+use PswGroup\Api\Model\Request\Validation;
 use PswGroup\Api\Model\Resource\Certificate;
 use PswGroup\Api\Model\Resource\Job;
 
@@ -188,7 +188,7 @@ class CertificateRepository extends AbstractRepository
     /**
      * Changes the validation data of a certificate.
      *
-     * @param array<ValidationInput> $validation
+     * @param array<Validation> $validation
      */
     public function changeValidation(Certificate $certificate, array $validation): Job
     {

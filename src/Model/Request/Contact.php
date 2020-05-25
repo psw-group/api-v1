@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace PswGroup\Api\Model\DataTransferObject;
+namespace PswGroup\Api\Model\Request;
 
+use PswGroup\Api\Model\DataTransferObject\ContactData;
 use PswGroup\Api\Model\Resource\AccountContact;
 use PswGroup\Api\Model\Resource\Country;
 use PswGroup\Api\Model\Resource\OrganisationType;
 
-class ContactInput implements \JsonSerializable
+class Contact implements \JsonSerializable
 {
     use ContactData;
 
