@@ -7,6 +7,9 @@ namespace PswGroup\Api\Model\Resource;
 use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 
+/**
+ * Represents an user of an account.
+ */
 class AccountUser extends AbstractResource implements \JsonSerializable
 {
     /**
@@ -15,7 +18,7 @@ class AccountUser extends AbstractResource implements \JsonSerializable
     private $number;
 
     /**
-     * @var bool
+     * @var bool Indicates if the user can login
      */
     private $active;
 

@@ -13,12 +13,12 @@ class ContactInput implements \JsonSerializable
     use ContactData;
 
     /**
-     * @var AccountContact|null
+     * @var AccountContact|null Existing contact to use
      */
     private $contact;
 
     /**
-     * @var bool
+     * @var bool Indicates if a new contact should be created from the given data
      */
     private $storeData = false;
 

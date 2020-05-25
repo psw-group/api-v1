@@ -7,6 +7,9 @@ namespace PswGroup\Api\Model\Resource;
 use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 
+/**
+ * Represents a known currency.
+ */
 class Currency extends AbstractResource
 {
     /**

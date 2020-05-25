@@ -10,45 +10,48 @@ use PswGroup\Api\Model\DataTransferObject\CertificateRequest;
 use PswGroup\Api\Model\DataTransferObject\ContactInput;
 use PswGroup\Api\Model\DataTransferObject\File;
 
+/**
+ * Represents all data required for the renewal of a certificate.
+ */
 class CertificateRenewRequest implements JsonSerializable
 {
     /**
-     * @var string
+     * @var string Certificate which should be renewed
      */
     private $certificateNumber;
 
     /**
-     * @var CertificateRequest|null
+     * @var CertificateRequest|null Certificate data for the renewal
      */
     private $certificateRequest;
 
     /**
-     * @var ContactInput
+     * @var ContactInput Contact which receives all order related information including prices
      */
     private $orderContact;
 
     /**
-     * @var string|null
+     * @var string|null VAT-ID to use
      */
     private $vatId;
 
     /**
-     * @var string|null
+     * @var string|null Custom number which will be printed on the invoice
      */
     private $customerOrder;
 
     /**
-     * @var DateTime|null
+     * @var DateTime|null Desired validation date and time
      */
     private $validationDate;
 
     /**
-     * @var File[]|null
+     * @var File[]|null Files required for the validation
      */
     private $files;
 
     /**
-     * @var string|null
+     * @var string|null Comment for the renewal
      */
     private $comment;
 

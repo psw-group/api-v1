@@ -8,6 +8,9 @@ use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Resource\Certificate;
 
+/**
+ * Represents one item of an order.
+ */
 class OrderItem
 {
     /**
@@ -66,7 +69,7 @@ class OrderItem
     private $rowTaxValue = 0.0;
 
     /**
-     * @var Certificate|null
+     * @var Certificate|null Certificate of the order item
      */
     private $certificate;
 

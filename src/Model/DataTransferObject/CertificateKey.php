@@ -8,6 +8,9 @@ use BinSoul\Net\Hal\Client\HalResource;
 use DateTimeInterface;
 use PswGroup\Api\Model\AbstractResource;
 
+/**
+ * Represents a certificate key.
+ */
 class CertificateKey
 {
     use CsrFieldsData;
@@ -53,7 +56,7 @@ class CertificateKey
     private $keyBits;
 
     /**
-     * @var string|null
+     * @var string|null Hash of the key
      */
     private $hash;
 

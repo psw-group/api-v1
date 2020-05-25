@@ -9,6 +9,9 @@ use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Resource\CertificateValidationMethod;
 use RuntimeException;
 
+/**
+ * Represents all data used for the validation of a domain.
+ */
 class CertificateValidationData
 {
     /**

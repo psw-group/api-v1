@@ -6,6 +6,9 @@ namespace PswGroup\Api\Model\DataTransferObject;
 
 use BinSoul\Net\Hal\Client\HalResource;
 
+/**
+ * Represents the CSR fields of a certificate.
+ */
 class CertificateCsrFields
 {
     use CsrFieldsData;

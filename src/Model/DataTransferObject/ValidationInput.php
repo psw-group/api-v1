@@ -17,17 +17,17 @@ class ValidationInput implements \JsonSerializable
     public const METHOD_DNSTXT = 'dnstxt';
 
     /**
-     * @var string
+     * @var string Domain which should be validated
      */
     private $name;
 
     /**
-     * @var string
+     * @var string Method to use for validation
      */
     private $method;
 
     /**
-     * @var string|null
+     * @var string|null Email address for validation if the method is "email"
      */
     private $email;
 

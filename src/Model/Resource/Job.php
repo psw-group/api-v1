@@ -8,6 +8,9 @@ use BinSoul\Net\Hal\Client\HalResource;
 use DateTimeInterface;
 use PswGroup\Api\Model\AbstractResource;
 
+/**
+ * Represents a job.
+ */
 class Job extends AbstractResource
 {
     /**

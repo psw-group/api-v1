@@ -7,6 +7,9 @@ namespace PswGroup\Api\Model\Resource;
 use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 
+/**
+ * Represents the state of a certificate.
+ */
 class CertificateState extends AbstractResource
 {
     /**

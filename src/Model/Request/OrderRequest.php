@@ -9,40 +9,43 @@ use PswGroup\Api\Model\DataTransferObject\ContactInput;
 use PswGroup\Api\Model\DataTransferObject\File;
 use PswGroup\Api\Model\DataTransferObject\OrderItemInput;
 
+/**
+ * Represents all data required for an order.
+ */
 class OrderRequest implements \JsonSerializable
 {
     /**
-     * @var OrderItemInput[]
+     * @var OrderItemInput[] List of items to order
      */
     private $items;
 
     /**
-     * @var ContactInput
+     * @var ContactInput Contact which receives all order related information including prices
      */
     private $orderContact;
 
     /**
-     * @var string|null
+     * @var string|null VAT-ID to use in this order
      */
     private $vatId;
 
     /**
-     * @var string|null
+     * @var string|null Custom number which will be printed on the invoice
      */
     private $customerOrder;
 
     /**
-     * @var DateTimeInterface|null
+     * @var DateTimeInterface|null Desired validation date and time
      */
     private $validationDate;
 
     /**
-     * @var File[]|null
+     * @var File[]|null Files required for the validation
      */
     private $files;
 
     /**
-     * @var string|null
+     * @var string|null Comment for the order
      */
     private $comment;
 

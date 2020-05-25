@@ -7,6 +7,9 @@ namespace PswGroup\Api\Model\Resource;
 use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 
+/**
+ * Represents a product sold by PSW GROUP.
+ */
 class Product extends AbstractResource
 {
     /**
@@ -20,17 +23,17 @@ class Product extends AbstractResource
     private $name;
 
     /**
-     * @var CertificateAuthority|null
+     * @var CertificateAuthority|null Authority which issues the certificate
      */
     private $ca;
 
     /**
-     * @var CertificateType|null
+     * @var CertificateType|null Type of the certificate
      */
     private $certificateType;
 
     /**
-     * @var CertificateValidationType|null
+     * @var CertificateValidationType|null Validation type of the certificate
      */
     private $validationType;
 
@@ -40,7 +43,7 @@ class Product extends AbstractResource
     private $validityPeriod;
 
     /**
-     * @var bool WWW domain included
+     * @var bool Indicates if the www domain is included
      */
     private $isWwwIncluded;
 
@@ -60,7 +63,7 @@ class Product extends AbstractResource
     private $platform;
 
     /**
-     * @var string|null Time to issue to certificate product
+     * @var string|null Time to issue the certificate product
      */
     private $timeToIssue;
 
@@ -75,12 +78,12 @@ class Product extends AbstractResource
     private $warranty;
 
     /**
-     * @var string[]|null
+     * @var string[]|null Signature algorithm of the certificate
      */
     private $signatureAlgorithm;
 
     /**
-     * @var bool Indicates if the product is a limited trial
+     * @var bool Indicates if the certificate is a limited trial
      */
     private $isTrial;
 
@@ -95,17 +98,17 @@ class Product extends AbstractResource
     private $isOrderable;
 
     /**
-     * @var float
+     * @var float Price of the certificate including tax
      */
     private $priceNet;
 
     /**
-     * @var float
+     * @var float Price of the certificate excluding tax
      */
     private $priceGross;
 
     /**
-     * @var Currency
+     * @var Currency Currency of the price
      */
     private $currency;
 

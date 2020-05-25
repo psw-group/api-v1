@@ -7,42 +7,42 @@ namespace PswGroup\Api\Model\DataTransferObject;
 trait CsrFieldsData
 {
     /**
-     * @var string|null
+     * @var string|null Common name field
      */
     private $commonName;
 
     /**
-     * @var string|null
+     * @var string|null Country name field
      */
     private $countryName;
 
     /**
-     * @var string|null
+     * @var string|null State or province field
      */
     private $stateOrProvinceName;
 
     /**
-     * @var string|null
+     * @var string|null Locality name field
      */
     private $localityName;
 
     /**
-     * @var string|null
+     * @var string|null Organisation name field
      */
     private $organisationName;
 
     /**
-     * @var string|null
+     * @var string|null Organisational unit field
      */
     private $organisationalUnitName;
 
     /**
-     * @var string|null
+     * @var string|null Email address field
      */
     private $emailAddress;
 
     /**
-     * @var string[]|null
+     * @var string[]|null List of subject alternative names
      */
     private $sans;
 

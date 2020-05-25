@@ -9,6 +9,9 @@ use DateTimeInterface;
 use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\DataTransferObject\CertificateContact;
 
+/**
+ * Represents a certificate.
+ */
 class Certificate extends AbstractResource
 {
     /**
@@ -27,7 +30,7 @@ class Certificate extends AbstractResource
     private $type;
 
     /**
-     * @var CertificateValidationType|null
+     * @var CertificateValidationType|null Validation type of the certificate
      */
     private $validationType;
 
@@ -47,7 +50,7 @@ class Certificate extends AbstractResource
     private $validTo;
 
     /**
-     * @var CertificateAuthority
+     * @var CertificateAuthority Authority which issues the certificate
      */
     private $ca;
 
@@ -87,12 +90,12 @@ class Certificate extends AbstractResource
     private $password;
 
     /**
-     * @var CertificateContact|null
+     * @var CertificateContact|null Contact which owns the certificate
      */
     private $ownerContact;
 
     /**
-     * @var CertificateContact|null
+     * @var CertificateContact|null Contact which approves the certificate
      */
     private $approverContact;
 

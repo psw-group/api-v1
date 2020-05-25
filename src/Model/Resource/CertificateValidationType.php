@@ -7,6 +7,9 @@ namespace PswGroup\Api\Model\Resource;
 use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 
+/**
+ * Represents the level of information which ist verified for a certificate.
+ */
 class CertificateValidationType extends AbstractResource
 {
     /**

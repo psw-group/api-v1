@@ -9,6 +9,9 @@ use DateTimeInterface;
 use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\DataTransferObject\OrderContact;
 
+/**
+ * Represents an order.
+ */
 class Order extends AbstractResource
 {
     /**
@@ -22,12 +25,12 @@ class Order extends AbstractResource
     private $state;
 
     /**
-     * @var OrderContact this contact receives all order related information including prices
+     * @var OrderContact Contact which receives all order related information including prices
      */
     private $orderContact;
 
     /**
-     * @var OrderContact this contact receives the invoice
+     * @var OrderContact Contact which receives the invoice
      */
     private $invoiceContact;
 

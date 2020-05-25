@@ -9,12 +9,12 @@ use PswGroup\Api\Model\Resource\Product;
 class OrderItemInput implements \JsonSerializable
 {
     /**
-     * @var Product
+     * @var Product Product which should be ordered
      */
     private $product;
 
     /**
-     * @var CertificateRequest|null
+     * @var CertificateRequest|null Data for the certificate which should be ordered
      */
     private $certificateRequest;
 

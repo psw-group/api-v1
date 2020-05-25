@@ -4,50 +4,53 @@ declare(strict_types=1);
 
 namespace PswGroup\Api\Model\DataTransferObject;
 
+/**
+ * Represents all data required to order a certificate.
+ */
 class CertificateRequest implements \JsonSerializable
 {
     /**
-     * @var string|null
+     * @var string|null CSR file for the request
      */
     private $csrFile;
 
     /**
-     * @var CsrFieldsInput|null
+     * @var CsrFieldsInput|null CSR fields for the request which can override the CSR file
      */
     private $csrFields;
 
     /**
-     * @var ValidationInput[]|null
+     * @var ValidationInput[]|null Validation methods for all domains
      */
     private $validation;
 
     /**
-     * @var string|null
+     * @var string|null Pickup user name
      */
     private $username;
 
     /**
-     * @var string|null
+     * @var string|null Pickup password
      */
     private $password;
 
     /**
-     * @var string|null
+     * @var string|null Hash algorithm for the certificate
      */
     private $hashAlgorithm;
 
     /**
-     * @var int|null
+     * @var int|null Number of server for the certificate
      */
     private $serverCount;
 
     /**
-     * @var ContactInput|null
+     * @var ContactInput|null Contact which owns the certificate
      */
     private $ownerContact;
 
     /**
-     * @var ContactInput|null
+     * @var ContactInput|null Contact which approves the certificate
      */
     private $approverContact;
 

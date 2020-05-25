@@ -10,107 +10,107 @@ use PswGroup\Api\Model\Resource\OrganisationType;
 trait ContactData
 {
     /**
-     * @var string|null
+     * @var string|null Salutation of the contact
      */
     private $salutation;
 
     /**
-     * @var string|null
+     * @var string|null First name of the contact
      */
     private $firstname;
 
     /**
-     * @var string|null
+     * @var string|null Last name of the contact
      */
     private $lastname;
 
     /**
-     * @var string|null
+     * @var string|null Telephone number of the contact
      */
     private $telephone;
 
     /**
-     * @var string|null
+     * @var string|null Email address of the contact
      */
     private $email;
 
     /**
-     * @var string|null
+     * @var string|null Line 1 of the address
      */
     private $addressLine1;
 
     /**
-     * @var string|null
+     * @var string|null Line 2 of the address
      */
     private $addressLine2;
 
     /**
-     * @var string|null
+     * @var string|null Line 3 of the address
      */
     private $addressLine3;
 
     /**
-     * @var string|null
+     * @var string|null Zip code of the address
      */
     private $addressZip;
 
     /**
-     * @var string|null
+     * @var string|null City of the address
      */
     private $addressCity;
 
     /**
-     * @var string|null
+     * @var string|null State of the address
      */
     private $addressState;
 
     /**
-     * @var Country|null
+     * @var Country|null Country of the address
      */
     private $addressCountry;
 
     /**
-     * @var OrganisationType|null
+     * @var OrganisationType|null Organisation type of the contact
      */
     private $organisationType;
 
     /**
-     * @var string|null
+     * @var string|null Organisation name of the contact
      */
     private $organisationName;
 
     /**
-     * @var string|null
+     * @var string|null Organisation unit of the contact
      */
     private $organisationUnit;
 
     /**
-     * @var string|null
+     * @var string|null DUNS number of the organisation
      */
     private $organisationDuns;
 
     /**
-     * @var string|null
+     * @var string|null Jurisdiction agency of the organisation
      */
     private $jurisdictionAgency;
 
     /**
-     * @var string|null
+     * @var string|null Jurisdiction number of the organisation
      */
     private $jurisdictionNumber;
 
     /**
-     * @var string|null
+     * @var string|null City of the jurisdiction agency
      */
     private $jurisdictionCity;
 
     /**
-     * @var string|null
+     * @var string|null State of the jurisdiction agency
      */
     private $jurisdictionState;
 
     /**
-     * @var Country|null
+     * @var Country|null Country of the jurisdiction agency
      */
     private $jurisdictionCountry;
 

@@ -9,12 +9,12 @@ use BinSoul\Net\Hal\Client\HalResource;
 class OrderField
 {
     /**
-     * @var string
+     * @var string Path of the field
      */
     private $path;
 
     /**
-     * @var Constraint[]
+     * @var Constraint[] Constraints which apply to the field
      */
     private $constraints;
 

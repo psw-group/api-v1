@@ -7,6 +7,9 @@ namespace PswGroup\Api\Model\DataTransferObject;
 use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\Resource\CertificateValidationMethod;
 
+/**
+ * Represents validation options for a domain.
+ */
 class CertificateValidationOption
 {
     /**

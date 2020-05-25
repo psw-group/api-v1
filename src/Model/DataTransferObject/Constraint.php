@@ -29,6 +29,9 @@ class Constraint
         return $this->parameters;
     }
 
+    /**
+     * @param mixed[] $resource
+     */
     public static function fromArray(array $resource): self
     {
         $result = new self();

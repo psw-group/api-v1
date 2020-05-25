@@ -8,6 +8,9 @@ use BinSoul\Net\Hal\Client\HalResource;
 use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\DataTransferObject\ContactData;
 
+/**
+ * Represents a contact of an account.
+ */
 class AccountContact extends AbstractResource implements \JsonSerializable
 {
     use ContactData;
