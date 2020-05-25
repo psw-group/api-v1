@@ -9,6 +9,7 @@ use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Collection;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\AccountContact;
+use Throwable;
 
 class AccountContactRepository extends AbstractRepository
 {
@@ -19,7 +20,7 @@ class AccountContactRepository extends AbstractRepository
     {
         try {
             $resource = $this->client->get($this->buildItemUrl($number));
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return null;
         }
 
@@ -55,7 +56,7 @@ class AccountContactRepository extends AbstractRepository
 
         try {
             $this->client->delete($this->buildItemUrl($resource->getNumber()));
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
         }
     }
 
@@ -75,7 +76,7 @@ class AccountContactRepository extends AbstractRepository
             }
 
             return new Collection($items);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return new Collection([]);
         }
     }
@@ -96,7 +97,7 @@ class AccountContactRepository extends AbstractRepository
             $resource = $this->client->get($this->getBaseUrl(), $query);
 
             return $this->buildPaginatedCollection($resource, $page);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return new PaginatedCollection([], 0, $page, 0);
         }
     }

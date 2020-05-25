@@ -155,7 +155,7 @@ class CertificateRenewRequest implements JsonSerializable
             'orderContact' => $this->orderContact,
             'vatId' => $this->vatId,
             'customerOrder' => $this->customerOrder,
-            'validationDate' => $this->validationDate !== null ? $this->validationDate->format(\DateTime::ATOM) : null,
+            'validationDate' => $this->validationDate !== null ? $this->validationDate->format(DateTime::ATOM) : null,
             'files' => $this->files,
             'comment' => $this->comment,
         ];

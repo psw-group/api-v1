@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace PswGroup\Api\Model\Request;
 
+use JsonSerializable;
+
 /**
  * Represents all data required to order a certificate.
  */
-class CertificateData implements \JsonSerializable
+class CertificateData implements JsonSerializable
 {
     /**
      * @var string|null CSR file for the request

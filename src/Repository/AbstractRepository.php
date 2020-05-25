@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PswGroup\Api\Repository;
 
 use BinSoul\Net\Hal\Client\HalResource;
+use DateTime;
 use PswGroup\Api\Client;
 use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\PaginatedCollection;
@@ -52,7 +53,7 @@ abstract class AbstractRepository
             }
 
             if (! is_array($value)) {
-                if ($value instanceof \DateTime) {
+                if ($value instanceof DateTime) {
                     $value = $value->format('Y-m-dTH:i:s');
                 } elseif ($value instanceof AbstractResource) {
                     $value = $value->getIri();
@@ -61,7 +62,7 @@ abstract class AbstractRepository
                 $query[$key] = (string) $value;
             } else {
                 foreach ($value as $name => $prop) {
-                    if ($prop instanceof \DateTime) {
+                    if ($prop instanceof DateTime) {
                         $prop = $prop->format('Y-m-dTH:i:s');
                     } elseif ($prop instanceof AbstractResource) {
                         $prop = $prop->getIri();
@@ -72,7 +73,7 @@ abstract class AbstractRepository
             }
         }
 
-        if (\count($orders) > 0) {
+        if (count($orders) > 0) {
             $query['order'] = [];
 
             foreach ($orders as $key => $value) {

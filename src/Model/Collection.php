@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace PswGroup\Api\Model;
 
+use ArrayAccess;
 use ArrayIterator;
+use BadMethodCallException;
+use Countable;
+use IteratorAggregate;
 
 /**
  * Represents a collection of resources.
  */
-class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
+class Collection implements ArrayAccess, Countable, IteratorAggregate
 {
     /**
      * @var array<int, AbstractResource|object>
@@ -50,7 +54,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function offsetSet($offset, $value): void
     {
-        throw new \BadMethodCallException(sprintf('Array access of class %s is read-only.', static::class));
+        throw new BadMethodCallException(sprintf('Array access of class %s is read-only.', static::class));
     }
 
     /**
@@ -58,12 +62,12 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function offsetUnset($offset): void
     {
-        throw new \BadMethodCallException(sprintf('Array access of class %s is read-only.', static::class));
+        throw new BadMethodCallException(sprintf('Array access of class %s is read-only.', static::class));
     }
 
     public function count(): int
     {
-        return \count($this->items);
+        return count($this->items);
     }
 
     public function getIterator(): ArrayIterator

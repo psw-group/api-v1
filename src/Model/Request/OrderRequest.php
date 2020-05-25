@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace PswGroup\Api\Model\Request;
 
+use DateTime;
 use DateTimeInterface;
+use JsonSerializable;
 
 /**
  * Represents all data required for an order.
  */
-class OrderRequest implements \JsonSerializable
+class OrderRequest implements JsonSerializable
 {
     /**
      * @var OrderItem[] List of items to order
@@ -148,7 +150,7 @@ class OrderRequest implements \JsonSerializable
             'orderContact' => $this->orderContact,
             'vatId' => $this->vatId,
             'customerOrder' => $this->customerOrder,
-            'validationDate' => $this->validationDate !== null ? $this->validationDate->format(\DateTime::ATOM) : null,
+            'validationDate' => $this->validationDate !== null ? $this->validationDate->format(DateTime::ATOM) : null,
             'files' => $this->files,
             'comment' => $this->comment,
         ];

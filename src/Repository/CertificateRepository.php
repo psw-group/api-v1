@@ -21,6 +21,7 @@ use PswGroup\Api\Model\Request\CertificateRenewRequest;
 use PswGroup\Api\Model\Request\Validation;
 use PswGroup\Api\Model\Resource\Certificate;
 use PswGroup\Api\Model\Resource\Job;
+use Throwable;
 
 class CertificateRepository extends AbstractRepository
 {
@@ -31,7 +32,7 @@ class CertificateRepository extends AbstractRepository
     {
         try {
             $resource = $this->client->get($this->buildItemUrl($number));
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return null;
         }
 
@@ -54,7 +55,7 @@ class CertificateRepository extends AbstractRepository
             }
 
             return new Collection($items);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return new Collection([]);
         }
     }
@@ -75,7 +76,7 @@ class CertificateRepository extends AbstractRepository
             $resource = $this->client->get($this->getBaseUrl(), $query);
 
             return $this->buildPaginatedCollection($resource, $page);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return new PaginatedCollection([], 0, $page, 0);
         }
     }
@@ -87,7 +88,7 @@ class CertificateRepository extends AbstractRepository
     {
         try {
             $resource = $this->client->get($this->buildItemUrl($certificate->getNumber()) . '/key', ['pagination' => 'false']);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return null;
         }
 
@@ -110,7 +111,7 @@ class CertificateRepository extends AbstractRepository
             }
 
             return new Collection($items);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return new Collection([]);
         }
     }
@@ -122,7 +123,7 @@ class CertificateRepository extends AbstractRepository
     {
         try {
             $resource = $this->client->get($this->buildItemUrl($certificate->getNumber()) . '/csr-file', ['pagination' => 'false']);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return null;
         }
 
@@ -136,7 +137,7 @@ class CertificateRepository extends AbstractRepository
     {
         try {
             $resource = $this->client->get($this->buildItemUrl($certificate->getNumber()) . '/csr-fields', ['pagination' => 'false']);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return null;
         }
 
@@ -159,7 +160,7 @@ class CertificateRepository extends AbstractRepository
             }
 
             return new Collection($items);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return new Collection([]);
         }
     }
@@ -180,7 +181,7 @@ class CertificateRepository extends AbstractRepository
             }
 
             return new Collection($items);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return new Collection([]);
         }
     }

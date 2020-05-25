@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PswGroup\Api\Model\Resource;
 
 use BinSoul\Net\Hal\Client\HalResource;
+use DateTime;
 use DateTimeInterface;
 use PswGroup\Api\Model\AbstractResource;
 
@@ -80,7 +81,7 @@ class Job extends AbstractResource
         $result->id = $resource->getProperty('id');
         $result->state = $resource->getProperty('state');
         $result->name = $resource->getProperty('name');
-        $result->createdAt = self::loadDateTime($resource, 'createdAt') ?? new \DateTime();
+        $result->createdAt = self::loadDateTime($resource, 'createdAt') ?? new DateTime();
         $result->startedAt = self::loadDateTime($resource, 'startedAt');
         $result->stoppedAt = self::loadDateTime($resource, 'stoppedAt');
 

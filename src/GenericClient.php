@@ -9,6 +9,8 @@ use BinSoul\Net\Hal\Client\HalClient;
 use BinSoul\Net\Hal\Client\HalResource;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
+use InvalidArgumentException;
+use JsonSerializable;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
@@ -138,14 +140,14 @@ class GenericClient implements Client
     }
 
     /**
-     * @param \JsonSerializable|array $object
+     * @param JsonSerializable|array $object
      */
     protected function serialize($object): string
     {
         $data = @json_encode($object);
 
         if ($data === false || json_last_error() !== JSON_ERROR_NONE) {
-            throw new \InvalidArgumentException(sprintf('JSON encode error: %s.', json_last_error_msg()));
+            throw new InvalidArgumentException(sprintf('JSON encode error: %s.', json_last_error_msg()));
         }
 
         return $data;

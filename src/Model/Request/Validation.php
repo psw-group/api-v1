@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace PswGroup\Api\Model\Request;
 
-class Validation implements \JsonSerializable
+use InvalidArgumentException;
+use JsonSerializable;
+
+class Validation implements JsonSerializable
 {
     public const METHOD_EMAIL = 'email';
 
@@ -59,7 +62,7 @@ class Validation implements \JsonSerializable
     public function setMethod(string $method): void
     {
         if (! in_array($method, [self::METHOD_EMAIL, self::METHOD_HTTP, self::METHOD_HTTPS, self::METHOD_CNAME, self::METHOD_DNSTXT], true)) {
-            throw new \InvalidArgumentException(sprintf('Validation method "%s" is unknown.', $method));
+            throw new InvalidArgumentException(sprintf('Validation method "%s" is unknown.', $method));
         }
 
         $this->method = $method;
@@ -79,11 +82,11 @@ class Validation implements \JsonSerializable
         }
 
         if (! preg_match('/^[^@]+@[^@]+$/', (string) $email)) {
-            throw new \InvalidArgumentException(sprintf('%s is not a valid email address.', $email));
+            throw new InvalidArgumentException(sprintf('%s is not a valid email address.', $email));
         }
 
         if (strlen((string) $email) > 255) {
-            throw new \InvalidArgumentException('The email address must be shorter than 256 characters.');
+            throw new InvalidArgumentException('The email address must be shorter than 256 characters.');
         }
 
         $this->email = $email;

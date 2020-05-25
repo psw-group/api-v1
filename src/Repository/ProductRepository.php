@@ -10,6 +10,7 @@ use PswGroup\Api\Model\Collection;
 use PswGroup\Api\Model\DataTransferObject\OrderField;
 use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\Product;
+use Throwable;
 
 class ProductRepository extends AbstractRepository
 {
@@ -20,7 +21,7 @@ class ProductRepository extends AbstractRepository
     {
         try {
             $resource = $this->client->get($this->buildItemUrl($number));
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return null;
         }
 
@@ -43,7 +44,7 @@ class ProductRepository extends AbstractRepository
             }
 
             return new Collection($items);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return new Collection([]);
         }
     }
@@ -64,7 +65,7 @@ class ProductRepository extends AbstractRepository
             $resource = $this->client->get($this->getBaseUrl(), $query);
 
             return $this->buildPaginatedCollection($resource, $page);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return new PaginatedCollection([], 0, $page, 0);
         }
     }
@@ -85,7 +86,7 @@ class ProductRepository extends AbstractRepository
             }
 
             return new Collection($items);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return new Collection([]);
         }
     }
@@ -106,7 +107,7 @@ class ProductRepository extends AbstractRepository
             }
 
             return new Collection($items);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return new Collection([]);
         }
     }

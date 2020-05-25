@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace PswGroup\Api\Model\Request;
 
+use JsonSerializable;
 use PswGroup\Api\Model\Resource\Product;
 
-class OrderItem implements \JsonSerializable
+class OrderItem implements JsonSerializable
 {
     /**
      * @var Product Product which should be ordered

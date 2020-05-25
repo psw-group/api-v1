@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace PswGroup\Api\Model\Resource;
 
 use BinSoul\Net\Hal\Client\HalResource;
+use JsonSerializable;
 use PswGroup\Api\Model\AbstractResource;
 
 /**
  * Represents an user of an account.
  */
-class AccountUser extends AbstractResource implements \JsonSerializable
+class AccountUser extends AbstractResource implements JsonSerializable
 {
     /**
      * @var string|null Number of the user

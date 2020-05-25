@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace PswGroup\Api\Model\Request;
 
+use JsonSerializable;
+
 /**
  * Represents a file required in the validation process.
  */
-class File implements \JsonSerializable
+class File implements JsonSerializable
 {
     /**
      * @var string Name of the file
