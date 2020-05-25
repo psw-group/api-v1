@@ -6,6 +6,7 @@ namespace PswGroup\Api\Model\Request;
 
 use DateTime;
 use JsonSerializable;
+use PswGroup\Api\Model\Resource\Certificate;
 
 /**
  * Represents all data required for the renewal of a certificate.
@@ -13,9 +14,9 @@ use JsonSerializable;
 class CertificateRenewRequest implements JsonSerializable
 {
     /**
-     * @var string Certificate which should be renewed
+     * @var Certificate Certificate which should be renewed
      */
-    private $certificateNumber;
+    private $certificate;
 
     /**
      * @var CertificateData|null Certificate data for the renewal
@@ -52,14 +53,14 @@ class CertificateRenewRequest implements JsonSerializable
      */
     private $comment;
 
-    public function getCertificateNumber(): string
+    public function getCertificate(): Certificate
     {
-        return $this->certificateNumber;
+        return $this->certificate;
     }
 
-    public function setCertificateNumber(string $certificateNumber): void
+    public function setCertificate(Certificate $certificate): void
     {
-        $this->certificateNumber = $certificateNumber;
+        $this->certificate = $certificate;
     }
 
     public function getCertificateData(): ?CertificateData
@@ -149,7 +150,7 @@ class CertificateRenewRequest implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'certificateNumber' => $this->certificateNumber,
+            'certificateNumber' => $this->certificate->getNumber(),
             'certificateRequest' => $this->certificateData,
             'orderContact' => $this->orderContact,
             'vatId' => $this->vatId,
