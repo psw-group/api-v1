@@ -20,7 +20,7 @@ class ContactTest extends TestCase
         $this->assertEquals('API', $contact->getFirstname());
         $this->assertEquals('Tester', $contact->getLastname());
         $this->assertEquals('+4966148027610', $contact->getTelephone());
-        $this->assertEquals('development@psw-group.de', $contact->getEmail());
+        $this->assertEquals('admin@ssl-test.de', $contact->getEmail());
         $this->assertEquals('Flemingstraße 20-22', $contact->getAddressLine1());
         $this->assertEquals('', $contact->getAddressLine2());
         $this->assertEquals('', $contact->getAddressLine3());
@@ -136,7 +136,7 @@ class ContactTest extends TestCase
         $contact = $this->buildContact();
         $serialized = json_encode($contact);
 
-        $expected = '{"contact":null,"storeData":false,"salutation":"Mr.","firstname":"API","lastname":"Tester","telephone":"+4966148027610","email":"development@psw-group.de","addressLine1":"Flemingstra\u00dfe 20-22","addressLine2":"","addressLine3":"","addressZip":"36041","addressCity":"Fulda","addressState":"Hessen","addressCountry":null,"organisationType":null,"organisationName":"PSW GROUP GmbH & Co. KG","organisationUnit":"Development","organisationDuns":"53-747-3485","jurisdictionAgency":"Amtsgericht Fulda","jurisdictionNumber":"HRA 5007","jurisdictionCity":"Fulda","jurisdictionState":"Hessen","jurisdictionCountry":null}';
+        $expected = '{"contact":null,"storeData":false,"salutation":"Mr.","firstname":"API","lastname":"Tester","telephone":"+4966148027610","email":"admin@ssl-test.de","addressLine1":"Flemingstra\u00dfe 20-22","addressLine2":"","addressLine3":"","addressZip":"36041","addressCity":"Fulda","addressState":"Hessen","addressCountry":null,"organisationType":null,"organisationName":"PSW GROUP GmbH & Co. KG","organisationUnit":"Development","organisationDuns":"53-747-3485","jurisdictionAgency":"Amtsgericht Fulda","jurisdictionNumber":"HRA 5007","jurisdictionCity":"Fulda","jurisdictionState":"Hessen","jurisdictionCountry":null}';
 
         $this->assertEquals($expected, $serialized);
     }
@@ -149,7 +149,7 @@ class ContactTest extends TestCase
         $result->setFirstname('API');
         $result->setLastname('Tester');
         $result->setTelephone('+4966148027610');
-        $result->setEmail('development@psw-group.de');
+        $result->setEmail('admin@ssl-test.de');
         $result->setAddressLine1('Flemingstraße 20-22');
         $result->setAddressLine2('');
         $result->setAddressLine3('');

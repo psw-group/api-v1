@@ -23,7 +23,7 @@ $contact->setSalutation('Mr.');
 $contact->setFirstname('John');
 $contact->setLastname('Doe');
 $contact->setTelephone('+4966148027610');
-$contact->setEmail('development@psw-group.de');
+$contact->setEmail('admin@ssl-test.de');
 $contact->setAddressLine1('Flemingstraße 20-22');
 $contact->setAddressLine2('');
 $contact->setAddressLine3('');

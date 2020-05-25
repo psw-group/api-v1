@@ -13,9 +13,9 @@ class CsrFieldsTest extends TestCase
     {
         $fields = $this->buildFields();
 
-        $this->assertEquals('psw-group.de', $fields->getCommonName());
-        $this->assertEquals(['www.psw-group.de', 'test-api.psw-group.de'], $fields->getSans());
-        $this->assertEquals('webmaster@psw-group.de', $fields->getEmailAddress());
+        $this->assertEquals('ssl-test.de', $fields->getCommonName());
+        $this->assertEquals(['www.ssl-test.de', 'test-api.ssl-test.de'], $fields->getSans());
+        $this->assertEquals('admin@ssl-test.de', $fields->getEmailAddress());
         $this->assertEquals('PSW GROUP GmbH & Co. KG', $fields->getOrganisationName());
         $this->assertEquals('IT', $fields->getOrganisationalUnitName());
         $this->assertEquals('Fulda', $fields->getLocalityName());
@@ -28,7 +28,7 @@ class CsrFieldsTest extends TestCase
         $fields = $this->buildFields();
         $serialized = json_encode($fields);
 
-        $expected = '{"commonName":"psw-group.de","countryName":"DE","stateOrProvinceName":"Hessen","localityName":"Fulda","organisationName":"PSW GROUP GmbH & Co. KG","organisationalUnitName":"IT","emailAddress":"webmaster@psw-group.de","sans":["www.psw-group.de","test-api.psw-group.de"]}';
+        $expected = '{"commonName":"ssl-test.de","countryName":"DE","stateOrProvinceName":"Hessen","localityName":"Fulda","organisationName":"PSW GROUP GmbH & Co. KG","organisationalUnitName":"IT","emailAddress":"admin@ssl-test.de","sans":["www.ssl-test.de","test-api.ssl-test.de"]}';
 
         $this->assertEquals($expected, $serialized);
     }
@@ -146,9 +146,9 @@ class CsrFieldsTest extends TestCase
     private function buildFields(): CsrFields
     {
         $fields = new CsrFields();
-        $fields->setCommonName('psw-group.de');
-        $fields->setSans(['www.psw-group.de', 'test-api.psw-group.de']);
-        $fields->setEmailAddress('webmaster@psw-group.de');
+        $fields->setCommonName('ssl-test.de');
+        $fields->setSans(['www.ssl-test.de', 'test-api.ssl-test.de']);
+        $fields->setEmailAddress('admin@ssl-test.de');
         $fields->setOrganisationName('PSW GROUP GmbH & Co. KG');
         $fields->setOrganisationalUnitName('IT');
         $fields->setLocalityName('Fulda');
