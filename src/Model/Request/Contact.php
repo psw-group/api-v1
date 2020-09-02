@@ -16,7 +16,7 @@ class Contact implements JsonSerializable
     use ContactData;
 
     /**
-     * @var AccountContact|null Existing contact to use
+     * @var AccountContact|null Existing contact to use instead of providing new contact data
      */
     private $contact;
 

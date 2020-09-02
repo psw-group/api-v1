@@ -27,12 +27,12 @@ class CertificateData implements JsonSerializable
     private $validation;
 
     /**
-     * @var string|null Pickup user name
+     * @var string|null User name for downloading the certificate from the CA
      */
     private $username;
 
     /**
-     * @var string|null Pickup password
+     * @var string|null Password for downloading the certificate from the CA
      */
     private $password;
 
