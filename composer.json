@@ -18,7 +18,7 @@
         "binsoul/coding-standard": "*@dev",
         "http-interop/http-factory-guzzle": "^1",
         "phpro/grumphp-shim": "^v0.21",
-        "phpunit/phpunit": "^8",
+        "phpunit/phpunit": "^8|^9",
         "phpstan/phpstan": "^0.12",
         "php-http/guzzle6-adapter": "^2",
         "php-http/mock-client": "^1",
