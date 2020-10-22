@@ -49,7 +49,7 @@ class Job extends AbstractResource
         return $this->id;
     }
 
-    public function getState(): int
+    public function getState(): string
     {
         return $this->state;
     }
