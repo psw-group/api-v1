@@ -20,7 +20,7 @@ class Job extends AbstractResource
     private $id;
 
     /**
-     * @var int State of the job
+     * @var string State of the job
      */
     private $state;
 
