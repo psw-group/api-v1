@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PswGroup\Test\Api\Unit\Model\Request;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use PswGroup\Api\Model\Request\CsrFields;
 
@@ -51,7 +52,7 @@ class CsrFieldsTest extends TestCase
      */
     public function test_validates_large_data(string $method, string $data): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $fields = $this->buildFields();
         $fields->{$method}($data);
@@ -95,7 +96,7 @@ class CsrFieldsTest extends TestCase
      */
     public function test_validates_country_name(string $name): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $fields = $this->buildFields();
         $fields->setCountryName($name);
@@ -137,7 +138,7 @@ class CsrFieldsTest extends TestCase
      */
     public function test_validates_email_adress(string $name): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $fields = $this->buildFields();
         $fields->setEmailAddress($name);

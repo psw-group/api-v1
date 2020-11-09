@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PswGroup\Test\Api\Unit\Model\Request;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use PswGroup\Api\Model\Request\Contact;
 use PswGroup\Api\Model\Resource\AccountContact;
@@ -74,7 +75,7 @@ class ContactTest extends TestCase
      */
     public function test_validates_large_data(string $method, string $data): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $contact = $this->buildContact();
         $contact->{$method}($data);
@@ -94,7 +95,7 @@ class ContactTest extends TestCase
      */
     public function test_validates_email_adress(string $name): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $contact = $this->buildContact();
         $contact->setEmail($name);
@@ -116,7 +117,7 @@ class ContactTest extends TestCase
      */
     public function test_validates_telephone(string $name): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $contact = $this->buildContact();
         $contact->setTelephone($name);
