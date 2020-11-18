@@ -233,7 +233,7 @@ class CertificateRepository extends AbstractRepository
             '/jobs/certificates/reissue',
             [
                 'certificateNumber' => $certificate->getNumber(),
-                'csfFile' => $csrFile,
+                'csrFile' => $csrFile,
             ]
         );
 
