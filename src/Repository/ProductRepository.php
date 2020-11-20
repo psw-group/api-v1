@@ -9,6 +9,7 @@ use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Collection;
 use PswGroup\Api\Model\DataTransferObject\OrderField;
 use PswGroup\Api\Model\PaginatedCollection;
+use PswGroup\Api\Model\Resource\CertificateValidationMethod;
 use PswGroup\Api\Model\Resource\Product;
 use Throwable;
 
@@ -104,6 +105,27 @@ class ProductRepository extends AbstractRepository
 
             foreach ($resource->getResource('item') as $item) {
                 $items[] = OrderField::fromResource($item);
+            }
+
+            return new Collection($items);
+        } catch (Throwable $e) {
+            return new Collection([]);
+        }
+    }
+
+    /**
+     * Loads all possible validation methods of a product.
+     *
+     * @return CertificateValidationMethod[]|Collection
+     */
+    public function loadValidationMethods(Product $product): Collection
+    {
+        try {
+            $resource = $this->client->get($this->buildItemUrl($product->getNumber()) . '/validation-methods', ['pagination' => 'false']);
+            $items = [];
+
+            foreach ($resource->getResource('item') as $item) {
+                $items[] = CertificateValidationMethod::fromResource($item);
             }
 
             return new Collection($items);
