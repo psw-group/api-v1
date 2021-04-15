@@ -15,14 +15,14 @@
         "php-http/discovery": "^1"
     },
     "require-dev": {
-        "binsoul/coding-standard": "*@dev",
+        "binsoul/coding-standard": "^1",
         "http-interop/http-factory-guzzle": "^1",
-        "phpro/grumphp-shim": "^v0.21",
-        "phpunit/phpunit": "^8|^9",
+        "phpro/grumphp-shim": "^1",
+        "phpunit/phpunit": "^9",
         "phpstan/phpstan": "^0.12",
-        "php-http/guzzle6-adapter": "^2",
+        "php-http/guzzle7-adapter": "^1",
         "php-http/mock-client": "^1",
-        "symplify/easy-coding-standard-prefixed": "^8"
+        "symplify/easy-coding-standard-prefixed": "^9"
     },
     "autoload": {
         "psr-4": {
