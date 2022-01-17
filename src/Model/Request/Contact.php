@@ -70,23 +70,25 @@ class Contact implements JsonSerializable
             $number = (string) $telephone;
         }
 
-        if (strlen((string) $number) > 0 && $number[0] !== '+') {
-            $number = '+49' . $number;
+        $numberString = (string) $number;
+
+        if ($numberString !== '' && $numberString[0] !== '+') {
+            $numberString = '+49' . $numberString;
         }
 
-        if (strlen((string) $number) < 8) {
+        if (strlen($numberString) < 8) {
             throw new InvalidArgumentException('The telephone number must be longer than 7 characters.');
         }
 
-        if (strlen((string) $number) > 17) {
+        if (strlen($numberString) > 17) {
             throw new InvalidArgumentException('The telephone number must be shorter than 18 characters.');
         }
 
-        if (! preg_match('/^\+[0-9]+$/', (string) $number)) {
+        if (! preg_match('/^\+[0-9]+$/', $numberString)) {
             throw new InvalidArgumentException(sprintf('The telephone number "%s" is not valid.', $telephone));
         }
 
-        $this->telephone = $number;
+        $this->telephone = $numberString;
     }
 
     public function setEmail(?string $email): void
