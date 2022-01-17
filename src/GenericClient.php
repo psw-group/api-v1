@@ -82,7 +82,7 @@ class GenericClient implements Client
 
         $this->httpClient = $httpClient ?? Psr18ClientDiscovery::find();
         $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUrlFactory();
+        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
     }
 
     public function get(string $uri, array $query = []): HalResource
