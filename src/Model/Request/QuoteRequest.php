@@ -54,7 +54,7 @@ class QuoteRequest implements JsonSerializable
 
     public function setQuoteContact(Contact $quoteContact): void
     {
-        $this->orderContact = $quoteContact;
+        $this->quoteContact = $quoteContact;
     }
 
     public function getVatId(): ?string
