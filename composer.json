@@ -49,5 +49,10 @@
         "grumphp": {
             "config-default-path": "vendor/binsoul/coding-standard/grumphp.yaml"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp-shim": true
+        }
     }
 }
