@@ -19,10 +19,11 @@
         "http-interop/http-factory-guzzle": "^1",
         "phpro/grumphp-shim": "^1",
         "phpunit/phpunit": "^9",
-        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan": "^1",
         "php-http/guzzle7-adapter": "^1",
         "php-http/mock-client": "^1",
-        "symplify/easy-coding-standard-prefixed": "^9"
+        "roave/security-advisories": "dev-latest",
+        "symplify/easy-coding-standard": "^10"
     },
     "autoload": {
         "psr-4": {
