@@ -15,102 +15,102 @@ class Product extends AbstractResource
     /**
      * @var string Number of the product
      */
-    private $number;
+    private string $number;
 
     /**
      * @var string Name of the product
      */
-    private $name;
+    private string $name;
 
     /**
      * @var CertificateAuthority|null Authority which issues the certificate
      */
-    private $ca;
+    private ?CertificateAuthority $ca = null;
 
     /**
      * @var CertificateType|null Type of the certificate
      */
-    private $certificateType;
+    private ?CertificateType $certificateType = null;
 
     /**
      * @var CertificateValidationType|null Validation type of the certificate
      */
-    private $validationType;
+    private ?CertificateValidationType $validationType = null;
 
     /**
      * @var int|null Validity period of the product
      */
-    private $validityPeriod;
+    private ?int $validityPeriod = null;
 
     /**
      * @var bool Indicates if the www domain is included
      */
-    private $isWwwIncluded;
+    private bool $isWwwIncluded = false;
 
     /**
      * @var int|null Number of SANs included
      */
-    private $sanIncluded;
+    private ?int $sanIncluded = null;
 
     /**
      * @var int|null Number of SANs possible
      */
-    private $sanLimit;
+    private ?int $sanLimit = null;
 
     /**
      * @var string|null Platform of the certificate
      */
-    private $platform;
+    private ?string $platform = null;
 
     /**
      * @var string|null Time to issue the certificate product
      */
-    private $timeToIssue;
+    private ?string $timeToIssue = null;
 
     /**
      * @var string|null Seal of the certificate product
      */
-    private $seal;
+    private ?string $seal = null;
 
     /**
      * @var string|null Warranty of the certificate product
      */
-    private $warranty;
+    private ?string $warranty = null;
 
     /**
      * @var string[]|null Signature algorithm of the certificate
      */
-    private $signatureAlgorithm;
+    private ?array $signatureAlgorithm = null;
 
     /**
      * @var bool Indicates if the certificate is a limited trial
      */
-    private $isTrial;
+    private bool $isTrial = false;
 
     /**
      * @var bool Indicates if the product has variants
      */
-    private $hasVariants;
+    private bool $hasVariants = false;
 
     /**
      * @var bool Indicates if the product can be ordered
      */
-    private $isOrderable;
+    private bool $isOrderable = false;
 
     /**
      * @var float Price of the certificate including tax
      */
-    private $priceNet;
+    private float $priceNet;
 
     /**
      * @var float Price of the certificate excluding tax
      */
-    private $priceGross;
+    private float $priceGross;
 
     /**
      * @var Currency Currency of the price
      */
-    private $currency;
+    private Currency $currency;
 
     public function getNumber(): string
     {
@@ -215,7 +215,7 @@ class Product extends AbstractResource
         return $this->currency;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 

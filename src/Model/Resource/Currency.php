@@ -15,14 +15,14 @@ class Currency extends AbstractResource
     /**
      * @var string 3 letter currency code as defined by ISO-4217
      */
-    private $iso3;
+    private string $iso3;
 
     public function getIso3(): string
     {
         return $this->iso3;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 

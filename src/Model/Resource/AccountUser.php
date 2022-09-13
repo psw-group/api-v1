@@ -16,32 +16,32 @@ class AccountUser extends AbstractResource implements JsonSerializable
     /**
      * @var string|null Number of the user
      */
-    private $number;
+    private ?string $number = null;
 
     /**
      * @var bool Indicates if the user can login
      */
-    private $active;
+    private bool $active = false;
 
     /**
      * @var string First name of the user
      */
-    private $firstname;
+    private string $firstname;
 
     /**
      * @var string Last name of the user
      */
-    private $lastname;
+    private string $lastname;
 
     /**
      * @var string Email of the user
      */
-    private $email;
+    private string $email;
 
     /**
      * @var string Password of the user
      */
-    private $password;
+    private string $password;
 
     public function getNumber(): ?string
     {
@@ -98,7 +98,7 @@ class AccountUser extends AbstractResource implements JsonSerializable
         $this->password = $password;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 

@@ -9,10 +9,7 @@ namespace PswGroup\Api\Model\DataTransferObject;
  */
 class CertificateValidationDataDnsTxt extends CertificateValidationData
 {
-    /**
-     * @var string
-     */
-    private $dnstxt;
+    private string $dnstxt;
 
     public function getDnstxt(): string
     {

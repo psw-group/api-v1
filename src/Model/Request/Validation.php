@@ -9,30 +9,45 @@ use JsonSerializable;
 
 class Validation implements JsonSerializable
 {
+    /**
+     * @var string
+     */
     public const METHOD_EMAIL = 'email';
 
+    /**
+     * @var string
+     */
     public const METHOD_HTTP = 'http';
 
+    /**
+     * @var string
+     */
     public const METHOD_HTTPS = 'https';
 
+    /**
+     * @var string
+     */
     public const METHOD_CNAME = 'cname';
 
+    /**
+     * @var string
+     */
     public const METHOD_DNSTXT = 'dnstxt';
 
     /**
      * @var string Domain which should be validated
      */
-    private $domain;
+    private string $domain;
 
     /**
      * @var string Method to use for validation
      */
-    private $method;
+    private string $method;
 
     /**
      * @var string|null Email address for validation if the method is "email"
      */
-    private $email;
+    private ?string $email = null;
 
     /**
      * Constructs an instance of this class.
@@ -81,7 +96,7 @@ class Validation implements JsonSerializable
             return;
         }
 
-        if (! preg_match('/^[^@]+@[^@]+$/', (string) $email)) {
+        if (! preg_match('#^[^@]+@[^@]+$#', (string) $email)) {
             throw new InvalidArgumentException(sprintf('%s is not a valid email address.', $email));
         }
 

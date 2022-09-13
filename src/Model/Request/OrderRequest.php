@@ -15,37 +15,37 @@ class OrderRequest implements JsonSerializable
     /**
      * @var array<int, OrderItem> List of items to order
      */
-    private $items;
+    private array $items = [];
 
     /**
      * @var Contact Contact which receives all order related information including prices
      */
-    private $orderContact;
+    private Contact $orderContact;
 
     /**
      * @var string|null VAT-ID to use in this order
      */
-    private $vatId;
+    private ?string $vatId = null;
 
     /**
      * @var string|null Custom number which will be printed on the invoice
      */
-    private $customerOrder;
+    private ?string $customerOrder = null;
 
     /**
      * @var DateTimeInterface|null Desired validation date and time
      */
-    private $validationDate;
+    private ?DateTimeInterface $validationDate = null;
 
     /**
      * @var File[]|null Files required for the validation
      */
-    private $files;
+    private ?array $files = null;
 
     /**
      * @var string|null Comment for the order
      */
-    private $comment;
+    private ?string $comment = null;
 
     /**
      * @return array<int, OrderItem>
@@ -149,7 +149,7 @@ class OrderRequest implements JsonSerializable
             'orderContact' => $this->orderContact,
             'vatId' => $this->vatId,
             'customerOrder' => $this->customerOrder,
-            'validationDate' => $this->validationDate !== null ? $this->validationDate->format(DateTimeInterface::ATOM) : null,
+            'validationDate' => $this->validationDate?->format(DateTimeInterface::ATOM),
             'files' => $this->files,
             'comment' => $this->comment,
         ];

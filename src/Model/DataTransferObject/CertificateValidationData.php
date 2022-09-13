@@ -14,15 +14,9 @@ use RuntimeException;
  */
 class CertificateValidationData
 {
-    /**
-     * @var string
-     */
-    private $domain;
+    private string $domain;
 
-    /**
-     * @var CertificateValidationMethod
-     */
-    private $method;
+    private CertificateValidationMethod $method;
 
     public function getDomain(): string
     {
@@ -54,7 +48,6 @@ class CertificateValidationData
 
     public static function fromResource(HalResource $resource): self
     {
-        /** @var CertificateValidationMethod|null $method */
         $method = AbstractResource::loadObject($resource, 'method', CertificateValidationMethod::class);
 
         if ($method === null) {

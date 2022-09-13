@@ -14,7 +14,7 @@ abstract class EmbeddedContact
     /**
      * @param array<string, mixed> $resource
      */
-    public static function fromArray(array $resource): self
+    public static function fromArray(array $resource): static
     {
         $result = new static();
 

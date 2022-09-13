@@ -11,12 +11,12 @@ class OrderField
     /**
      * @var string Path of the field
      */
-    private $path;
+    private string $path;
 
     /**
      * @var array<int, Constraint> Constraints which apply to the field
      */
-    private $constraints;
+    private array $constraints = [];
 
     public function getPath(): string
     {
@@ -38,7 +38,7 @@ class OrderField
         $result->path = $resource->getProperty('path');
         $result->constraints = [];
 
-        foreach ($resource->getProperty('constraints') as $constraint) {
+        foreach ((array) $resource->getProperty('constraints') as $constraint) {
             $result->constraints[] = Constraint::fromArray($constraint);
         }
 

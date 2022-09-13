@@ -15,7 +15,7 @@ class CertificateDataTest extends TestCase
     /**
      * @var string
      */
-    private static $csrFile = '-----BEGIN CERTIFICATE REQUEST-----
+    private const CSR_FILE = '-----BEGIN CERTIFICATE REQUEST-----
 MIIC+jCCAeICAQAwZTELMAkGA1UEBhMCREUxDzANBgNVBAgTBkhlc3NlbjEOMAwG
 A1UEBxMFRnVsZGExEjAQBgNVBAoTCVBTVyBHUk9VUDELMAkGA1UECxMCSVQxFDAS
 BgNVBAMTC3NzbC10ZXN0LmRlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
@@ -38,7 +38,7 @@ DeRo4DfL4zWynRDA2+8qIK5KE+05Dd+XV5fHnkV30Gt5Z17QpHAJA1BpSYixkcBa
     {
         $request = $this->buildRequest();
 
-        $this->assertEquals(self::$csrFile, $request->getCsrFile());
+        $this->assertEquals(self::CSR_FILE, $request->getCsrFile());
         $this->assertEquals('username', $request->getUsername());
         $this->assertEquals('password', $request->getPassword());
         $this->assertEquals('SHA-2', $request->getHashAlgorithm());
@@ -72,7 +72,7 @@ DeRo4DfL4zWynRDA2+8qIK5KE+05Dd+XV5fHnkV30Gt5Z17QpHAJA1BpSYixkcBa
         $approverContact->setOrganisationUnit('IT');
 
         $result = new CertificateData();
-        $result->setCsrFile(self::$csrFile);
+        $result->setCsrFile(self::CSR_FILE);
         $result->setCsrFields($fields);
         $result->setValidation([new Validation('ssl-test.de', Validation::METHOD_EMAIL, 'webmaster@ssl-test.de')]);
         $result->setUsername('username');

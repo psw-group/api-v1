@@ -9,42 +9,42 @@ trait CsrFieldsData
     /**
      * @var string|null Common name field
      */
-    private $commonName;
+    private ?string $commonName = null;
 
     /**
      * @var string|null Country name field
      */
-    private $countryName;
+    private ?string $countryName = null;
 
     /**
      * @var string|null State or province field
      */
-    private $stateOrProvinceName;
+    private ?string $stateOrProvinceName = null;
 
     /**
      * @var string|null Locality name field
      */
-    private $localityName;
+    private ?string $localityName = null;
 
     /**
      * @var string|null Organisation name field
      */
-    private $organisationName;
+    private ?string $organisationName = null;
 
     /**
      * @var string|null Organisational unit field
      */
-    private $organisationalUnitName;
+    private ?string $organisationalUnitName = null;
 
     /**
      * @var string|null Email address field
      */
-    private $emailAddress;
+    private ?string $emailAddress = null;
 
     /**
      * @var string[]|null List of subject alternative names
      */
-    private $sans;
+    private ?array $sans = null;
 
     public function getCommonName(): ?string
     {

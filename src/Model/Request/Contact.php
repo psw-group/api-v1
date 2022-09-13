@@ -18,12 +18,12 @@ class Contact implements JsonSerializable
     /**
      * @var AccountContact|null Existing contact to use instead of providing new contact data
      */
-    private $contact;
+    private ?AccountContact $contact = null;
 
     /**
      * @var bool Indicates if a new contact should be created from the given data
      */
-    private $storeData = false;
+    private bool $storeData = false;
 
     public function setSalutation(?string $salutation): void
     {
@@ -60,17 +60,17 @@ class Contact implements JsonSerializable
             return;
         }
 
-        if (! preg_match('/^[0-9+\-()\s\/]+$/', (string) $telephone)) {
+        if (! preg_match('#^[0-9+\-()\s/]+$#', (string) $telephone)) {
             throw new InvalidArgumentException(sprintf('The telephone number "%s" contains invalid characters.', $telephone));
         }
 
-        $number = preg_replace('/[^0-9+]+/', '', (string) $telephone);
+        $number = preg_replace('#[^0-9+]+#', '', (string) $telephone);
 
         if ($number === null) {
             $number = (string) $telephone;
         }
 
-        $numberString = (string) $number;
+        $numberString = $number;
 
         if ($numberString !== '' && $numberString[0] !== '+') {
             $numberString = '+49' . $numberString;
@@ -84,7 +84,7 @@ class Contact implements JsonSerializable
             throw new InvalidArgumentException('The telephone number must be shorter than 18 characters.');
         }
 
-        if (! preg_match('/^\+[0-9]+$/', $numberString)) {
+        if (! preg_match('#^\+\d+$#', $numberString)) {
             throw new InvalidArgumentException(sprintf('The telephone number "%s" is not valid.', $telephone));
         }
 
@@ -99,7 +99,7 @@ class Contact implements JsonSerializable
             return;
         }
 
-        if (! preg_match('/^[^@]+@[^@]+$/', (string) $email)) {
+        if (! preg_match('#^[^@]+@[^@]+$#', (string) $email)) {
             throw new InvalidArgumentException(sprintf('%s is not a valid email address.', $email));
         }
 
@@ -268,7 +268,7 @@ class Contact implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'contact' => $this->contact !== null ? $this->contact->getIri() : null,
+            'contact' => $this->contact?->getIri(),
             'storeData' => $this->storeData,
 
             'salutation' => $this->salutation,
@@ -282,8 +282,8 @@ class Contact implements JsonSerializable
             'addressZip' => $this->addressZip,
             'addressCity' => $this->addressCity,
             'addressState' => $this->addressState,
-            'addressCountry' => $this->addressCountry !== null ? $this->addressCountry->getIri() : null,
-            'organisationType' => $this->organisationType !== null ? $this->organisationType->getIri() : null,
+            'addressCountry' => $this->addressCountry?->getIri(),
+            'organisationType' => $this->organisationType?->getIri(),
             'organisationName' => $this->organisationName,
             'organisationUnit' => $this->organisationUnit,
             'organisationDuns' => $this->organisationDuns,
@@ -291,7 +291,7 @@ class Contact implements JsonSerializable
             'jurisdictionNumber' => $this->jurisdictionNumber,
             'jurisdictionCity' => $this->jurisdictionCity,
             'jurisdictionState' => $this->jurisdictionState,
-            'jurisdictionCountry' => $this->jurisdictionCountry !== null ? $this->jurisdictionCountry->getIri() : null,
+            'jurisdictionCountry' => $this->jurisdictionCountry?->getIri(),
         ];
     }
 }

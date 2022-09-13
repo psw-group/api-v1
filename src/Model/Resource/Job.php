@@ -17,32 +17,32 @@ class Job extends AbstractResource
     /**
      * @var int Id of the job
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string State of the job
      */
-    private $state;
+    private string $state;
 
     /**
      * @var string Name of the job
      */
-    private $name;
+    private string $name;
 
     /**
      * @var DateTimeInterface Creation date of the job
      */
-    private $createdAt;
+    private DateTimeInterface $createdAt;
 
     /**
      * @var DateTimeInterface|null Start date of the job
      */
-    private $startedAt;
+    private ?DateTimeInterface $startedAt = null;
 
     /**
      * @var DateTimeInterface|null Stop date of the job
      */
-    private $stoppedAt;
+    private ?DateTimeInterface $stoppedAt = null;
 
     public function getId(): int
     {
@@ -74,7 +74,7 @@ class Job extends AbstractResource
         return $this->stoppedAt;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 

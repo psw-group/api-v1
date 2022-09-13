@@ -17,42 +17,42 @@ class CertificateRenewRequest implements JsonSerializable
     /**
      * @var Certificate Certificate which should be renewed
      */
-    private $certificate;
+    private Certificate $certificate;
 
     /**
      * @var CertificateData|null Certificate data for the renewal
      */
-    private $certificateData;
+    private ?CertificateData $certificateData = null;
 
     /**
      * @var Contact Contact which receives all order related information including prices
      */
-    private $orderContact;
+    private Contact $orderContact;
 
     /**
      * @var string|null VAT-ID to use
      */
-    private $vatId;
+    private ?string $vatId = null;
 
     /**
      * @var string|null Custom number which will be printed on the invoice
      */
-    private $customerOrder;
+    private ?string $customerOrder = null;
 
     /**
      * @var DateTime|null Desired validation date and time
      */
-    private $validationDate;
+    private ?DateTime $validationDate = null;
 
     /**
      * @var File[]|null Files required for the validation
      */
-    private $files;
+    private ?array $files = null;
 
     /**
      * @var string|null Comment for the renewal
      */
-    private $comment;
+    private ?string $comment = null;
 
     public function getCertificate(): Certificate
     {
@@ -156,7 +156,7 @@ class CertificateRenewRequest implements JsonSerializable
             'orderContact' => $this->orderContact,
             'vatId' => $this->vatId,
             'customerOrder' => $this->customerOrder,
-            'validationDate' => $this->validationDate !== null ? $this->validationDate->format(DateTimeInterface::ATOM) : null,
+            'validationDate' => $this->validationDate?->format(DateTimeInterface::ATOM),
             'files' => $this->files,
             'comment' => $this->comment,
         ];

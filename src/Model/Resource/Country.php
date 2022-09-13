@@ -15,7 +15,7 @@ class Country extends AbstractResource
     /**
      * @var string 2 letter country code as defined by ISO-3166
      */
-    private $iso2;
+    private string $iso2;
 
     /**
      * Constructs an instance of this class.
@@ -30,7 +30,7 @@ class Country extends AbstractResource
         return $this->iso2;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 

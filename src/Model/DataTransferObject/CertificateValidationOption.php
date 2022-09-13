@@ -12,20 +12,17 @@ use PswGroup\Api\Model\Resource\CertificateValidationMethod;
  */
 class CertificateValidationOption
 {
-    /**
-     * @var string
-     */
-    private $domain;
+    private string $domain;
 
     /**
      * @var array<int, string>
      */
-    private $emailAddresses;
+    private array $emailAddresses = [];
 
     /**
      * @var array<int, CertificateValidationMethod>
      */
-    private $methods;
+    private array $methods = [];
 
     public function getDomain(): string
     {
@@ -56,7 +53,7 @@ class CertificateValidationOption
         $result->emailAddresses = $resource->getProperty('emailAddresses');
         $result->methods = [];
 
-        foreach ($resource->getProperty('methods') as $method) {
+        foreach ((array) $resource->getProperty('methods') as $method) {
             $result->methods[] = CertificateValidationMethod::fromResource($method);
         }
 

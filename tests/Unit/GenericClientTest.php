@@ -119,7 +119,7 @@ class GenericClientTest extends TestCase
         $client = new Client();
         $client->addResponse($firstResponse);
 
-        if ($secondResponse) {
+        if ($secondResponse !== null) {
             $client->addResponse($secondResponse);
         }
 

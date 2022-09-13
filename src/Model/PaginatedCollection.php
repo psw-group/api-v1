@@ -14,20 +14,11 @@ namespace PswGroup\Api\Model;
  */
 class PaginatedCollection extends Collection
 {
-    /**
-     * @var int
-     */
-    private $totalItems;
+    private int $totalItems;
 
-    /**
-     * @var int
-     */
-    private $currentPage;
+    private int $currentPage;
 
-    /**
-     * @var int
-     */
-    private $itemsPerPage;
+    private int $itemsPerPage;
 
     /**
      * Constructs an instance of this class.

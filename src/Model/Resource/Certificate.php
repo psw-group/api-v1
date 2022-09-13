@@ -18,107 +18,107 @@ class Certificate extends AbstractResource
     /**
      * @var string Number of the certificate
      */
-    private $number;
+    private string $number;
 
     /**
      * @var string Name of the certificate
      */
-    private $name;
+    private string $name;
 
     /**
      * @var CertificateType Type of the certificate
      */
-    private $type;
+    private CertificateType $type;
 
     /**
      * @var CertificateValidationType|null Validation type of the certificate
      */
-    private $validationType;
+    private ?CertificateValidationType $validationType = null;
 
     /**
      * @var CertificateState State of the certificate
      */
-    private $state;
+    private CertificateState $state;
 
     /**
      * @var DateTimeInterface|null Start of the validation period of the certificate
      */
-    private $validFrom;
+    private ?DateTimeInterface $validFrom = null;
 
     /**
      * @var DateTimeInterface|null End of the validation period of the certificate
      */
-    private $validTo;
+    private ?DateTimeInterface $validTo = null;
 
     /**
      * @var CertificateAuthority Authority which issues the certificate
      */
-    private $ca;
+    private CertificateAuthority $ca;
 
     /**
      * @var string|null Id of the certificate from the certificate authority
      */
-    private $caCertificateId;
+    private ?string $caCertificateId = null;
 
     /**
      * @var string|null Number of the order from the certificate authority
      */
-    private $caOrderNumber;
+    private ?string $caOrderNumber = null;
 
     /**
      * @var string|null Number of the order send to the certificate authority
      */
-    private $caPartnerNumber;
+    private ?string $caPartnerNumber = null;
 
     /**
      * @var string|null Hash algorithm
      */
-    private $hashAlgorithm;
+    private ?string $hashAlgorithm = null;
 
     /**
      * @var int Number of servers
      */
-    private $serverCount;
+    private int $serverCount;
 
     /**
      * @var string|null Pickup username
      */
-    private $username;
+    private ?string $username = null;
 
     /**
      * @var string|null Pickup password
      */
-    private $password;
+    private ?string $password = null;
 
     /**
      * @var CertificateContact|null Contact which owns the certificate
      */
-    private $ownerContact;
+    private ?CertificateContact $ownerContact = null;
 
     /**
      * @var CertificateContact|null Contact which approves the certificate
      */
-    private $approverContact;
+    private ?CertificateContact $approverContact = null;
 
     /**
      * @var DateTimeInterface|null Date of the order submission to the certificate authority
      */
-    private $orderedAt;
+    private ?DateTimeInterface $orderedAt = null;
 
     /**
      * @var DateTimeInterface|null Revocation date of the certificate
      */
-    private $revokedAt;
+    private ?DateTimeInterface $revokedAt = null;
 
     /**
      * @var DateTimeInterface Date of the last modification of the certificate
      */
-    private $updatedAt;
+    private DateTimeInterface $updatedAt;
 
     /**
      * @var DateTimeInterface Creation date of the certificate
      */
-    private $createdAt;
+    private DateTimeInterface $createdAt;
 
     public function getNumber(): string
     {
@@ -225,7 +225,7 @@ class Certificate extends AbstractResource
         return $this->createdAt;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 

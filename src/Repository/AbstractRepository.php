@@ -6,9 +6,11 @@ namespace PswGroup\Api\Repository;
 
 use BinSoul\Net\Hal\Client\HalResource;
 use DateTime;
+use InvalidArgumentException;
 use PswGroup\Api\Client;
 use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\PaginatedCollection;
+use Stringable;
 
 /**
  * Represents a repository of resources.
@@ -17,10 +19,7 @@ use PswGroup\Api\Model\PaginatedCollection;
  */
 abstract class AbstractRepository
 {
-    /**
-     * @var Client
-     */
-    protected $client;
+    protected Client $client;
 
     /**
      * Constructs an instance of this class.
@@ -32,12 +31,9 @@ abstract class AbstractRepository
 
     abstract protected function getBaseUrl(): string;
 
-    /**
-     * @param string|int $id
-     */
-    protected function buildItemUrl($id): string
+    protected function buildItemUrl(string|int $id): string
     {
-        return $this->getBaseUrl() . '/' . ((string) $id);
+        return $this->getBaseUrl() . '/' . ($id);
     }
 
     /**
@@ -65,6 +61,8 @@ abstract class AbstractRepository
                     $value = $value->format('Y-m-dTH:i:s');
                 } elseif ($value instanceof AbstractResource) {
                     $value = $value->getIri();
+                } elseif (is_object($value) && ! $value instanceof Stringable) {
+                    throw new InvalidArgumentException(sprintf('Object of type "%s" cannot be cast to string.', $value::class));
                 }
 
                 $query[$key] = (string) $value;
@@ -81,7 +79,7 @@ abstract class AbstractRepository
             }
         }
 
-        if (count($orders) > 0) {
+        if ($orders !== []) {
             $query['order'] = [];
 
             foreach ($orders as $key => $value) {
@@ -115,9 +113,9 @@ abstract class AbstractRepository
 
         return new PaginatedCollection(
             $items,
-            (int) $resource->getProperty('totalItems'),
+            is_numeric($resource->getProperty('totalItems')) ? (int) $resource->getProperty('totalItems') : 0,
             $page,
-            (int) $resource->getProperty('itemsPerPage')
+            is_numeric($resource->getProperty('itemsPerPage')) ? (int) $resource->getProperty('itemsPerPage') : 0
         );
     }
 }

@@ -23,7 +23,7 @@ class CertificateAuthorityRepository extends AbstractRepository
     {
         try {
             $resource = $this->client->get($this->buildItemUrl($number));
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             return null;
         }
 
@@ -46,7 +46,7 @@ class CertificateAuthorityRepository extends AbstractRepository
             }
 
             return new Collection($items);
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             return new Collection([]);
         }
     }
@@ -67,7 +67,7 @@ class CertificateAuthorityRepository extends AbstractRepository
             $resource = $this->client->get($this->getBaseUrl(), $query);
 
             return $this->buildPaginatedCollection($resource, $page);
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             return new PaginatedCollection([], 0, $page, 0);
         }
     }

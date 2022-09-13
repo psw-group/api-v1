@@ -18,77 +18,77 @@ class Order extends AbstractResource
     /**
      * @var string Number of the order
      */
-    private $number;
+    private string $number;
 
     /**
      * @var OrderState State of the order
      */
-    private $state;
+    private OrderState $state;
 
     /**
      * @var OrderContact Contact which receives all order related information including prices
      */
-    private $orderContact;
+    private OrderContact $orderContact;
 
     /**
      * @var OrderContact Contact which receives the invoice
      */
-    private $invoiceContact;
+    private OrderContact $invoiceContact;
 
     /**
      * @var float Gross amount of the order
      */
-    private $priceGross;
+    private float $priceGross;
 
     /**
      * @var float Net amount of the order
      */
-    private $priceNet;
+    private float $priceNet;
 
     /**
      * @var float Tax value of the order
      */
-    private $taxValue;
+    private float $taxValue;
 
     /**
      * @var Currency Currency of the order
      */
-    private $currency;
+    private Currency $currency;
 
     /**
      * @var string|null VAT number of the order
      */
-    private $vatNumber;
+    private ?string $vatNumber = null;
 
     /**
      * @var string|null Comment of the order
      */
-    private $comment;
+    private ?string $comment = null;
 
     /**
      * @var string|null Order number of the customer
      */
-    private $customerOrder;
+    private ?string $customerOrder = null;
 
     /**
      * @var DateTimeInterface|null Validation date of the order
      */
-    private $validationAt;
+    private ?DateTimeInterface $validationAt = null;
 
     /**
      * @var DateTimeInterface|null Cancellation date of the order
      */
-    private $cancelledAt;
+    private ?DateTimeInterface $cancelledAt = null;
 
     /**
      * @var DateTimeInterface Modification date of the order
      */
-    private $updatedAt;
+    private DateTimeInterface $updatedAt;
 
     /**
      * @var DateTimeInterface Creation date of the order
      */
-    private $createdAt;
+    private DateTimeInterface $createdAt;
 
     public function getNumber(): string
     {
@@ -165,7 +165,7 @@ class Order extends AbstractResource
         return $this->createdAt;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 

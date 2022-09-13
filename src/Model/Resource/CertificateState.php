@@ -15,12 +15,12 @@ class CertificateState extends AbstractResource
     /**
      * @var string Code of the state
      */
-    private $code;
+    private string $code;
 
     /**
      * @var string German name of the state
      */
-    private $name;
+    private string $name;
 
     public function getCode(): string
     {
@@ -32,7 +32,7 @@ class CertificateState extends AbstractResource
         return $this->name;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 

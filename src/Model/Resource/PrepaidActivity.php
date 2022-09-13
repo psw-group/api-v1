@@ -14,25 +14,13 @@ use PswGroup\Api\Model\AbstractResource;
  */
 class PrepaidActivity extends AbstractResource
 {
-    /**
-     * @var float Value of the activity
-     */
-    public $amount = 0.0;
+    public float $amount = 0.0;
 
-    /**
-     * @var Currency Value of the activity
-     */
-    public $currency;
+    public Currency $currency;
 
-    /**
-     * @var string Reference of the activity
-     */
-    public $reference = '';
+    public string $reference = '';
 
-    /**
-     * @var DateTimeInterface Creation date of the activity
-     */
-    public $createdAt;
+    public DateTimeInterface $createdAt;
 
     public function getAmount(): float
     {
@@ -54,7 +42,7 @@ class PrepaidActivity extends AbstractResource
         return $this->createdAt;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 

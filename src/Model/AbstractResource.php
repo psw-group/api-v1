@@ -8,13 +8,11 @@ use BinSoul\Net\Hal\Client\HalResource;
 use DateTime;
 use DateTimeInterface;
 use InvalidArgumentException;
+use Throwable;
 
 abstract class AbstractResource
 {
-    /**
-     * @var string|null
-     */
-    private $iri;
+    private ?string $iri = null;
 
     public function getIri(): ?string
     {
@@ -26,10 +24,7 @@ abstract class AbstractResource
         $this->iri = $iri;
     }
 
-    /**
-     * @return static
-     */
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = new static();
 
@@ -42,11 +37,15 @@ abstract class AbstractResource
 
     public static function loadDateTime(HalResource $resource, string $property): ?DateTimeInterface
     {
-        if (! $resource->hasProperty($property) || $resource->getProperty($property) === null) {
+        if (! $resource->hasProperty($property) || $resource->getProperty($property) === null || ! is_string($resource->getProperty($property))) {
             return null;
         }
 
-        return new DateTime($resource->getProperty($property));
+        try {
+            return new DateTime($resource->getProperty($property));
+        } catch (Throwable) {
+            return null;
+        }
     }
 
     /**
@@ -56,10 +55,22 @@ abstract class AbstractResource
      *
      * @return T
      */
-    public static function loadObject(HalResource $resource, string $property, string $className)
+    public static function loadObject(HalResource $resource, string $property, string $className): ?object
     {
+        $callable = [$className, 'fromResource'];
+
         if ($resource->hasResource($property)) {
-            return call_user_func([$className, 'fromResource'], $resource->getFirstResource($property));
+            if (! is_callable($callable)) {
+                return null;
+            }
+
+            $result = call_user_func($callable, $resource->getFirstResource($property));
+
+            if (is_object($result) && is_a($result, $className)) {
+                return $result;
+            }
+
+            return null;
         }
 
         if (! $resource->hasProperty($property) || $resource->getProperty($property) === null) {
@@ -69,13 +80,35 @@ abstract class AbstractResource
         $data = $resource->getProperty($property);
 
         if ($data instanceof HalResource) {
-            return call_user_func([$className, 'fromResource'], $data);
+            if (! is_callable($callable)) {
+                return null;
+            }
+
+            $result = call_user_func($callable, $data);
+
+            if (is_object($result) && is_a($result, $className)) {
+                return $result;
+            }
+
+            return null;
         }
 
         if (! is_array($data)) {
             throw new InvalidArgumentException(sprintf('Expected an array but got %s.', gettype($data)));
         }
 
-        return call_user_func([$className, 'fromArray'], $data);
+        $callable = [$className, 'fromArray'];
+
+        if (! is_callable($callable)) {
+            return null;
+        }
+
+        $result = call_user_func($callable, $data);
+
+        if (is_object($result) && is_a($result, $className)) {
+            return $result;
+        }
+
+        return null;
     }
 }

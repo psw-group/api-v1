@@ -24,7 +24,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     /**
      * @var array<TKey, TValue>
      */
-    private $items;
+    private array $items = [];
 
     /**
      * Constructs an instance of this class.
@@ -49,7 +49,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
      *
      * @return TValue|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): ?object
     {
         return $this->items[$offset] ?? null;
     }

@@ -12,17 +12,14 @@ use PswGroup\Api\Model\AbstractResource;
  */
 class PrepaidAccount extends AbstractResource
 {
-    /**
-     * @var float Balance of the prepaid account
-     */
-    public $balance = 0.0;
+    public float $balance = 0.0;
 
     public function getBalance(): float
     {
         return $this->balance;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 

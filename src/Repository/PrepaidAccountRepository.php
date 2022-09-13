@@ -21,7 +21,7 @@ class PrepaidAccountRepository extends AbstractRepository
     {
         try {
             $resource = $this->client->get($this->getBaseUrl());
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             return null;
         }
 

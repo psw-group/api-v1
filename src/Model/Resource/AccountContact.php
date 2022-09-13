@@ -20,17 +20,17 @@ class AccountContact extends AbstractResource implements JsonSerializable
     /**
      * @var string|null Number of the contact
      */
-    private $number;
+    private ?string $number = null;
 
     /**
      * @var bool Indicates if the contact can be used as order contact
      */
-    private $allowedAsOrderContact;
+    private bool $allowedAsOrderContact = false;
 
     /**
      * @var bool Indicates if the contact can be used as owner contact
      */
-    private $allowedAsOwnerContact;
+    private bool $allowedAsOwnerContact = false;
 
     public function getNumber(): ?string
     {
@@ -92,17 +92,17 @@ class AccountContact extends AbstractResource implements JsonSerializable
             return;
         }
 
-        if (! preg_match('/^[0-9+\-()\s\/]+$/', (string) $telephone)) {
+        if (! preg_match('#^[0-9+\-()\s/]+$#', (string) $telephone)) {
             throw new InvalidArgumentException(sprintf('The telephone number "%s" contains invalid characters.', $telephone));
         }
 
-        $number = preg_replace('/[^0-9+]+/', '', (string) $telephone);
+        $number = preg_replace('#[^0-9+]+#', '', (string) $telephone);
 
         if ($number === null) {
             $number = (string) $telephone;
         }
 
-        $numberString = (string) $number;
+        $numberString = $number;
 
         if ($numberString !== '' && $numberString[0] !== '+') {
             $numberString = '+49' . $numberString;
@@ -116,7 +116,7 @@ class AccountContact extends AbstractResource implements JsonSerializable
             throw new InvalidArgumentException('The telephone number must be shorter than 18 characters.');
         }
 
-        if (! preg_match('/^\+[0-9]+$/', $numberString)) {
+        if (! preg_match('#^\+\d+$#', $numberString)) {
             throw new InvalidArgumentException(sprintf('The telephone number "%s" is not valid.', $telephone));
         }
 
@@ -125,17 +125,17 @@ class AccountContact extends AbstractResource implements JsonSerializable
 
     public function setEmail(?string $email): void
     {
-        if (trim((string) $email) === '') {
+        if ($email === null || trim($email) === '') {
             $this->email = null;
 
             return;
         }
 
-        if (! preg_match('/^[^@]+@[^@]+$/', (string) $email)) {
+        if (! preg_match('#^[^@]+@[^@]+$#', $email)) {
             throw new InvalidArgumentException(sprintf('%s is not a valid email address.', $email));
         }
 
-        if (strlen((string) $email) > 255) {
+        if (strlen($email) > 255) {
             throw new InvalidArgumentException('The email address must be shorter than 256 characters.');
         }
 
@@ -274,7 +274,7 @@ class AccountContact extends AbstractResource implements JsonSerializable
         $this->jurisdictionCountry = $jurisdictionCountry;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 
@@ -327,8 +327,8 @@ class AccountContact extends AbstractResource implements JsonSerializable
             'addressZip' => $this->addressZip,
             'addressCity' => $this->addressCity,
             'addressState' => $this->addressState,
-            'addressCountry' => $this->addressCountry !== null ? $this->addressCountry->getIri() : null,
-            'organisationType' => $this->organisationType !== null ? $this->organisationType->getIri() : null,
+            'addressCountry' => $this->addressCountry?->getIri(),
+            'organisationType' => $this->organisationType?->getIri(),
             'organisationName' => $this->organisationName,
             'organisationUnit' => $this->organisationUnit,
             'organisationDuns' => $this->organisationDuns,
@@ -336,7 +336,7 @@ class AccountContact extends AbstractResource implements JsonSerializable
             'jurisdictionNumber' => $this->jurisdictionNumber,
             'jurisdictionCity' => $this->jurisdictionCity,
             'jurisdictionState' => $this->jurisdictionState,
-            'jurisdictionCountry' => $this->jurisdictionCountry !== null ? $this->jurisdictionCountry->getIri() : null,
+            'jurisdictionCountry' => $this->jurisdictionCountry?->getIri(),
         ];
     }
 }

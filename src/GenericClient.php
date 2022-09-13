@@ -25,45 +25,21 @@ use Throwable;
  */
 class GenericClient implements Client
 {
-    /**
-     * @var string
-     */
-    private $apiUrl;
+    private string $apiUrl;
 
-    /**
-     * @var string
-     */
-    private $clientId;
+    private string $clientId;
 
-    /**
-     * @var string
-     */
-    private $clientSecret;
+    private string $clientSecret;
 
-    /**
-     * @var string|null
-     */
-    private $accessToken;
+    private ?string $accessToken = null;
 
-    /**
-     * @var HalClient|null
-     */
-    private $halClient;
+    private ?HalClient $halClient = null;
 
-    /**
-     * @var ClientInterface
-     */
-    private $httpClient;
+    private ClientInterface $httpClient;
 
-    /**
-     * @var RequestFactoryInterface
-     */
-    private $requestFactory;
+    private RequestFactoryInterface $requestFactory;
 
-    /**
-     * @var UriFactoryInterface
-     */
-    private $uriFactory;
+    private UriFactoryInterface $uriFactory;
 
     /**
      * Constructs an instance of this class.
@@ -140,9 +116,9 @@ class GenericClient implements Client
     }
 
     /**
-     * @param JsonSerializable|array $object
+     * @param JsonSerializable|array<string|int, mixed> $object
      */
-    protected function serialize($object): string
+    protected function serialize(JsonSerializable|array $object): string
     {
         $data = @json_encode($object);
 
@@ -173,18 +149,15 @@ class GenericClient implements Client
     /**
      * Adds options needed for all requests.
      *
-     * @param mixed[] $options
+     * @param array<string, mixed> $options
      *
-     * @return mixed[]
+     * @return array<string, mixed>
      */
     private function applyDefaultOptions(array $options): array
     {
         $result = $options;
 
-        if (! isset($result['headers'])) {
-            $result['headers'] = [];
-        }
-
+        $result['headers'] = (array) ($result['headers'] ?? []);
         $result['headers']['Authorization'] = 'Bearer ' . $this->getAccessToken();
 
         return $result;
@@ -207,8 +180,8 @@ class GenericClient implements Client
 
         try {
             $response = $this->httpClient->sendRequest($request);
-        } catch (Throwable $e) {
-            throw HttpClientException::create($request, $e);
+        } catch (Throwable $throwable) {
+            throw HttpClientException::create($request, $throwable);
         }
 
         if ($response->getStatusCode() === 401) {
@@ -217,8 +190,8 @@ class GenericClient implements Client
 
         try {
             $body = $response->getBody()->getContents();
-        } catch (Throwable $e) {
-            throw new RuntimeException(sprintf('Error getting response body: %s.', $e->getMessage()));
+        } catch (Throwable $throwable) {
+            throw new RuntimeException(sprintf('Error getting response body: %s.', $throwable->getMessage()), $throwable->getCode(), $throwable);
         }
 
         $data = [];
@@ -231,7 +204,11 @@ class GenericClient implements Client
             }
         }
 
-        if (! isset($data['access_token'])) {
+        if (! is_array($data)) {
+            throw new InvalidResponseException('No access token found in response.');
+        }
+
+        if (! isset($data['access_token']) || ! is_string($data['access_token'])) {
             throw new InvalidResponseException('No access token found in response.');
         }
 

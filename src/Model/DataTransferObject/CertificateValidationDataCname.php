@@ -9,10 +9,7 @@ namespace PswGroup\Api\Model\DataTransferObject;
  */
 class CertificateValidationDataCname extends CertificateValidationData
 {
-    /**
-     * @var string
-     */
-    private $cname;
+    private string $cname;
 
     public function getCname(): string
     {

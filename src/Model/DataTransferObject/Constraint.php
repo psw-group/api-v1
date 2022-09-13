@@ -9,12 +9,12 @@ class Constraint
     /**
      * @var string Type of the constraint
      */
-    private $type;
+    private string $type;
 
     /**
      * @var array<string, mixed> Parameters of the constraint
      */
-    private $parameters;
+    private array $parameters = [];
 
     public function getType(): string
     {

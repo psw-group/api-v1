@@ -16,62 +16,62 @@ class OrderItem
     /**
      * @var string Name of product
      */
-    private $productName;
+    private string $productName;
 
     /**
      * @var string Number of the product
      */
-    private $productNumber;
+    private string $productNumber;
 
     /**
      * @var string|null Description of the order item
      */
-    private $description;
+    private ?string $description = null;
 
     /**
      * @var int Quantity of the order item
      */
-    private $quantity;
+    private int $quantity;
 
     /**
      * @var float Net amount of the order item
      */
-    private $itemPriceNet = 0.0;
+    private float $itemPriceNet = 0.0;
 
     /**
      * @var float Net amount of the order item
      */
-    private $rowPriceNet = 0.0;
+    private float $rowPriceNet = 0.0;
 
     /**
      * @var float Gross amount of the order item
      */
-    private $itemPriceGross = 0.0;
+    private float $itemPriceGross = 0.0;
 
     /**
      * @var float Gross amount of the order item
      */
-    private $rowPriceGross = 0.0;
+    private float $rowPriceGross = 0.0;
 
     /**
      * @var float Tax rate of the order item
      */
-    private $taxRate = 0.0;
+    private float $taxRate = 0.0;
 
     /**
      * @var float Tax amount of the order item
      */
-    private $itemTaxValue = 0.0;
+    private float $itemTaxValue = 0.0;
 
     /**
      * @var float Tax amount of the order item
      */
-    private $rowTaxValue = 0.0;
+    private float $rowTaxValue = 0.0;
 
     /**
      * @var Certificate|null Certificate of the order item
      */
-    private $certificate;
+    private ?Certificate $certificate = null;
 
     public function getProductName(): string
     {

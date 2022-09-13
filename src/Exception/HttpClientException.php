@@ -13,10 +13,7 @@ use Throwable;
  */
 class HttpClientException extends RuntimeException
 {
-    /**
-     * @var RequestInterface
-     */
-    private $request;
+    private RequestInterface $request;
 
     /**
      * Constructs an instance of this class.
@@ -33,7 +30,7 @@ class HttpClientException extends RuntimeException
         if ($message === null) {
             $message = 'Exception thrown by the HTTP client while sending the request.';
 
-            if ($previous) {
+            if ($previous !== null) {
                 $message = sprintf(
                     'HTTP client exception: %s.',
                     $previous->getMessage()

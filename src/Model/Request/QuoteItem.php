@@ -12,12 +12,12 @@ class QuoteItem implements JsonSerializable
     /**
      * @var Product Product which should be included
      */
-    private $product;
+    private Product $product;
 
     /**
      * @var CertificateData|null Data for the certificate which should be included
      */
-    private $certificateData;
+    private ?CertificateData $certificateData = null;
 
     public function getProduct(): Product
     {

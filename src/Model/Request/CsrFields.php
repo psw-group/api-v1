@@ -29,7 +29,7 @@ class CsrFields implements JsonSerializable
             return;
         }
 
-        if (! preg_match('/^[a-zA-Z]{2}$/', (string) $countryName)) {
+        if (! preg_match('#^[a-zA-Z]{2}$#', (string) $countryName)) {
             throw new InvalidArgumentException(sprintf('%s is not a valid ISO2 country code.', $countryName));
         }
 
@@ -80,7 +80,7 @@ class CsrFields implements JsonSerializable
             return;
         }
 
-        if (! preg_match('/^[^@]+@[^@]+$/', (string) $emailAddress)) {
+        if (! preg_match('#^[^@]+@[^@]+$#', (string) $emailAddress)) {
             throw new InvalidArgumentException(sprintf('%s is not a valid email address.', $emailAddress));
         }
 

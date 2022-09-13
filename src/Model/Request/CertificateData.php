@@ -14,47 +14,47 @@ class CertificateData implements JsonSerializable
     /**
      * @var string|null CSR file for the request
      */
-    private $csrFile;
+    private ?string $csrFile = null;
 
     /**
      * @var CsrFields|null CSR fields for the request which can override the CSR file
      */
-    private $csrFields;
+    private ?CsrFields $csrFields = null;
 
     /**
      * @var Validation[]|null Validation data for all domains
      */
-    private $validation;
+    private ?array $validation = null;
 
     /**
      * @var string|null User name for downloading the certificate from the CA
      */
-    private $username;
+    private ?string $username = null;
 
     /**
      * @var string|null Password for downloading the certificate from the CA
      */
-    private $password;
+    private ?string $password = null;
 
     /**
      * @var string|null Hash algorithm for the certificate
      */
-    private $hashAlgorithm;
+    private ?string $hashAlgorithm = null;
 
     /**
      * @var int|null Number of server for the certificate
      */
-    private $serverCount;
+    private ?int $serverCount = null;
 
     /**
      * @var Contact|null Contact which owns the certificate
      */
-    private $ownerContact;
+    private ?Contact $ownerContact = null;
 
     /**
      * @var Contact|null Contact which approves the certificate
      */
-    private $approverContact;
+    private ?Contact $approverContact = null;
 
     public function getCsrFile(): ?string
     {

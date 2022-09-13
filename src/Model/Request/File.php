@@ -14,17 +14,17 @@ class File implements JsonSerializable
     /**
      * @var string Name of the file
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string|null Mime type if the file
      */
-    private $mimeType;
+    private ?string $mimeType = null;
 
     /**
      * @var string Content of the file
      */
-    private $content;
+    private string $content;
 
     public function getName(): string
     {

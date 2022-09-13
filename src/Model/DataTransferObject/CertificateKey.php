@@ -18,47 +18,47 @@ class CertificateKey
     /**
      * @var string Content of the key
      */
-    private $content;
+    private string $content;
 
     /**
      * @var DateTimeInterface|null Start of the validation period of the key
      */
-    private $validFrom;
+    private ?DateTimeInterface $validFrom = null;
 
     /**
      * @var DateTimeInterface|null End of the validation period of the key
      */
-    private $validTo;
+    private ?DateTimeInterface $validTo = null;
 
     /**
      * @var string|null SHA-1 Fingerprint of the key
      */
-    private $fingerprint;
+    private ?string $fingerprint = null;
 
     /**
      * @var string|null Signature algorithm of the key
      */
-    private $signatureAlgorithm;
+    private ?string $signatureAlgorithm = null;
 
     /**
      * @var string|null Serial number of the key
      */
-    private $serialNumber;
+    private ?string $serialNumber = null;
 
     /**
      * @var string|null Type of the public key of the csr
      */
-    private $keyType;
+    private ?string $keyType = null;
 
     /**
      * @var int|null Number of bits of the public key of the csr
      */
-    private $keyBits;
+    private ?int $keyBits = null;
 
     /**
      * @var string|null Hash of the key
      */
-    private $hash;
+    private ?string $hash = null;
 
     public function getContent(): string
     {

@@ -15,12 +15,12 @@ class OrganisationType extends AbstractResource
     /**
      * @var string Code of the type
      */
-    private $code;
+    private string $code;
 
     /**
      * @var string German name of the type
      */
-    private $name;
+    private string $name;
 
     /**
      * Constructs an instance of this class.
@@ -41,7 +41,7 @@ class OrganisationType extends AbstractResource
         return $this->name;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 

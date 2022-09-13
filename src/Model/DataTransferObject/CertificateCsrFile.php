@@ -16,22 +16,22 @@ class CertificateCsrFile
     /**
      * @var string Content of the CSR file
      */
-    private $content;
+    private string $content;
 
     /**
      * @var string|null Type of the public key of the csr
      */
-    private $keyType;
+    private ?string $keyType = null;
 
     /**
      * @var int|null Number of bits of the public key of the csr
      */
-    private $keyBits;
+    private ?int $keyBits = null;
 
     /**
      * @var string|null Calculated Hash value of the csr
      */
-    private $hash;
+    private ?string $hash = null;
 
     public function getContent(): string
     {

@@ -24,14 +24,14 @@ interface Client
      *
      * @param JsonSerializable|array<string, mixed> $data
      */
-    public function post(string $uri, $data): HalResource;
+    public function post(string $uri, JsonSerializable|array $data): HalResource;
 
     /**
      * Executes a PUT request with the given data.
      *
      * @param JsonSerializable|array<string, mixed> $data
      */
-    public function put(string $uri, $data): HalResource;
+    public function put(string $uri, JsonSerializable|array $data): HalResource;
 
     /**
      * Executes a DELETE request.

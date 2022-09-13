@@ -12,12 +12,12 @@ class OrderItem implements JsonSerializable
     /**
      * @var Product Product which should be ordered
      */
-    private $product;
+    private Product $product;
 
     /**
      * @var CertificateData|null Data for the certificate which should be ordered
      */
-    private $certificateData;
+    private ?CertificateData $certificateData = null;
 
     public function getProduct(): Product
     {

@@ -12,30 +12,15 @@ use PswGroup\Api\Model\AbstractResource;
  */
 class Quote extends AbstractResource
 {
-    /**
-     * @var string Number of the quote
-     */
-    public $number;
+    public string $number = '';
 
-    /**
-     * @var float Gross amount of the quote
-     */
-    public $priceGross;
+    public float $priceGross = 0.0;
 
-    /**
-     * @var float Net amount of the quote
-     */
-    public $priceNet;
+    public float $priceNet = 0.0;
 
-    /**
-     * @var float Tax value of the quote
-     */
-    public $taxValue;
+    public float $taxValue = 0.0;
 
-    /**
-     * @var Currency Currency of the quote
-     */
-    public $currency;
+    public Currency $currency;
 
     public function getNumber(): string
     {
@@ -87,7 +72,7 @@ class Quote extends AbstractResource
         $this->currency = $currency;
     }
 
-    public static function fromResource(HalResource $resource)
+    public static function fromResource(HalResource $resource): static
     {
         $result = parent::fromResource($resource);
 

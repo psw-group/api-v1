@@ -18,7 +18,7 @@ $ composer require psw-group/api-v1
 
 ## Requirements
 
-You will need a recent version of PHP, at least PHP 7.2.
+You will need a recent version of PHP, at least PHP 8.0.
 
 This package requires PSR-17 compatible request/URI factories and a PSR-18 compatible HTTP client.
 If no factories are supplied, it uses [PHP-HTTP](https://php-http.org) discovery to find installed implementations.
@@ -26,7 +26,7 @@ If no factories are supplied, it uses [PHP-HTTP](https://php-http.org) discovery
 For example if you want to use [Guzzle](http://guzzlephp.org) as HTTP client execute:
 
 ``` bash
-$ composer require http-interop/http-factory-guzzle php-http/guzzle6-adapter
+$ composer require http-interop/http-factory-guzzle php-http/guzzle7-adapter
 ```
 ## Usage
 

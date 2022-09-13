@@ -9,15 +9,9 @@ namespace PswGroup\Api\Model\DataTransferObject;
  */
 class CertificateValidationDataHttp extends CertificateValidationData
 {
-    /**
-     * @var string
-     */
-    private $url;
+    private string $url;
 
-    /**
-     * @var string|null
-     */
-    private $content;
+    private ?string $content = null;
 
     public function getUrl(): string
     {

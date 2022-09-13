@@ -14,17 +14,17 @@ class QuoteRequest implements JsonSerializable
     /**
      * @var array<int, QuoteItem> List of items for the quote
      */
-    private $items;
+    private array $items = [];
 
     /**
      * @var Contact|null Contact associated with the quote
      */
-    private $quoteContact;
+    private ?Contact $quoteContact = null;
 
     /**
      * @var string|null VAT-ID to use in the quote
      */
-    private $vatId;
+    private ?string $vatId = null;
 
     /**
      * @return array<int, QuoteItem>
@@ -47,12 +47,12 @@ class QuoteRequest implements JsonSerializable
         $this->items[] = $item;
     }
 
-    public function getQuoteContact(): Contact
+    public function getQuoteContact(): ?Contact
     {
         return $this->quoteContact;
     }
 
-    public function setQuoteContact(Contact $quoteContact): void
+    public function setQuoteContact(?Contact $quoteContact): void
     {
         $this->quoteContact = $quoteContact;
     }

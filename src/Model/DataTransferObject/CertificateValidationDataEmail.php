@@ -9,10 +9,7 @@ namespace PswGroup\Api\Model\DataTransferObject;
  */
 class CertificateValidationDataEmail extends CertificateValidationData
 {
-    /**
-     * @var string
-     */
-    private $email;
+    private string $email;
 
     public function getEmail(): string
     {
