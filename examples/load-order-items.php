@@ -30,7 +30,7 @@ foreach ($items as $item) {
     $list[] = [
         'sku' => $item->getProductNumber(),
         'name' => $item->getProductName(),
-        'quantity' => number_format($item->getQuantity(), 0),
+        'quantity' => number_format($item->getQuantity()),
         'price' => number_format($item->getRowPriceGross(), 2) . ' ' . $order->getCurrency()->getIso3(),
     ];
 }
