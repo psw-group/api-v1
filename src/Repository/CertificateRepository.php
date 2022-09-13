@@ -23,6 +23,9 @@ use PswGroup\Api\Model\Resource\Certificate;
 use PswGroup\Api\Model\Resource\Job;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<Certificate>
+ */
 class CertificateRepository extends AbstractRepository
 {
     /**
@@ -42,7 +45,7 @@ class CertificateRepository extends AbstractRepository
     /**
      * Loads all certificates.
      *
-     * @return Collection|Certificate[]
+     * @return Collection<int, Certificate>
      */
     public function loadAll(): Collection
     {
@@ -63,10 +66,10 @@ class CertificateRepository extends AbstractRepository
     /**
      * Loads a paginated list of certificates.
      *
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return PaginatedCollection|Certificate[]
+     * @return PaginatedCollection<int, Certificate>
      */
     public function loadCollection(int $page, array $filters = [], array $orders = [], ?int $itemsPerPage = null): PaginatedCollection
     {
@@ -98,7 +101,7 @@ class CertificateRepository extends AbstractRepository
     /**
      * Loads the chain of a certificate.
      *
-     * @return CertificateKey[]|Collection
+     * @return Collection<int, CertificateKey>
      */
     public function loadChain(Certificate $certificate): Collection
     {
@@ -147,7 +150,7 @@ class CertificateRepository extends AbstractRepository
     /**
      * Returns the current validation method for all domains of a certificate.
      *
-     * @return CertificateValidationData[]|CertificateValidationDataEmail[]|CertificateValidationDataHttp[]|CertificateValidationDataCname[]|CertificateValidationDataDnsTxt[]|Collection
+     * @return Collection<int, CertificateValidationData|CertificateValidationDataEmail|CertificateValidationDataHttp|CertificateValidationDataCname|CertificateValidationDataDnsTxt>
      */
     public function loadValidationData(Certificate $certificate): Collection
     {
@@ -168,7 +171,7 @@ class CertificateRepository extends AbstractRepository
     /**
      * Returns available validation methods for all domains of a certificate.
      *
-     * @return CertificateValidationOption[]|Collection
+     * @return Collection<int, CertificateValidationOption>
      */
     public function loadValidationMethods(Certificate $certificate): Collection
     {
@@ -189,7 +192,7 @@ class CertificateRepository extends AbstractRepository
     /**
      * Changes the validation data of a certificate.
      *
-     * @param array<Validation> $validation
+     * @param array<int, Validation> $validation
      */
     public function changeValidation(Certificate $certificate, array $validation): Job
     {

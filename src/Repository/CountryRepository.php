@@ -11,6 +11,9 @@ use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\Country;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<Country>
+ */
 class CountryRepository extends AbstractRepository
 {
     /**
@@ -30,7 +33,7 @@ class CountryRepository extends AbstractRepository
     /**
      * Loads all countries.
      *
-     * @return Collection|Country[]
+     * @return Collection<int, Country>
      */
     public function loadAll(): Collection
     {
@@ -51,10 +54,10 @@ class CountryRepository extends AbstractRepository
     /**
      * Loads a paginated list of countries.
      *
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return PaginatedCollection|Country[]
+     * @return PaginatedCollection<int, Country>
      */
     public function loadCollection(int $page, array $filters = [], array $orders = [], ?int $itemsPerPage = null): PaginatedCollection
     {

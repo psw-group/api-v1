@@ -9,6 +9,9 @@ use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Request\QuoteRequest;
 use PswGroup\Api\Model\Resource\Quote;
 
+/**
+ * @extends AbstractRepository<Quote>
+ */
 class QuoteRepository extends AbstractRepository
 {
     /**

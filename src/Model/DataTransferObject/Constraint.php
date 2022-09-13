@@ -12,7 +12,7 @@ class Constraint
     private $type;
 
     /**
-     * @var mixed[] Parameters of the constraint
+     * @var array<string, mixed> Parameters of the constraint
      */
     private $parameters;
 
@@ -22,7 +22,7 @@ class Constraint
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, mixed>
      */
     public function getParameters(): array
     {
@@ -30,7 +30,7 @@ class Constraint
     }
 
     /**
-     * @param mixed[] $resource
+     * @param array<string, mixed> $resource
      */
     public static function fromArray(array $resource): self
     {

@@ -14,6 +14,9 @@ use PswGroup\Api\Model\Resource\Job;
 use PswGroup\Api\Model\Resource\Order;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<Order>
+ */
 class OrderRepository extends AbstractRepository
 {
     /**
@@ -33,7 +36,7 @@ class OrderRepository extends AbstractRepository
     /**
      * Loads all orders.
      *
-     * @return Collection|Order[]
+     * @return Collection<int, Order>
      */
     public function loadAll(): Collection
     {
@@ -54,10 +57,10 @@ class OrderRepository extends AbstractRepository
     /**
      * Loads a paginated list of orders.
      *
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return PaginatedCollection|Order[]
+     * @return PaginatedCollection<int, Order>
      */
     public function loadCollection(int $page, array $filters = [], array $orders = [], ?int $itemsPerPage = null): PaginatedCollection
     {
@@ -75,7 +78,7 @@ class OrderRepository extends AbstractRepository
     /**
      * Loads all items of an order.
      *
-     * @return OrderItem[]|Collection
+     * @return Collection<int, OrderItem>
      */
     public function loadItems(Order $order): Collection
     {

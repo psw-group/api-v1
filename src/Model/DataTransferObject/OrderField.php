@@ -14,7 +14,7 @@ class OrderField
     private $path;
 
     /**
-     * @var Constraint[] Constraints which apply to the field
+     * @var array<int, Constraint> Constraints which apply to the field
      */
     private $constraints;
 
@@ -24,7 +24,7 @@ class OrderField
     }
 
     /**
-     * @return Constraint[]
+     * @return array<int, Constraint>
      */
     public function getConstraints(): array
     {

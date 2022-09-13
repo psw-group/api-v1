@@ -11,6 +11,9 @@ use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\OrganisationType;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<OrganisationType>
+ */
 class OrganisationTypeRepository extends AbstractRepository
 {
     /**
@@ -30,7 +33,7 @@ class OrganisationTypeRepository extends AbstractRepository
     /**
      * Loads all organisation types.
      *
-     * @return Collection|OrganisationType[]
+     * @return Collection<int, OrganisationType>
      */
     public function loadAll(): Collection
     {
@@ -51,10 +54,10 @@ class OrganisationTypeRepository extends AbstractRepository
     /**
      * Loads a paginated list of organisation types.
      *
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return PaginatedCollection|OrganisationType[]
+     * @return PaginatedCollection<int, OrganisationType>
      */
     public function loadCollection(int $page, array $filters = [], array $orders = [], ?int $itemsPerPage = null): PaginatedCollection
     {

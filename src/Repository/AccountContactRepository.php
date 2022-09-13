@@ -11,6 +11,9 @@ use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\AccountContact;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<AccountContact>
+ */
 class AccountContactRepository extends AbstractRepository
 {
     /**
@@ -63,7 +66,7 @@ class AccountContactRepository extends AbstractRepository
     /**
      * Loads all contacts.
      *
-     * @return Collection|AccountContact[]
+     * @return Collection<int, AccountContact>
      */
     public function loadAll(): Collection
     {
@@ -84,10 +87,10 @@ class AccountContactRepository extends AbstractRepository
     /**
      * Loads a paginated list of contacts.
      *
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return PaginatedCollection|AccountContact[]
+     * @return PaginatedCollection<int, AccountContact>
      */
     public function loadCollection(int $page, array $filters = [], array $orders = [], ?int $itemsPerPage = null): PaginatedCollection
     {

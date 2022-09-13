@@ -9,6 +9,9 @@ use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\Resource\PrepaidAccount;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<PrepaidAccount>
+ */
 class PrepaidAccountRepository extends AbstractRepository
 {
     /**

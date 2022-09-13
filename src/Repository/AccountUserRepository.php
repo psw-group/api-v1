@@ -11,6 +11,9 @@ use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\AccountUser;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<AccountUser>
+ */
 class AccountUserRepository extends AbstractRepository
 {
     /**
@@ -63,7 +66,7 @@ class AccountUserRepository extends AbstractRepository
     /**
      * Loads all users.
      *
-     * @return Collection|AccountUser[]
+     * @return Collection<int, AccountUser>
      */
     public function loadAll(): Collection
     {
@@ -84,10 +87,10 @@ class AccountUserRepository extends AbstractRepository
     /**
      * Loads a paginated list of users.
      *
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return PaginatedCollection|AccountUser[]
+     * @return PaginatedCollection<int, AccountUser>
      */
     public function loadCollection(int $page, array $filters = [], array $orders = [], ?int $itemsPerPage = null): PaginatedCollection
     {

@@ -11,6 +11,9 @@ use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\CertificateValidationMethod;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<CertificateValidationMethod>
+ */
 class CertificateValidationMethodRepository extends AbstractRepository
 {
     /**
@@ -30,7 +33,7 @@ class CertificateValidationMethodRepository extends AbstractRepository
     /**
      * Loads all certificate validation methods.
      *
-     * @return Collection|CertificateValidationMethod[]
+     * @return Collection<int, CertificateValidationMethod>
      */
     public function loadAll(): Collection
     {
@@ -51,10 +54,10 @@ class CertificateValidationMethodRepository extends AbstractRepository
     /**
      * Loads a paginated list of certificate validation methods.
      *
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return PaginatedCollection|CertificateValidationMethod[]
+     * @return PaginatedCollection<int, CertificateValidationMethod>
      */
     public function loadCollection(int $page, array $filters = [], array $orders = [], ?int $itemsPerPage = null): PaginatedCollection
     {

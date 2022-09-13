@@ -11,6 +11,9 @@ use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\OrderState;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<OrderState>
+ */
 class OrderStateRepository extends AbstractRepository
 {
     /**
@@ -30,7 +33,7 @@ class OrderStateRepository extends AbstractRepository
     /**
      * Loads all order states.
      *
-     * @return Collection|OrderState[]
+     * @return Collection<int, OrderState>
      */
     public function loadAll(): Collection
     {
@@ -51,10 +54,10 @@ class OrderStateRepository extends AbstractRepository
     /**
      * Loads a paginated list of order states.
      *
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return PaginatedCollection|OrderState[]
+     * @return PaginatedCollection<int, OrderState>
      */
     public function loadCollection(int $page, array $filters = [], array $orders = [], ?int $itemsPerPage = null): PaginatedCollection
     {

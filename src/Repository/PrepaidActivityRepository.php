@@ -11,6 +11,9 @@ use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\PrepaidActivity;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<PrepaidActivity>
+ */
 class PrepaidActivityRepository extends AbstractRepository
 {
     /**
@@ -30,7 +33,7 @@ class PrepaidActivityRepository extends AbstractRepository
     /**
      * Loads all prepaid activities.
      *
-     * @return Collection|PrepaidActivity[]
+     * @return Collection<int, PrepaidActivity>
      */
     public function loadAll(): Collection
     {
@@ -51,10 +54,10 @@ class PrepaidActivityRepository extends AbstractRepository
     /**
      * Loads a paginated list of prepaid activities.
      *
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return PaginatedCollection|PrepaidActivity[]
+     * @return PaginatedCollection<int, PrepaidActivity>
      */
     public function loadCollection(int $page, array $filters = [], array $orders = [], ?int $itemsPerPage = null): PaginatedCollection
     {

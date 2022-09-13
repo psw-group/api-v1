@@ -12,12 +12,12 @@ use JsonSerializable;
 class QuoteRequest implements JsonSerializable
 {
     /**
-     * @var QuoteItem[] List of items for the quote
+     * @var array<int, QuoteItem> List of items for the quote
      */
     private $items;
 
     /**
-     * @var Contact Contact associated with the quote
+     * @var Contact|null Contact associated with the quote
      */
     private $quoteContact;
 
@@ -27,7 +27,7 @@ class QuoteRequest implements JsonSerializable
     private $vatId;
 
     /**
-     * @return QuoteItem[]
+     * @return array<int, QuoteItem>
      */
     public function getItems(): array
     {
@@ -35,7 +35,7 @@ class QuoteRequest implements JsonSerializable
     }
 
     /**
-     * @param QuoteItem[] $items
+     * @param array<int, QuoteItem> $items
      */
     public function setItems(array $items): void
     {

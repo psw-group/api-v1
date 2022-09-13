@@ -13,6 +13,9 @@ use PswGroup\Api\Model\Resource\CertificateValidationMethod;
 use PswGroup\Api\Model\Resource\Product;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<Product>
+ */
 class ProductRepository extends AbstractRepository
 {
     /**
@@ -32,7 +35,7 @@ class ProductRepository extends AbstractRepository
     /**
      * Loads all products.
      *
-     * @return Collection|Product[]
+     * @return Collection<int, Product>
      */
     public function loadAll(): Collection
     {
@@ -53,10 +56,10 @@ class ProductRepository extends AbstractRepository
     /**
      * Loads a paginated list of products.
      *
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return PaginatedCollection|Product[]
+     * @return PaginatedCollection<int, Product>
      */
     public function loadCollection(int $page, array $filters = [], array $orders = [], ?int $itemsPerPage = null): PaginatedCollection
     {
@@ -74,7 +77,7 @@ class ProductRepository extends AbstractRepository
     /**
      * Loads all variants of a product.
      *
-     * @return Collection|Product[]
+     * @return Collection<int, Product>
      */
     public function loadVariants(Product $product): Collection
     {
@@ -95,7 +98,7 @@ class ProductRepository extends AbstractRepository
     /**
      * Loads all order fields of a product and their constraints.
      *
-     * @return OrderField[]|Collection
+     * @return Collection<int, OrderField>
      */
     public function loadOrderFields(Product $product): Collection
     {
@@ -116,7 +119,7 @@ class ProductRepository extends AbstractRepository
     /**
      * Loads all possible validation methods of a product.
      *
-     * @return CertificateValidationMethod[]|Collection
+     * @return Collection<int, CertificateValidationMethod>
      */
     public function loadValidationMethods(Product $product): Collection
     {

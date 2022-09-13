@@ -13,7 +13,7 @@ use JsonSerializable;
 class OrderRequest implements JsonSerializable
 {
     /**
-     * @var OrderItem[] List of items to order
+     * @var array<int, OrderItem> List of items to order
      */
     private $items;
 
@@ -48,7 +48,7 @@ class OrderRequest implements JsonSerializable
     private $comment;
 
     /**
-     * @return OrderItem[]
+     * @return array<int, OrderItem>
      */
     public function getItems(): array
     {
@@ -56,7 +56,7 @@ class OrderRequest implements JsonSerializable
     }
 
     /**
-     * @param OrderItem[] $items
+     * @param array<int, OrderItem> $items
      */
     public function setItems(array $items): void
     {

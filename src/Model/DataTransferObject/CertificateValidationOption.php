@@ -18,12 +18,12 @@ class CertificateValidationOption
     private $domain;
 
     /**
-     * @var string[]
+     * @var array<int, string>
      */
     private $emailAddresses;
 
     /**
-     * @var CertificateValidationMethod[]
+     * @var array<int, CertificateValidationMethod>
      */
     private $methods;
 
@@ -33,7 +33,7 @@ class CertificateValidationOption
     }
 
     /**
-     * @return string[]
+     * @return array<int, string>
      */
     public function getEmailAddresses(): array
     {
@@ -41,7 +41,7 @@ class CertificateValidationOption
     }
 
     /**
-     * @return CertificateValidationMethod[]
+     * @return array<int, CertificateValidationMethod>
      */
     public function getMethods(): array
     {

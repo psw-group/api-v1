@@ -11,6 +11,9 @@ use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\CertificateAuthority;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<CertificateAuthority>
+ */
 class CertificateAuthorityRepository extends AbstractRepository
 {
     /**
@@ -30,7 +33,7 @@ class CertificateAuthorityRepository extends AbstractRepository
     /**
      * Loads all certificate authorities.
      *
-     * @return Collection|CertificateAuthority[]
+     * @return Collection<int, CertificateAuthority>
      */
     public function loadAll(): Collection
     {
@@ -51,10 +54,10 @@ class CertificateAuthorityRepository extends AbstractRepository
     /**
      * Loads a paginated list of certificate authorities.
      *
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return PaginatedCollection|CertificateAuthority[]
+     * @return PaginatedCollection<int, CertificateAuthority>
      */
     public function loadCollection(int $page, array $filters = [], array $orders = [], ?int $itemsPerPage = null): PaginatedCollection
     {

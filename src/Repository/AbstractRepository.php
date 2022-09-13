@@ -46,10 +46,10 @@ abstract class AbstractRepository
     abstract protected function entityFromResource(HalResource $resource): AbstractResource;
 
     /**
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return mixed[]
+     * @return array<string, mixed>
      */
     protected function prepareQuery(int $page, array $filters, array $orders, ?int $itemsPerPage): array
     {

@@ -11,6 +11,9 @@ use PswGroup\Api\Model\PaginatedCollection;
 use PswGroup\Api\Model\Resource\Job;
 use Throwable;
 
+/**
+ * @extends AbstractRepository<Job>
+ */
 class JobRepository extends AbstractRepository
 {
     /**
@@ -30,7 +33,7 @@ class JobRepository extends AbstractRepository
     /**
      * Loads all jobs.
      *
-     * @return Collection|Job[]
+     * @return Collection<int, Job>
      */
     public function loadAll(): Collection
     {
@@ -51,10 +54,10 @@ class JobRepository extends AbstractRepository
     /**
      * Loads a paginated list of jobs.
      *
-     * @param mixed[]  $filters
-     * @param string[] $orders
+     * @param array<string, mixed>  $filters
+     * @param array<string, string> $orders
      *
-     * @return PaginatedCollection|Job[]
+     * @return PaginatedCollection<int, Job>
      */
     public function loadCollection(int $page, array $filters = [], array $orders = [], ?int $itemsPerPage = null): PaginatedCollection
     {
