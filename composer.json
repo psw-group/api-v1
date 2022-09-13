@@ -22,8 +22,7 @@
         "phpstan/phpstan": "^1",
         "php-http/guzzle7-adapter": "^1",
         "php-http/mock-client": "^1",
-        "roave/security-advisories": "dev-latest",
-        "symplify/easy-coding-standard": "^10"
+        "roave/security-advisories": "dev-latest"
     },
     "autoload": {
         "psr-4": {
@@ -53,7 +52,8 @@
     },
     "config": {
         "allow-plugins": {
-            "phpro/grumphp-shim": true
+            "phpro/grumphp-shim": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     }
 }
