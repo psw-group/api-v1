@@ -12,18 +12,24 @@ use IteratorAggregate;
 
 /**
  * Represents a collection of resources.
+ *
+ * @template TKey of int
+ * @template TValue of AbstractResource|object
+ *
+ * @implements IteratorAggregate<TKey, TValue>
+ * @implements ArrayAccess<TKey, TValue>
  */
 class Collection implements ArrayAccess, Countable, IteratorAggregate
 {
     /**
-     * @var array<int, AbstractResource|object>
+     * @var array<TKey, TValue>
      */
     private $items;
 
     /**
      * Constructs an instance of this class.
      *
-     * @param array<int, AbstractResource|object> $items
+     * @param array<TKey, TValue> $items
      */
     public function __construct(array $items)
     {
@@ -31,7 +37,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     }
 
     /**
-     * @param mixed|null $offset
+     * @param TKey $offset
      */
     public function offsetExists($offset): bool
     {
@@ -39,9 +45,9 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     }
 
     /**
-     * @param mixed|null $offset
+     * @param TKey $offset
      *
-     * @return AbstractResource|object|null
+     * @return TValue|null
      */
     public function offsetGet($offset)
     {
@@ -49,8 +55,8 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     }
 
     /**
-     * @param mixed|null $offset
-     * @param mixed|null $value
+     * @param TKey   $offset
+     * @param TValue $value
      */
     public function offsetSet($offset, $value): void
     {
@@ -58,7 +64,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     }
 
     /**
-     * @param mixed|null $offset
+     * @param TKey $offset
      */
     public function offsetUnset($offset): void
     {
@@ -70,13 +76,16 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
         return count($this->items);
     }
 
+    /**
+     * @return ArrayIterator<TKey, TValue>
+     */
     public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->items);
     }
 
     /**
-     * @return array<int, AbstractResource|object>
+     * @return array<TKey, TValue>
      */
     public function getItems(): array
     {

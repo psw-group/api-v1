@@ -10,6 +10,11 @@ use PswGroup\Api\Client;
 use PswGroup\Api\Model\AbstractResource;
 use PswGroup\Api\Model\PaginatedCollection;
 
+/**
+ * Represents a repository of resources.
+ *
+ * @template TResource of AbstractResource
+ */
 abstract class AbstractRepository
 {
     /**
@@ -35,6 +40,9 @@ abstract class AbstractRepository
         return $this->getBaseUrl() . '/' . ((string) $id);
     }
 
+    /**
+     * @return TResource
+     */
     abstract protected function entityFromResource(HalResource $resource): AbstractResource;
 
     /**
@@ -94,6 +102,9 @@ abstract class AbstractRepository
         return $query;
     }
 
+    /**
+     * @return PaginatedCollection<int, TResource>
+     */
     protected function buildPaginatedCollection(HalResource $resource, int $page): PaginatedCollection
     {
         $items = [];

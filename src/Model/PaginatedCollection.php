@@ -6,6 +6,11 @@ namespace PswGroup\Api\Model;
 
 /**
  * Represents a paginated collection of resources.
+ *
+ * @template TKey of int
+ * @template TValue of AbstractResource
+ *
+ * @extends Collection<TKey, TValue>
  */
 class PaginatedCollection extends Collection
 {
@@ -27,7 +32,7 @@ class PaginatedCollection extends Collection
     /**
      * Constructs an instance of this class.
      *
-     * @param array<int, AbstractResource|object> $items
+     * @param array<TKey, TValue> $items
      */
     public function __construct(array $items, int $totalItems, int $currentPage, int $itemsPerPage)
     {

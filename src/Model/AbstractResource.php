@@ -50,7 +50,11 @@ abstract class AbstractResource
     }
 
     /**
-     * @return mixed|null
+     * @template T of object
+     *
+     * @param class-string<T> $className
+     *
+     * @return T
      */
     public static function loadObject(HalResource $resource, string $property, string $className)
     {
