@@ -57,7 +57,7 @@ function maxLength(array $list, string $column): int
     return $max;
 }
 
-function pad(string $input, int $pad_length, string $pad_string = ' ', int $pad_type = STR_PAD_RIGHT)
+function pad(string $input, int $pad_length, string $pad_string = ' ', int $pad_type = STR_PAD_RIGHT): string
 {
     $mb_diff = strlen($input) - mb_strlen($input, 'UTF-8');
 
