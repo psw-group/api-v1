@@ -22,15 +22,6 @@ class OrganisationType extends AbstractResource
      */
     private string $name;
 
-    /**
-     * Constructs an instance of this class.
-     */
-    public function __construct(string $code = '', string $name = '')
-    {
-        $this->code = $code;
-        $this->name = $name;
-    }
-
     public function getCode(): string
     {
         return $this->code;
@@ -47,6 +38,21 @@ class OrganisationType extends AbstractResource
 
         $result->code = $resource->getProperty('code');
         $result->name = $resource->getProperty('name');
+
+        return $result;
+    }
+
+    /**
+     * @param array{iri?: string|null, code?: string|null, name?: string|null} $data
+     */
+    public static function fromArray(array $data): self
+    {
+        $result = new self();
+
+        $result->setIri($data['iri'] ?? null);
+
+        $result->code = $data['code'] ?? '';
+        $result->name = $data['name'] ?? '';
 
         return $result;
     }

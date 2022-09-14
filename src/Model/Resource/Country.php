@@ -17,14 +17,6 @@ class Country extends AbstractResource
      */
     private string $iso2;
 
-    /**
-     * Constructs an instance of this class.
-     */
-    public function __construct(string $iso2 = '')
-    {
-        $this->iso2 = $iso2;
-    }
-
     public function getIso2(): string
     {
         return $this->iso2;
@@ -35,6 +27,20 @@ class Country extends AbstractResource
         $result = parent::fromResource($resource);
 
         $result->iso2 = $resource->getProperty('iso2');
+
+        return $result;
+    }
+
+    /**
+     * @param array{iri?: string|null, iso2?: string|null} $data
+     */
+    public static function fromArray(array $data): self
+    {
+        $result = new self();
+
+        $result->setIri($data['iri'] ?? null);
+
+        $result->iso2 = $data['iso2'] ?? '';
 
         return $result;
     }

@@ -14,6 +14,13 @@ abstract class AbstractResource
 {
     private ?string $iri = null;
 
+    /**
+     * Constructs an instance of this class.
+     */
+    final public function __construct()
+    {
+    }
+
     public function getIri(): ?string
     {
         return $this->iri;

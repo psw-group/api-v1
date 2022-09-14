@@ -12,6 +12,13 @@ abstract class EmbeddedContact
     use ContactData;
 
     /**
+     * Constructs an instance of this class.
+     */
+    final public function __construct()
+    {
+    }
+
+    /**
      * @param array<string, mixed> $data
      */
     public static function fromArray(array $data): static

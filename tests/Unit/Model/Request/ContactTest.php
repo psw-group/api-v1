@@ -157,8 +157,8 @@ class ContactTest extends TestCase
         $result->setAddressZip('36041');
         $result->setAddressCity('Fulda');
         $result->setAddressState('Hessen');
-        $result->setAddressCountry(new Country('DE'));
-        $result->setOrganisationType(new OrganisationType('2', 'Im Handelsregister eingetragene Firma'));
+        $result->setAddressCountry(Country::fromArray(['iso2' => 'DE']));
+        $result->setOrganisationType(OrganisationType::fromArray(['code' => 2, 'name' => '']));
         $result->setOrganisationName('PSW GROUP GmbH & Co. KG');
         $result->setOrganisationUnit('Development');
         $result->setOrganisationDuns('53-747-3485');
@@ -166,7 +166,7 @@ class ContactTest extends TestCase
         $result->setJurisdictionNumber('HRA 5007');
         $result->setJurisdictionCity('Fulda');
         $result->setJurisdictionState('Hessen');
-        $result->setJurisdictionCountry(new Country('DE'));
+        $result->setJurisdictionCountry(Country::fromArray(['iso2' => 'DE']));
 
         $accountContact = new AccountContact();
         $accountContact->setSalutation('Mr.');
