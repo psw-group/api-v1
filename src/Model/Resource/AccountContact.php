@@ -308,7 +308,7 @@ class AccountContact extends AbstractResource implements JsonSerializable
     }
 
     /**
-     * @return array<string, string|bool|null>
+     * @return array{allowedAsOrderContact: bool, allowedAsOwnerContact: bool, salutation: string|null, firstname: string|null, lastname: string|null, telephone: string|null, email: string|null, addressLine1: string|null, addressLine2: string|null, addressLine3: string|null, addressZip: string|null, addressCity: string|null, addressState: string|null, addressCountry: string|null, organisationType: string|null, organisationName: string|null, organisationUnit: string|null, organisationDuns: string|null, jurisdictionAgency: string|null, jurisdictionNumber: string|null, jurisdictionCity: string|null, jurisdictionState: string|null, jurisdictionCountry: string|null}
      */
     public function jsonSerialize(): array
     {

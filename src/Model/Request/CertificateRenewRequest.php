@@ -146,7 +146,7 @@ class CertificateRenewRequest implements JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array{certificateNumber: string, certificateRequest: CertificateData|null, orderContact: Contact, vatId: string|null, customerOrder: string|null, validationDate: string|null, files: File[]|null, comment: string|null}
      */
     public function jsonSerialize(): array
     {

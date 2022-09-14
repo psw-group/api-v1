@@ -33,6 +33,9 @@ class CertificateValidationDataHttp extends CertificateValidationData
         $this->content = $content;
     }
 
+    /**
+     * @return array{url: string, content: string|null}
+     */
     public function getData(): array
     {
         return [

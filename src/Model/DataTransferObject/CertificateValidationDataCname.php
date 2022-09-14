@@ -21,6 +21,9 @@ class CertificateValidationDataCname extends CertificateValidationData
         $this->cname = $cname;
     }
 
+    /**
+     * @return array{cname: string}
+     */
     public function getData(): array
     {
         return [

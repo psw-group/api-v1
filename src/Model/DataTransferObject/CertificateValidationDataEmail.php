@@ -21,6 +21,9 @@ class CertificateValidationDataEmail extends CertificateValidationData
         $this->email = $email;
     }
 
+    /**
+     * @return array{email: string}
+     */
     public function getData(): array
     {
         return [

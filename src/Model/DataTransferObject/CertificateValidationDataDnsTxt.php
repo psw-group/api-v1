@@ -21,6 +21,9 @@ class CertificateValidationDataDnsTxt extends CertificateValidationData
         $this->dnstxt = $dnstxt;
     }
 
+    /**
+     * @return array{dnstxt: string}
+     */
     public function getData(): array
     {
         return [

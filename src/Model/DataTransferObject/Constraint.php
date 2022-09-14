@@ -30,14 +30,14 @@ class Constraint
     }
 
     /**
-     * @param array<string, mixed> $resource
+     * @param array{type?: string|null, parameters?: array<string, mixed>|null} $data
      */
-    public static function fromArray(array $resource): self
+    public static function fromArray(array $data): self
     {
         $result = new self();
 
-        $result->type = $resource['type'];
-        $result->parameters = $resource['parameters'];
+        $result->type = $data['type'] ?? '';
+        $result->parameters = $data['parameters'] ?? [];
 
         return $result;
     }

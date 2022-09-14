@@ -40,7 +40,7 @@ class QuoteItem implements JsonSerializable
     }
 
     /**
-     * @return array<string, string|CertificateData|null>
+     * @return array{product: string|null, certificateRequest: CertificateData|null}
      */
     public function jsonSerialize(): array
     {

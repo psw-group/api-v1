@@ -57,7 +57,7 @@ class File implements JsonSerializable
     }
 
     /**
-     * @return array<string, string|null>
+     * @return array{name: string, mimeType: string|null, content: string}
      */
     public function jsonSerialize(): array
     {

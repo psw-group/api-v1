@@ -108,7 +108,7 @@ class Validation implements JsonSerializable
     }
 
     /**
-     * @return array<string, string|null>
+     * @return array{name: string, method: string, email: string|null}
      */
     public function jsonSerialize(): array
     {

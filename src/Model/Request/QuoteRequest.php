@@ -68,7 +68,7 @@ class QuoteRequest implements JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array{items: QuoteItem[], quoteContact: Contact|null, vatId: string|null}
      */
     public function jsonSerialize(): array
     {

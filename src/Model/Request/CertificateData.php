@@ -153,7 +153,7 @@ class CertificateData implements JsonSerializable
     }
 
     /**
-     * @return array<string, mixed|null>
+     * @return array{csrFile: string|null, csrFields: CsrFields|null, validation: Validation[]|null, username: string|null, password: string|null, hashAlgorithm: string|null, serverCount: int|null, ownerContact: Contact|null, approverContact: Contact|null}
      */
     public function jsonSerialize(): array
     {

@@ -100,7 +100,7 @@ class CsrFields implements JsonSerializable
     }
 
     /**
-     * @return array<string, string|array<int, string>|null>
+     * @return array{commonName: string|null, countryName: string|null, stateOrProvinceName: string|null, localityName: string|null, organisationName: string|null, organisationalUnitName: string|null, emailAddress: string|null, sans: string[]|null}
      */
     public function jsonSerialize(): array
     {

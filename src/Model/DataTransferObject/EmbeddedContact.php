@@ -12,33 +12,33 @@ abstract class EmbeddedContact
     use ContactData;
 
     /**
-     * @param array<string, mixed> $resource
+     * @param array<string, mixed> $data
      */
-    public static function fromArray(array $resource): static
+    public static function fromArray(array $data): static
     {
         $result = new static();
 
-        $result->salutation = $resource['salutation'];
-        $result->firstname = $resource['firstname'];
-        $result->lastname = $resource['lastname'];
-        $result->telephone = $resource['telephone'];
-        $result->email = $resource['email'];
-        $result->addressLine1 = $resource['addressLine1'];
-        $result->addressLine2 = $resource['addressLine2'];
-        $result->addressLine3 = $resource['addressLine3'];
-        $result->addressZip = $resource['addressZip'];
-        $result->addressCity = $resource['addressCity'];
-        $result->addressState = $resource['addressState'];
-        $result->addressCountry = $resource['addressCountry'] ? Country::fromResource($resource['addressCountry']) : null;
-        $result->organisationType = $resource['organisationType'] ? OrganisationType::fromResource($resource['organisationType']) : null;
-        $result->organisationName = $resource['organisationName'];
-        $result->organisationUnit = $resource['organisationUnit'];
-        $result->organisationDuns = $resource['organisationDuns'];
-        $result->jurisdictionAgency = $resource['jurisdictionAgency'];
-        $result->jurisdictionNumber = $resource['jurisdictionNumber'];
-        $result->jurisdictionCity = $resource['jurisdictionCity'];
-        $result->jurisdictionState = $resource['jurisdictionState'];
-        $result->jurisdictionCountry = $resource['jurisdictionCountry'] ? Country::fromResource($resource['jurisdictionCountry']) : null;
+        $result->salutation = $data['salutation'];
+        $result->firstname = $data['firstname'];
+        $result->lastname = $data['lastname'];
+        $result->telephone = $data['telephone'];
+        $result->email = $data['email'];
+        $result->addressLine1 = $data['addressLine1'];
+        $result->addressLine2 = $data['addressLine2'];
+        $result->addressLine3 = $data['addressLine3'];
+        $result->addressZip = $data['addressZip'];
+        $result->addressCity = $data['addressCity'];
+        $result->addressState = $data['addressState'];
+        $result->addressCountry = $data['addressCountry'] ? Country::fromResource($data['addressCountry']) : null;
+        $result->organisationType = $data['organisationType'] ? OrganisationType::fromResource($data['organisationType']) : null;
+        $result->organisationName = $data['organisationName'];
+        $result->organisationUnit = $data['organisationUnit'];
+        $result->organisationDuns = $data['organisationDuns'];
+        $result->jurisdictionAgency = $data['jurisdictionAgency'];
+        $result->jurisdictionNumber = $data['jurisdictionNumber'];
+        $result->jurisdictionCity = $data['jurisdictionCity'];
+        $result->jurisdictionState = $data['jurisdictionState'];
+        $result->jurisdictionCountry = $data['jurisdictionCountry'] ? Country::fromResource($data['jurisdictionCountry']) : null;
 
         return $result;
     }

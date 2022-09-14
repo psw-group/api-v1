@@ -113,7 +113,7 @@ class AccountUser extends AbstractResource implements JsonSerializable
     }
 
     /**
-     * @return array<string, string|bool>
+     * @return array{active: bool, firstname: string, lastname: string, email: string, password: string}
      */
     public function jsonSerialize(): array
     {
