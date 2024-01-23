@@ -11,3 +11,4 @@
 /tests              export-ignore
 /examples           export-ignore
 /docs               export-ignore
+/README.md          export-ignore
