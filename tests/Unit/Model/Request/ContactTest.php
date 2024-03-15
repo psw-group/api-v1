@@ -46,7 +46,7 @@ class ContactTest extends TestCase
         $this->assertFalse($contact->getStoreData());
     }
 
-    public function provideLargeData(): array
+    public static function provideLargeData(): array
     {
         return [
             'salutation' => ['setSalutation', str_repeat('X', 256)],
@@ -81,7 +81,7 @@ class ContactTest extends TestCase
         $contact->{$method}($data);
     }
 
-    public function provideInvalidEmailAdresses(): array
+    public static function provideInvalidEmailAdresses(): array
     {
         return [
             ['@@'],
@@ -101,7 +101,7 @@ class ContactTest extends TestCase
         $contact->setEmail($name);
     }
 
-    public function provideInvalidTelephone(): array
+    public static function provideInvalidTelephone(): array
     {
         return [
             ['+'],
@@ -158,7 +158,7 @@ class ContactTest extends TestCase
         $result->setAddressCity('Fulda');
         $result->setAddressState('Hessen');
         $result->setAddressCountry(Country::fromArray(['iso2' => 'DE']));
-        $result->setOrganisationType(OrganisationType::fromArray(['code' => 2, 'name' => '']));
+        $result->setOrganisationType(OrganisationType::fromArray(['code' => '2', 'name' => '']));
         $result->setOrganisationName('PSW GROUP GmbH & Co. KG');
         $result->setOrganisationUnit('Development');
         $result->setOrganisationDuns('53-747-3485');

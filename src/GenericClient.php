@@ -35,11 +35,11 @@ class GenericClient implements Client
 
     private ?HalClient $halClient = null;
 
-    private ClientInterface $httpClient;
+    private readonly ClientInterface $httpClient;
 
-    private RequestFactoryInterface $requestFactory;
+    private readonly RequestFactoryInterface $requestFactory;
 
-    private UriFactoryInterface $uriFactory;
+    private readonly UriFactoryInterface $uriFactory;
 
     /**
      * Constructs an instance of this class.

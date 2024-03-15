@@ -73,7 +73,7 @@ abstract class AbstractResource
 
             $result = call_user_func($callable, $resource->getFirstResource($property));
 
-            if (is_object($result) && is_a($result, $className)) {
+            if ($result instanceof $className) {
                 return $result;
             }
 
@@ -93,7 +93,7 @@ abstract class AbstractResource
 
             $result = call_user_func($callable, $data);
 
-            if (is_object($result) && is_a($result, $className)) {
+            if ($result instanceof $className) {
                 return $result;
             }
 
@@ -112,7 +112,7 @@ abstract class AbstractResource
 
         $result = call_user_func($callable, $data);
 
-        if (is_object($result) && is_a($result, $className)) {
+        if ($result instanceof $className) {
             return $result;
         }
 

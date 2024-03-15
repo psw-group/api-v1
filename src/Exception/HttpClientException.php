@@ -13,7 +13,7 @@ use Throwable;
  */
 class HttpClientException extends RuntimeException
 {
-    private RequestInterface $request;
+    private readonly RequestInterface $request;
 
     /**
      * Constructs an instance of this class.

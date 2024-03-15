@@ -34,7 +34,7 @@ class CsrFieldsTest extends TestCase
         $this->assertEquals($expected, $serialized);
     }
 
-    public function provideLargeData(): array
+    public static function provideLargeData(): array
     {
         return [
             'commonName' => ['setCommonName', str_repeat('X', 1025)],
@@ -58,7 +58,7 @@ class CsrFieldsTest extends TestCase
         $fields->{$method}($data);
     }
 
-    public function provideValidCountries(): array
+    public static function provideValidCountries(): array
     {
         return [
             [null, null],
@@ -80,7 +80,7 @@ class CsrFieldsTest extends TestCase
         $this->assertEquals($expected, $fields->getCountryName());
     }
 
-    public function provideInvalidCountries(): array
+    public static function provideInvalidCountries(): array
     {
         return [
             ['D'],
@@ -102,7 +102,7 @@ class CsrFieldsTest extends TestCase
         $fields->setCountryName($name);
     }
 
-    public function provideValidEmailAdresses(): array
+    public static function provideValidEmailAdresses(): array
     {
         return [
             [null, null],
@@ -124,7 +124,7 @@ class CsrFieldsTest extends TestCase
         $this->assertEquals($expected, $fields->getEmailAddress());
     }
 
-    public function provideInvalidEmailAdresses(): array
+    public static function provideInvalidEmailAdresses(): array
     {
         return [
             ['@@'],
