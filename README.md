@@ -18,7 +18,7 @@ $ composer require psw-group/api-v1
 
 ## Requirements
 
-You will need a recent version of PHP, at least PHP 8.0.
+You will need a recent version of PHP, at least PHP 8.1.
 
 This package requires PSR-17 compatible request/URI factories and a PSR-18 compatible HTTP client.
 If no factories are supplied, it uses [PHP-HTTP](https://php-http.org) discovery to find installed implementations.
