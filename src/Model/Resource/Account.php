@@ -20,9 +20,9 @@ class Account extends AbstractResource implements JsonSerializable
     private ?string $number = null;
 
     /**
-     * @var string|null Name of the account
+     * @var string Name of the account
      */
-    private ?string $name = null;
+    private string $name = '';
 
     /**
      * @var string|null Customer number of the account
@@ -54,7 +54,7 @@ class Account extends AbstractResource implements JsonSerializable
         return $this->number;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
