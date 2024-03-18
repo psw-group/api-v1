@@ -7,7 +7,7 @@ namespace PswGroup\Api\Model\DataTransferObject;
 use PswGroup\Api\Model\Resource\Country;
 use PswGroup\Api\Model\Resource\OrganisationType;
 
-trait ContactData
+trait ReadableContact
 {
     /**
      * @var string|null Salutation of the contact

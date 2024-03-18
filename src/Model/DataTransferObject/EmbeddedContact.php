@@ -9,7 +9,7 @@ use PswGroup\Api\Model\Resource\OrganisationType;
 
 abstract class EmbeddedContact
 {
-    use ContactData;
+    use ReadableContact;
 
     /**
      * Constructs an instance of this class.
