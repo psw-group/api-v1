@@ -21,6 +21,7 @@ use PswGroup\Api\Model\Request\CertificateRenewRequest;
 use PswGroup\Api\Model\Request\Validation;
 use PswGroup\Api\Model\Resource\Certificate;
 use PswGroup\Api\Model\Resource\Job;
+use PswGroup\Api\Model\Resource\Subscription;
 use Throwable;
 
 /**
@@ -145,6 +146,20 @@ class CertificateRepository extends AbstractRepository
         }
 
         return CertificateCsrFields::fromResource($resource);
+    }
+
+    /**
+     * Loads the subscription of a certificate.
+     */
+    public function loadSubscription(Certificate $certificate): ?Subscription
+    {
+        try {
+            $resource = $this->client->get($this->buildItemUrl($certificate->getNumber()) . '/subscription');
+        } catch (Throwable) {
+            return null;
+        }
+
+        return Subscription::fromResource($resource);
     }
 
     /**
